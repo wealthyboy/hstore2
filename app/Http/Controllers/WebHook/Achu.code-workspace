@@ -1,0 +1,49 @@
+{
+  "folders": [
+    {
+      "path": "../../../../../globatos.ng"
+    },
+    {
+      "path": "../../../../../AM"
+    },
+    {
+      "path": "../../../../../avenuemontaigne.ng"
+    },
+    {
+      "path": "../../../.."
+    },
+    {
+      "path": "../../../../../myshortlet.com"
+    },
+    {
+      "path": "../../../../../theluxurysale"
+    },
+    {
+      "path": "../../../../../ohram"
+    },
+    {
+      "path": "../../../../../nollyflix"
+    },
+    {
+      "path": "../../../../../marzipano/demos"
+    },
+    {
+      "path": "../../../../../sampletour"
+    },
+    {
+      "path": "../../../../../shopmata-new"
+    },
+    {
+      "path": "../../../../../expo-netflix"
+    },
+    {
+      "path": "../../../../../autofactorng"
+    },
+    {
+      "path": "../../../../../autofactorng.com"
+    }
+  ],
+  "settings": {
+    "git.ignoreLimitWarning": true
+  }
+}

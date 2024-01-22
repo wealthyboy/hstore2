@@ -1,0 +1,118 @@
+.text-md-15 {
+  font-size: 15px;
+}
+.text-md-16 {
+  font-size: 16px;
+}
+.text-md-17 {
+  font-size: 17px;
+}
+.text-md-18 {
+  font-size: 18px;
+}
+
+.text-md-19 {
+  font-size: 19px;
+}
+
+.text-md-20 {
+  font-size: 20px;
+}
+
+.text-md-21 {
+  font-size: 21px;
+}
+.text-md-22 {
+  font-size: 22px;
+}
+.text-md-23 {
+  font-size: 23px;
+}
+
+.text-md-24 {
+  font-size: 15px;
+}
+.text-md-25 {
+  font-size: 24px;
+}
+
+.text-md-26 {
+  font-size: 26px;
+}
+.text-md-27 {
+  font-size: 27px;
+}
+.text-md-28 {
+  font-size: 28px;
+}
+.text-md-29 {
+  font-size: 29px;
+}
+.text-md-30 {
+  font-size: 30px;
+}
+
+.text-md-31 {
+  font-size: 31px;
+}
+
+/* On screens that are 600px wide or less, make the columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 900px) {
+  .text-sm-15 {
+    font-size: 15px;
+  }
+  .text-sm-16 {
+    font-size: 16px;
+  }
+  .text-sm-17 {
+    font-size: 17px;
+  }
+  .text-sm-18 {
+    font-size: 18px;
+  }
+
+  .text-md-19 {
+    font-size: 19px;
+  }
+
+  .text-sm-20 {
+    font-size: 20px;
+  }
+
+  .text-sm-21 {
+    font-size: 21px;
+  }
+  .text-md-22 {
+    font-size: 22px;
+  }
+  .text-sm-23 {
+    font-size: 23px;
+  }
+
+  .text-sm-24 {
+    font-size: 15px;
+  }
+  .text-sm-25 {
+    font-size: 24px;
+  }
+
+  .text-sm-26 {
+    font-size: 26px;
+  }
+  .text-sm-27 {
+    font-size: 27px;
+  }
+  .text-sm-28 {
+    font-size: 28px;
+  }
+  .text-sm-29 {
+    font-size: 29px;
+  }
+  .text-sm-30 {
+    font-size: 30px;
+  }
+
+  .text-sm-31 {
+    font-size: 31px;
+  }
+}
