@@ -28,6 +28,10 @@ class HomeController extends Controller
     {
         $site_status = Live::first();
         $banners = Banner::banners()->get();
+        $categories = Category::get();
+
+
+
         $products = ProductVariation::where('featured', 1)->orderBy('updated_at', 'DESC')->take(8)->get();
         //  if ($request->debug) {
         //      dd($products);
@@ -41,7 +45,7 @@ class HomeController extends Controller
         //         ]);
         //     }
         // }
-        foreach ($banners as $c) {
+        foreach ($categories as $c) {
             // Original URL
             $originalUrl = "https://hautesignatures.com/images/products/m/8lcARWNWMZCSD533ZDc1cT9P0f03Lq6rkD4tRR2g.jpg";
 
