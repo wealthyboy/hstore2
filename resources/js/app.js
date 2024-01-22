@@ -43,7 +43,7 @@ const router = new VueRouter({
   routes,
 });
 
-Vue.filter("priceFormat", function(value) {
+Vue.filter("priceFormat", function (value) {
   return new Intl.NumberFormat().format(value);
 });
 
@@ -78,4 +78,4 @@ const app = new Vue({
 require("../../public/js/plugins.js");
 require("./rotaterator.js");
 require("../../public/js/main.min.js");
-require("../../public/js/loadProducts.jquery.js");
+require("../../public/js/");
