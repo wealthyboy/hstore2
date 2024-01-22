@@ -28,7 +28,7 @@ class HomeController extends Controller
     {
         $site_status = Live::first();
         $banners = Banner::banners()->get();
-        $categories = Category::get();
+        $categories = Images::all();
 
 
 
