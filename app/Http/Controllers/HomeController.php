@@ -14,6 +14,7 @@ use App\Models\Information;
 use App\Models\Currency;
 use App\Models\SystemSetting;
 use App\Http\Helper;
+use App\Models\Image;
 use App\Models\ProductVariation;
 use Illuminate\Support\Facades\Cookie;
 
@@ -28,7 +29,8 @@ class HomeController extends Controller
     {
         $site_status = Live::first();
         $banners = Banner::banners()->get();
-        $categories = Images::all();
+        $categories = Image::all();
+
 
 
 
