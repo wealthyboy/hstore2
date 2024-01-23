@@ -29,7 +29,6 @@ class HomeController extends Controller
     {
         $site_status = Live::first();
         $banners = Banner::banners()->get();
-        $categories = Category::all();
 
 
 
@@ -47,16 +46,7 @@ class HomeController extends Controller
         //         ]);
         //     }
         // }
-        foreach ($categories as $c) {
-            // Original URL
-            $originalUrl = "https://hautesignatures.com/images/products/m/8lcARWNWMZCSD533ZDc1cT9P0f03Lq6rkD4tRR2g.jpg";
 
-            // Replace the domain
-            $c->image = str_replace("https://hautesignatures.com.ng.ng.ng.ng.ng", "https://hautesignatures.com.ng", $c->image);
-
-            // Output the new URL
-            $c->save();
-        }
 
         $reviews = Review::where('is_verified', 1)->inRandomOrder()->orderBy('created_at', 'DESC')->take(20)->get();
         $posts = Information::orderBy('created_at', 'DESC')->where(['blog' => true, 'is_active' => true])->take(6)->get();
