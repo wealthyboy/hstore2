@@ -52,7 +52,7 @@ class HomeController extends Controller
             $originalUrl = "https://hautesignatures.com/images/products/m/8lcARWNWMZCSD533ZDc1cT9P0f03Lq6rkD4tRR2g.jpg";
 
             // Replace the domain
-            $c->image = str_replace("https://hautesignatures.com", "https://hautesignatures.com.ng", $c->image);
+            $c->image = str_replace("https://hautesignatures.com.ng.ng.ng.ng.ng", "https://hautesignatures.com.ng", $c->image);
 
             // Output the new URL
             $c->save();
