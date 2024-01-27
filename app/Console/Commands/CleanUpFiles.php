@@ -19,6 +19,8 @@ class CleanUpFiles extends Command
         foreach ($databaseImages as $databaseImage) {
             $databaseImage->image = str_replace('https://hautesignatures.com', 'https://hautesignatures.com.ng', $databaseImage->image);
             $databaseImage->save();
+           $this->info('Deleted: ' . $databaseImage->image);
+
         }
 
 
