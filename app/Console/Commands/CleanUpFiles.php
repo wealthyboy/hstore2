@@ -13,14 +13,12 @@ class CleanUpFiles extends Command
 
     public function handle()
     {
-        $folderPath = public_path('images/products/m');
-        $databaseImages = Image::get();
+         $databaseImages = ProductVariation::get();
 
         foreach ($databaseImages as $databaseImage) {
-            $databaseImage->image = str_replace('https://hautesignatures.com.ng.ng.ng.ng', 'https://hautesignatures.com.ng', $databaseImage->image);
+            $databaseImage->image = str_replace('https://hautesignatures.com', 'https://hautesignatures.com.ng', $databaseImage->image);
             $databaseImage->save();
-           $this->info('Deleted: ' . $databaseImage->image);
-
+            $this->info('Deleted: ' . $databaseImage->image);
         }
 
 
