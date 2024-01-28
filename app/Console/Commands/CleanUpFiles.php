@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Image;
+use App\Models\ProductVariation;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 
