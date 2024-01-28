@@ -28,6 +28,8 @@ class Image extends Model
         return $this->morphTo();
     }
 
+
+
     public function scopeParents(Builder $builder)
     {
         return $builder->whereNull('parent_id')->orderBy('created_at', 'desc');

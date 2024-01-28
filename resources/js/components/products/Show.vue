@@ -3,23 +3,11 @@
     <div class="product-single-container product-single-default">
       <div class="row">
         <div class="col-md-1 product-single-gallery d-none d-lg-block">
-          <div
-            class="prod-thumbnail carousel-custom-dots owl-dots"
-            id="carousel-custom-dots"
-          >
+          <div class="prod-thumbnail carousel-custom-dots owl-dots" id="carousel-custom-dots">
             <div class="owl-dot">
-              <img
-                class="animated"
-                @click.prevent="currentSlide(product.image_to_show)"
-                :src="image_tn"
-              />
+              <img class="animated" @click.prevent="currentSlide(product.image_to_show)" :src="image_tn" />
             </div>
-            <div
-              @click.prevent="currentSlide(image.image)"
-              v-for="image in images"
-              :key="image.id"
-              class="owl-dot"
-            >
+            <div @click.prevent="currentSlide(image.image)" v-for="image in images" :key="image.id" class="owl-dot">
               <img :src="image.image_tn" :alt="image.image_tn" />
             </div>
           </div>
@@ -30,20 +18,11 @@
           <div class="product-slider-container">
             <div class="product-single-carousel owl-carousel owl-theme">
               <div class="product-item">
-                <img
-                  class="product-single-image"
-                  :data-zoom-image="image"
-                  :src="image"
-                />
+                <img class="product-single-image" :data-zoom-image="image" :src="image" />
               </div>
               <div v-for="image in images" :key="image.id" class="product-item">
-                <img
-                  class="product-single-image"
-                  :data-zoom-image="image.image"
-                  :src="image.image"
-                  v-if="image.image !== ''"
-                  :alt="image.image_tn"
-                />
+                <img class="product-single-image" :data-zoom-image="image.image" :src="image.image"
+                  v-if="image.image !== ''" :alt="image.image_tn" />
               </div>
             </div>
           </div>
@@ -51,53 +30,27 @@
 
         <!-- End .product-single-gallery -->
         <div class="d-none d-xs-block d-block d-lg-none d-sm-block d-md-none">
-          <div
-            class="prod-thumbnail d-flex carousel-custom-dots owl-dots"
-            id="carousel-custom-dots"
-          >
+          <div class="prod-thumbnail d-flex carousel-custom-dots owl-dots" id="carousel-custom-dots">
             <div class="owl-dot">
-              <img
-                class="animated"
-                @click.prevent="currentSlide(product.image_to_show)"
-                :src="image_tn"
-              />
+              <img class="animated" @click.prevent="currentSlide(product.image_to_show)" :src="image_tn" />
             </div>
-            <div
-              @click.prevent="currentSlide(image.image)"
-              v-for="image in images"
-              :key="image.id"
-              class="owl-dot"
-            >
+            <div @click.prevent="currentSlide(image.image)" v-for="image in images" :key="image.id" class="owl-dot">
               <img :src="image.image_tn" :alt="image.image_tn" />
             </div>
           </div>
         </div>
 
         <div class="col-md-5 product-single-details">
-          <price
-            :percentage_off="percentage_off"
-            :price="price"
-            :product="product"
-            :name="name"
-            :discounted_price="discounted_price"
-          />
+          <price :percentage_off="percentage_off" :price="price" :product="product" :name="name"
+            :discounted_price="discounted_price" />
 
           <div class="clearfix"></div>
 
           <div class="mt-1">
             <!--Product Variations Form-->
-            <product-attributes
-              v-if="!product.is_gift_card"
-              @productAttributeChange="getAttribute"
-              :attributes="attributes"
-              :attributesData="attributesData"
-              :inventory="inventory"
-              :stock="stock"
-              :product="product"
-              :color="color"
-              :qty="qty"
-              :quantity="quantity"
-            />
+            <product-attributes v-if="!product.is_gift_card" @productAttributeChange="getAttribute"
+              :attributes="attributes" :attributesData="attributesData" :inventory="inventory" :stock="stock"
+              :product="product" :color="color" :qty="qty" :quantity="quantity" />
 
             <gift-card-form v-if="product.is_gift_card" :product="product" />
 
@@ -106,49 +59,25 @@
                 {{ cartError }}
               </div>
               <div class="col-2 pl-3">
-                <div
-                  v-if="quantity >= 1"
-                  id="quantity_1234"
-                  class="select-custom"
-                >
-                  <select
-                    id="add-to-cart-quantity"
-                    name="qty"
-                    class="form-control"
-                  >
+                <div v-if="quantity >= 1" id="quantity_1234" class="select-custom">
+                  <select id="add-to-cart-quantity" name="qty" class="form-control">
                     <option v-for="x in parseInt(quantity)">{{ x }}</option>
                   </select>
                 </div>
                 <div v-else id="quantity_1234" class="">
-                  <select
-                    id="add-to-cart-quantity"
-                    name="qty"
-                    class="form-control"
-                  >
+                  <select id="add-to-cart-quantity" name="qty" class="form-control">
                     <option value=""></option>
                   </select>
                 </div>
               </div>
 
               <div v-if="!product.is_gift_card" class="col-9">
-                <cart-button
-                  :loading="loading"
-                  :canAddToCart="canAddToCart"
-                  :cartText="cartText"
-                  @add="addToCart"
-                />
+                <cart-button :loading="loading" :canAddToCart="canAddToCart" :cartText="cartText" @add="addToCart" />
               </div>
 
-              <wishlist
-                v-if="!product.is_gift_card"
-                @wishlistChange="addToWishList"
-                :wishlistText="wishlistText"
-              />
+              <wishlist v-if="!product.is_gift_card" @wishlistChange="addToWishList" :wishlistText="wishlistText" />
 
-              <size-guide
-                v-if="!product.is_gift_card"
-                :attributes="attributes"
-              />
+              <size-guide v-if="!product.is_gift_card" :attributes="attributes" />
             </div>
           </div>
           <!-- End .product-filters-container -->
@@ -272,21 +201,21 @@ export default {
     qty() {
       return this.quantity == 1 ? "Only 1 left" : "";
     },
-    activeObject: function() {
+    activeObject: function () {
       return {
         "active-attributes": this.isActive,
       };
     },
-    cartText: function() {
+    cartText: function () {
       return this.cText;
     },
-    canAddToCart: function() {
+    canAddToCart: function () {
       return [this.canNotAddToCart ? "disabled" : ""];
     },
-    removeSpace: function(str) {
+    removeSpace: function (str) {
       return str.replace(/\s/g, "");
     },
-    loggedIn: function() {
+    loggedIn: function () {
       return [this.user ? true : false];
     },
   },
@@ -332,7 +261,7 @@ export default {
             );
           } else {
           }
-        } catch (error) {}
+        } catch (error) { }
       });
     }
   },
@@ -359,7 +288,7 @@ export default {
         });
     },
 
-    currentSlide: function(image) {
+    currentSlide: function (image) {
       this.fadeIn = !this.fadeIn;
       this.image = image;
       // jQuery(function() {
@@ -381,7 +310,7 @@ export default {
       }, 1000); // Will alert once, after a second.
     },
 
-    getAttribute: function({ vTs, key }) {
+    getAttribute: function ({ vTs, key }) {
       try {
         this.product_variation = vTs;
         this.name = vTs.name ?? this.name;
@@ -418,7 +347,7 @@ export default {
       checkInput: "checkInput",
       getReviews: "getReviews",
     }),
-    addToCart: function() {
+    addToCart: function () {
       let qty = document.getElementById("add-to-cart-quantity").value;
 
       this.cText = "Adding....";
@@ -436,7 +365,7 @@ export default {
           this.loading = false;
         });
     },
-    addToWishList: function() {
+    addToWishList: function () {
       this.wishlistText = true;
       this.addProductToWishList({
         product_variation_id: this.product_variation_id,

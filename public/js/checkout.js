@@ -39682,7 +39682,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/hautesignatues/resources/js/checkout.js */"./resources/js/checkout.js");
+module.exports = __webpack_require__(/*! /Applications/XAMPP/xamppfiles/htdocs/hstore/resources/js/checkout.js */"./resources/js/checkout.js");
 
 
 /***/ })

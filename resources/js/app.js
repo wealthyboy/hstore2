@@ -78,4 +78,5 @@ const app = new Vue({
 require("../../public/js/plugins.js");
 require("./rotaterator.js");
 require("../../public/js/main.min.js");
-require("../../public/js/");
+
+require("../../public/js/loadProducts.jquery")

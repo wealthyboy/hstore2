@@ -7,15 +7,15 @@
     <title>{{ isset( $page_title) ?  $page_title .' |  '.config('app.name') :  $system_settings->meta_title  }}</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="google-site-verification" content="WQGOl-v7IztNDZtgNC1ZEBkG8nyRsHJ1oLsnsLeiuIQ" />
-	<link rel="preload" href="https://hautesignatures.com/fonts/ProximaNovaAltRegular.otf" as="font" type="font/otf" crossorigin>
-	<link rel="preload" href="https://hautesignatures.com/fonts/GalaxiePolaris-Bold.otf" as="font" type="font/otf" crossorigin>
-	<link rel="preload" href="https://hautesignatures.com/fonts/porto-64334846.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="https://hautesignatures.com/css/bootstrap.min.css" as="style">
-	<link rel="preload" href="https://hautesignatures.com/css/style.min.css" as="style">
-    <link rel="preload" href="https://hautesignatures.com/css/vendor/fontawesome-free/css/all.min.css" as="style">
-    <link rel="preload" href="https://hautesignatures.com/css/skins/skin-default.css" as="style">
+	<link rel="preload" href="https://hautesignatures.com.ng/fonts/ProximaNovaAltRegular.otf" as="font" type="font/otf" crossorigin>
+	<link rel="preload" href="https://hautesignatures.com.ng/fonts/GalaxiePolaris-Bold.otf" as="font" type="font/otf" crossorigin>
+	<link rel="preload" href="https://hautesignatures.com.ng/fonts/porto-64334846.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://hautesignatures.com.ng/css/bootstrap.min.css" as="style">
+	<link rel="preload" href="https://hautesignatures.com.ng/css/style.min.css" as="style">
+    <link rel="preload" href="https://hautesignatures.com.ng/css/vendor/fontawesome-free/css/all.min.css" as="style">
+    <link rel="preload" href="https://hautesignatures.com.ng/css/skins/skin-default.css" as="style">
 
-    <link rel="preload" href="https://hautesignatures.com/js/app.js" as="script">
+    <link rel="preload" href="https://hautesignatures.com.ng/js/app.js" as="script">
  
 
     <meta name="description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
@@ -40,7 +40,7 @@
     @yield('page-css')
     <link href="/css/custom.css?version={{ str_random(6) }}" rel="stylesheet" type="text/css" />
     <meta property="og:site_name" content="hautesignatures Co">
-    <meta property="og:url" content="https://hautesignatures.com/">
+    <meta property="og:url" content="https://hautesignatures.com.ng/">
     <meta property="og:title" content=" hautesignatures">
     <meta property="og:type" content="website">
     <meta property="og:description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">

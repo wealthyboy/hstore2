@@ -192,12 +192,6 @@ class ProductsController extends Controller
         $meta_tag_keywords = $product->keywords;
         $page_meta_description = $product->meta_description;
 
-
-
-        // if (!$product->allow){
-        //     return redirect('404');
-        // }
-
         if (null !== $product) {
             foreach ($product->parent_attributes as  $parent_attribute) {
                 if ($parent_attribute->p_attribute_children()) {
@@ -210,6 +204,7 @@ class ProductsController extends Controller
         $attributes =  collect($data);
         $attributes = $attributes->count() && $product->product_type == 'variable' ? $attributes : '{}';
         $product_variation->load(["images"]);
+
         return view('products.show', compact('meta_tag_keywords', 'page_meta_description', 'inventory', 'stock', 'category', 'attributes', 'product_variation', 'page_title'));
     }
 
