@@ -3,7 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Cart;
+use App\Models\Cart;
 
 class CartIndexResource extends JsonResource
 {
