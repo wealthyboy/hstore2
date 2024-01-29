@@ -312,15 +312,7 @@
 
               <p class="form-field-wrapper   col-sm-12 mb-3">
 
-                <template>
-                  <button @click="payWithZilla" type="button" :class="{ 'disabled': payment_is_processing }"
-                    class="btn   bold  btn--primary btn-round btn-lg btn-block" name="checkout_place_order"
-                    id="p lace_order" value="Place order" data-value="Place Order">
-                    <span v-if="checkingout" class='spinner-border spinner-border-sm' role='status'
-                      aria-hidden='true'></span>
-                    Buy now pay later
-                  </button>
-                </template>
+
                 <template v-if="!meta.isAdmin">
                   <button @click="payWithPaystack" type="button" :class="{ 'disabled': payment_is_processing }"
                     class="btn   bold  btn--primary btn-round btn-lg btn-block" name="checkout_place_order"
