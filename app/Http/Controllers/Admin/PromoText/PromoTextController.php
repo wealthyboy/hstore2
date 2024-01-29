@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin\PromoText;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\PromoText;
+use App\Models\PromoText;
 
 class PromoTextController extends Controller
-{   
+{
     public function __construct()
     {
         $this->middleware('admin');
@@ -20,7 +20,7 @@ class PromoTextController extends Controller
     public function index()
     {
         $promotexts =  PromoText::all();
-        return view('admin.promotext.index',compact('promotexts'));
+        return view('admin.promotext.index', compact('promotexts'));
     }
 
     /**
@@ -39,13 +39,13 @@ class PromoTextController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$id)
+    public function store(Request $request, $id)
     {
         $promo_text  = new PromoText;
         $promo_text->promo = $request->promo;
         $promo_text->promo_id = $id;
         $promo_text->save();
-        return redirect('admin/promos'); 
+        return redirect('admin/promos');
     }
 
     /**
@@ -66,9 +66,9 @@ class PromoTextController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {   
+    {
         $promo_text = PromoText::find($id);
-        return view('admin.promotext.edit',compact('promo_text'));
+        return view('admin.promotext.edit', compact('promo_text'));
     }
 
     /**
@@ -83,7 +83,7 @@ class PromoTextController extends Controller
         $promo_text  = PromoText::find($id);
         $promo_text->promo = $request->promo;
         $promo_text->save();
-        return redirect('admin/promos'); 
+        return redirect('admin/promos');
     }
 
     /**
@@ -94,7 +94,7 @@ class PromoTextController extends Controller
      */
     public function destroy($id)
     {
-        PromoText::destroy($id);  	
-    	return redirect()->back();
+        PromoText::destroy($id);
+        return redirect()->back();
     }
 }

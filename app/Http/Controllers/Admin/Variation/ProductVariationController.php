@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin\Variation;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Attribute;
-use App\Product;
-use App\ProductVariation;
-use App\Image;
+use App\Models\Attribute;
+use App\Models\Product;
+use App\Models\ProductVariation;
+use App\Models\Image;
 use App\AttributeProduct;
 
 
@@ -18,12 +18,12 @@ class ProductVariationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request,$id)
+    public function index(Request $request, $id)
     {
-       // $product_variations = ProductVariation::where('product_id',$product_id);
+        // $product_variations = ProductVariation::where('product_id',$product_id);
         $product_attributes = ProductAttribute::parents()->get();
         $products = ProductAttribute::parents()->get();
-	    return view('admin.variations.index',compact('products','product_attributes'));
+        return view('admin.variations.index', compact('products', 'product_attributes'));
     }
 
     /**
@@ -42,49 +42,51 @@ class ProductVariationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Product $product)
+    public function store(Request $request, Product $product)
     {
 
 
         $actual_product_variation_id = $request->actual_product_variation_id;
 
-        if ( $request->product_id !== null ){
+        if ($request->product_id !== null) {
             $product = Product::findOrFail($request->product_id);
         }
-         
+
         //Save Actual Product
         $product->pending  = 1;
         $product->save();
 
         //save product  first Variantion (Each product is a variation)
-        if ( $request->product_id == null ){
+        if ($request->product_id == null) {
             $actual_product_variation_id = $product->variants()->create([
                 'sku' => str_random(6)
             ]);
-            $actual_product_variation_id =$actual_product_variation_id->id;
+            $actual_product_variation_id = $actual_product_variation_id->id;
         }
 
-        
+
         //Save Products Attributes
-        if(!empty($request->parent_attributes)){
+        if (!empty($request->parent_attributes)) {
             foreach ($request->parent_attributes  as $attribute) {
-                $product->product_attributes()->firstOrCreate([
-                    'attribute_id' =>$attribute]
+                $product->product_attributes()->firstOrCreate(
+                    [
+                        'attribute_id' => $attribute
+                    ]
                 );
             }
         }
 
         $name = null;
         $pattributesId = [];
-        $request->product_attributes_id  = array_filter(explode(',',$request->product_attributes_id));
-        if(!empty($request->product_attributes)){
+        $request->product_attributes_id  = array_filter(explode(',', $request->product_attributes_id));
+        if (!empty($request->product_attributes)) {
             $attributes =  Attribute::find($request->product_attributes);
             foreach ($attributes  as $key => $attribute) {
                 $product_attributes_id = !empty($request->product_attributes_id) ? $request->product_attributes_id[$key] : null;
-                $name .= $attribute->name.',';
+                $name .= $attribute->name . ',';
                 $product_attributes = $product->product_attributes()->updateOrCreate(
                     [
-                        'id'=>$product_attributes_id
+                        'id' => $product_attributes_id
                     ],
 
                     [
@@ -99,10 +101,10 @@ class ProductVariationController extends Controller
 
 
         //send back the product attribute ids 
-        $name =  rtrim($name,',');
+        $name =  rtrim($name, ',');
 
         $product_variation = new  ProductVariation();
-        if ( $request->product_variation_id !== null ){
+        if ($request->product_variation_id !== null) {
             $product_variation = ProductVariation::findOrFail($request->product_variation_id);
         }
 
@@ -122,24 +124,19 @@ class ProductVariationController extends Controller
         $product_variation->images()->save($image);
         $variation_images = array_filter($request->variation_images);
         if (count($variation_images)  > 0) {
-            foreach ( $variation_images as $variation_image) {
-                $images = new Image(['parent_id'=>$image->id,'image' => $variation_image]);
+            foreach ($variation_images as $variation_image) {
+                $images = new Image(['parent_id' => $image->id, 'image' => $variation_image]);
                 $product_variation->images()->save($images);
             }
         }
 
 
         return response()->json([
-                'product_id' => $product->id,
-                'product_variation_id' =>$product_variation->id,
-                'actual_product_variation_id'=> $actual_product_variation_id,
-                'pattributesId'=>$pattributesId
-            ]);
-
-
-
-        
-        
+            'product_id' => $product->id,
+            'product_variation_id' => $product_variation->id,
+            'actual_product_variation_id' => $actual_product_variation_id,
+            'pattributesId' => $pattributesId
+        ]);
     }
 
     /**

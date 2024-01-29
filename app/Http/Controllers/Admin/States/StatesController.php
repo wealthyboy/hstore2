@@ -4,27 +4,27 @@ namespace App\Http\Controllers\Admin\States;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\State;
+use App\Models\State;
 
 class StatesController extends Controller
 {
-    
-    
-    
+
+
+
     public function __construct()
     {
-       $this->middleware('admin'); 
-    } 
-    
+        $this->middleware('admin');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         $states = State::all();
-        return view('admin.states.index',compact('states'));
+        return view('admin.states.index', compact('states'));
     }
 
     /**
@@ -34,7 +34,6 @@ class StatesController extends Controller
      */
     public function create()
     {
-        
     }
 
     /**
@@ -79,14 +78,12 @@ class StatesController extends Controller
      */
     public function update(Request $request)
     {
-       foreach($request->shipping_fee  as $key => $value ){
-          State::whereIn('id',[$key])->update([
-              'shipping_price'=>$value
-          ]);
-
-       }
-       return back();
-
+        foreach ($request->shipping_fee  as $key => $value) {
+            State::whereIn('id', [$key])->update([
+                'shipping_price' => $value
+            ]);
+        }
+        return back();
     }
 
     /**

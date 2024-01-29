@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin\Design;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Banner;
+use App\Models\Banner;
 use App\Http\Helper;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,7 +16,7 @@ class BannersController extends Controller
 
     public function __construct()
     {
-        $this->middleware('admin'); 
+        $this->middleware('admin');
     }
     /**
      * Display a listing of the resource.
@@ -26,7 +26,7 @@ class BannersController extends Controller
     public function index()
     {
         $banners = Banner::banners()->get();
-        return view('admin.banners.index',compact('banners'));
+        return view('admin.banners.index', compact('banners'));
     }
 
     /**
@@ -35,9 +35,9 @@ class BannersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
+    {
         $cols = Helper::col_width();
-        return view('admin.banners.create',compact('cols'));
+        return view('admin.banners.create', compact('cols'));
     }
 
     /**
@@ -46,13 +46,13 @@ class BannersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Banner $banner)
+    public function store(Request $request, Banner $banner)
     {
 
-        $this->validate ( $request, [
+        $this->validate($request, [
             'link' => 'required',
             'sort_order' => 'required',
-            'image'=>'required',
+            'image' => 'required',
         ]);
 
         $banner->title = $request->title;
@@ -64,7 +64,6 @@ class BannersController extends Controller
         $banner->sort_order = $request->sort_order;
         $banner->save();
         return redirect()->route('banners.index');
-    	
     }
 
     /**
@@ -85,11 +84,10 @@ class BannersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {   
+    {
         $banner = Banner::find($id);
         $cols = Helper::col_width();
-    	return view('admin.banners.edit',compact('banner','cols'));
-    	 
+        return view('admin.banners.edit', compact('banner', 'cols'));
     }
 
     /**
@@ -103,11 +101,11 @@ class BannersController extends Controller
     {
 
         $banner = Banner::find($id);
-        $this->validate ( $request, [
-                'link' => 'required',
-                'sort_order' => 'required',
-        ] );
-        
+        $this->validate($request, [
+            'link' => 'required',
+            'sort_order' => 'required',
+        ]);
+
         $banner->title = $request->title;
         $banner->link = $request->link;
         $banner->sort_order = $request->sort_order;
@@ -119,7 +117,6 @@ class BannersController extends Controller
         // $flash = app( 'App\Http\flash' );
         // $flash->success( "Success", "Details Updated" );
         return redirect()->route('banners.index');
-    	
     }
 
     /**
@@ -128,26 +125,25 @@ class BannersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,$id=null)
-    {   
-      
-        $rules = array (
-                '_token' => 'required'
+    public function destroy(Request $request, $id = null)
+    {
+
+        $rules = array(
+            '_token' => 'required'
         );
-        $validator = \Validator::make ( $request->all (), $rules );
-        if (empty ( $request->selected )) {
-            $validator->getMessageBag ()->add ( 'Selected', 'Nothing to Delete' );
-            return \Redirect::back ()->withErrors ( $validator )->withInput ();
+        $validator = \Validator::make($request->all(), $rules);
+        if (empty($request->selected)) {
+            $validator->getMessageBag()->add('Selected', 'Nothing to Delete');
+            return \Redirect::back()->withErrors($validator)->withInput();
         }
-        $path = base_path () . '/images/slider';
-        $images_to_delete = Banner::whereIn ('id', $request->selected )->get();
-        foreach ( $images_to_delete as $images ) {
-            \File::Delete ( $path . '/' . $images->image );
+        $path = base_path() . '/images/slider';
+        $images_to_delete = Banner::whereIn('id', $request->selected)->get();
+        foreach ($images_to_delete as $images) {
+            \File::Delete($path . '/' . $images->image);
         }
-        Banner::destroy( $request->selected );
+        Banner::destroy($request->selected);
         // $flash = app ( 'App\Http\flash' );
         // $flash->success ( "Success", "Deleted" );
         return redirect()->back();
-    	
     }
 }

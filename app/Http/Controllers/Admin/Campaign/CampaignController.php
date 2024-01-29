@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Admin\Campaign;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Campaign;
-use App\EmailList;
-use App\Template;
+use App\Models\Campaign;
+use App\Models\EmailList;
+use App\Models\Template;
 use App\Mail\NewsLetterEmail;
 //use Mailgun\Mailgun;
-use App\EmailStat;
-use App\User;
+use App\Models\EmailStat;
+use App\Models\User;
 use Carbon\Carbon;
 
 
@@ -28,10 +28,12 @@ class CampaignController extends Controller
     {
         $campaigns =  Campaign::latest()->get();
         $sent_this_month = EmailStat::select(\DB::raw('SUM(sent) as s'))->where(
-            'created_at', '>=', Carbon::now()->startOfMonth()->subMonth()->toDateString()
+            'created_at',
+            '>=',
+            Carbon::now()->startOfMonth()->subMonth()->toDateString()
         )->get();
         $all_sent = EmailStat::select(\DB::raw('SUM(sent) as a'))->get();
-        return view('admin.campaign.index',compact('sent_this_month','all_sent','campaigns'));
+        return view('admin.campaign.index', compact('sent_this_month', 'all_sent', 'campaigns'));
     }
 
     /**
@@ -40,10 +42,10 @@ class CampaignController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
+    {
         $email_lists =  EmailList::latest()->get();
         $templates =  Template::latest()->get();
-        return view('admin.campaign.create',compact('email_lists','templates'));
+        return view('admin.campaign.create', compact('email_lists', 'templates'));
     }
 
     /**
@@ -53,16 +55,16 @@ class CampaignController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         $campaign = new Campaign;
         $campaign->name              =  $request->name;
-		$campaign->email_list_id     =  $request->email_list_id;
+        $campaign->email_list_id     =  $request->email_list_id;
         $campaign->subject           =  $request->subject;
         $campaign->template_id       =  $request->template_id;
-		$campaign->status            =  'Processing';
-		$campaign->save();
+        $campaign->status            =  'Processing';
+        $campaign->save();
         $this->sendMail($request);
-        return redirect()->route('campaigns.index')->with('success','Campaign sent');
+        return redirect()->route('campaigns.index')->with('success', 'Campaign sent');
     }
 
     /**
@@ -87,7 +89,7 @@ class CampaignController extends Controller
         $email_lists =  EmailList::latest()->get();
         $templates   =  Template::latest()->get();
         $campaign    =  Campaign::find($id);
-        return view('admin.campaign.edit',compact('campaign','email_lists','templates'));
+        return view('admin.campaign.edit', compact('campaign', 'email_lists', 'templates'));
     }
 
     /**
@@ -101,16 +103,16 @@ class CampaignController extends Controller
     {
         $campaign = Campaign::find($id);
         $campaign->name              =  $request->name;
-		$campaign->email_list_id     =  $request->email_list_id;
+        $campaign->email_list_id     =  $request->email_list_id;
         $campaign->subject           =  $request->subject;
         $campaign->template_id       =  $request->template_id;
-		$campaign->status            =  'Processing';
-		$campaign->save();
-        return redirect()->route('campaigns.index')->with('success','Campaign Updated');
+        $campaign->status            =  'Processing';
+        $campaign->save();
+        return redirect()->route('campaigns.index')->with('success', 'Campaign Updated');
     }
 
 
-    public function resendMail(Request $request,$campaign_id,$email_list_id,$template_id)
+    public function resendMail(Request $request, $campaign_id, $email_list_id, $template_id)
     {
         try {
             //$when = now()->addMinutes(5);
@@ -121,14 +123,12 @@ class CampaignController extends Controller
             $stat->save();
             foreach ($email_list->news_letters as $news_letter) {
                 \Mail::to($news_letter->email)
-			   ->send(new NewsLetterEmail($template,$request->subject));
+                    ->send(new NewsLetterEmail($template, $request->subject));
             }
-
-		} catch (\Throwable $th) {
-			//throw $th;
+        } catch (\Throwable $th) {
+            //throw $th;
         }
-        return redirect()->route('campaigns.index')->with('success','Campaign Resent');
-
+        return redirect()->route('campaigns.index')->with('success', 'Campaign Resent');
     }
 
 
@@ -147,13 +147,13 @@ class CampaignController extends Controller
             } else {
                 $users = $email_list->news_letters;
             }
-            
+
             foreach ($users as $news_letter) {
                 \Mail::to($news_letter->email)
-			   ->send(new NewsLetterEmail($template,$request->subject));
+                    ->send(new NewsLetterEmail($template, $request->subject));
             }
-		} catch (\Throwable $th) {
-			//throw $th;
+        } catch (\Throwable $th) {
+            //throw $th;
         }
     }
 
@@ -163,26 +163,24 @@ class CampaignController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,$id)
+    public function destroy(Request $request, $id)
     {
 
-        $rules = array (
-                '_token' => 'required' 
+        $rules = array(
+            '_token' => 'required'
         );
-        $validator = \Validator::make ( $request->all(), $rules );
-        if (empty ( $request->selected )) {
-            $validator->getMessageBag ()->add ( 'Selected', 'Nothing to Delete' );
-            return \Redirect::back ()->withErrors ( $validator )->withInput ();
+        $validator = \Validator::make($request->all(), $rules);
+        if (empty($request->selected)) {
+            $validator->getMessageBag()->add('Selected', 'Nothing to Delete');
+            return \Redirect::back()->withErrors($validator)->withInput();
         }
         $count = count($request->selected);
         //(new Activity)->Log("Deleted  {$count} Products");
         try {
-            Campaign::destroy( $request->selected );
+            Campaign::destroy($request->selected);
         } catch (\Throwable $th) {
             //throw $th;
         }
         return redirect()->back();
     }
 }
-
-

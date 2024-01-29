@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin\Promo;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Promo;
+use App\Models\Promo;
 
 class PromoController extends Controller
 {
@@ -25,7 +25,7 @@ class PromoController extends Controller
     public function index()
     {
         $promos =  Promo::all();
-        return view('admin.promo.index',compact('promos'));
+        return view('admin.promo.index', compact('promos'));
     }
 
     /**
@@ -34,7 +34,7 @@ class PromoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
+    {
         return view('admin.promo.create');
     }
 
@@ -47,7 +47,7 @@ class PromoController extends Controller
     public function store(Request $request)
     {
         Promo::Insert($request->except('_token'));
-        return redirect('admin/promos'); 
+        return redirect('admin/promos');
     }
 
     /**
@@ -70,7 +70,7 @@ class PromoController extends Controller
     public function edit($id)
     {
         $promo = Promo::find($id);
-		return view('admin.promo.edit',compact('promo'));
+        return view('admin.promo.edit', compact('promo'));
     }
 
     /**
@@ -82,11 +82,11 @@ class PromoController extends Controller
      */
     public function update(Request $request, $id)
     {
-		$promo = Promo::find($id);
+        $promo = Promo::find($id);
         $promo->background_color = $request->background_color;
         $promo->make_live = $request->make_live;
-		$promo->save();
-        return redirect('admin/promos'); 
+        $promo->save();
+        return redirect('admin/promos');
     }
 
     /**
@@ -98,18 +98,16 @@ class PromoController extends Controller
     public function destroy(Request $request)
     {
         $rules = array(
-                '_token' => 'required',
+            '_token' => 'required',
         );
-        $validator = \Validator::make($request->all(),$rules);
-        if ( empty ( $request->selected)) {
+        $validator = \Validator::make($request->all(), $rules);
+        if (empty($request->selected)) {
             $validator->getMessageBag()->add('Selected', 'Nothing to Delete');
             return \Redirect::back()
-            ->withErrors($validator)
-            ->withInput();
+                ->withErrors($validator)
+                ->withInput();
         }
-        Promo::destroy($request->selected);  	
+        Promo::destroy($request->selected);
         return redirect()->back();
-            
-    	
     }
 }

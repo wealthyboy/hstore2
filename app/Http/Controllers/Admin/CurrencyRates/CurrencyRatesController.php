@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin\CurrencyRates;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\CurrencyRate;
-use App\Currency;
-use App\SystemSetting;
+use App\Models\CurrencyRate;
+use App\Models\Currency;
+use App\Models\SystemSetting;
 
 class CurrencyRatesController extends Controller
 {
@@ -19,7 +19,7 @@ class CurrencyRatesController extends Controller
     {
         $rates = CurrencyRate::all();
         $default = SystemSetting::first();
-        return view('admin.rates.index',compact('rates','default'));
+        return view('admin.rates.index', compact('rates', 'default'));
     }
 
     /**
@@ -28,10 +28,10 @@ class CurrencyRatesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
+    {
         $default = SystemSetting::first();
-        $currencies = Currency::where('id','!=', $default->currency_id)->get();
-        return view('admin.rates.create',compact('currencies','default'));
+        $currencies = Currency::where('id', '!=', $default->currency_id)->get();
+        return view('admin.rates.create', compact('currencies', 'default'));
     }
 
     /**
@@ -70,9 +70,9 @@ class CurrencyRatesController extends Controller
     public function edit($id)
     {
         $default = SystemSetting::first();
-        $currencies = Currency::where('id','!=', $default->currency_id)->get();
+        $currencies = Currency::where('id', '!=', $default->currency_id)->get();
         $currency_rate = CurrencyRate::find($id);
-        return view('admin.rates.edit',compact('currencies','default','currency_rate'));
+        return view('admin.rates.edit', compact('currencies', 'default', 'currency_rate'));
     }
 
     /**
@@ -100,17 +100,17 @@ class CurrencyRatesController extends Controller
      */
     public function destroy(Request $request)
     {
-		$rules = array(
-				'_token' => 'required',
-		);
-		$validator = \Validator::make($request->all(),$rules);
-		if ( empty ( $request->selected ) ) {
-			$validator->getMessageBag()->add('Selected', 'Nothing to Delete');    
-			return \Redirect::back()
-						->withErrors($validator)
-						->withInput();
-		}
-		CurrencyRate::destroy($request->selected);
-		return redirect()->back();
+        $rules = array(
+            '_token' => 'required',
+        );
+        $validator = \Validator::make($request->all(), $rules);
+        if (empty($request->selected)) {
+            $validator->getMessageBag()->add('Selected', 'Nothing to Delete');
+            return \Redirect::back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+        CurrencyRate::destroy($request->selected);
+        return redirect()->back();
     }
 }

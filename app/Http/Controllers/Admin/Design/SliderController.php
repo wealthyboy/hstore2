@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin\Design;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Banner;
+use App\Models\Banner;
 use App\Http\Utilities\Helper;
 
 
@@ -19,7 +19,7 @@ class SliderController extends Controller
     public function index()
     {
         $banners = Banner::sliders()->get();
-        return view('admin.sliders.index',compact('banners'));
+        return view('admin.sliders.index', compact('banners'));
     }
 
     /**
@@ -28,9 +28,9 @@ class SliderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
+    {
         $cols = Helper::col_width();
-        return view('admin.sliders.create',compact('cols'));
+        return view('admin.sliders.create', compact('cols'));
     }
 
     /**
@@ -39,16 +39,16 @@ class SliderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Banner $banner)
+    public function store(Request $request, Banner $banner)
     {
 
-        $this->validate ( $request, [
+        $this->validate($request, [
             'title' => 'required',
             'link' => 'required',
             'sort_order' => 'required',
-            'image'=>'required|image:jpeg,png,jpg',
+            'image' => 'required|image:jpeg,png,jpg',
         ]);
-        if($request->hasFile('image')) {
+        if ($request->hasFile('image')) {
             $path =  $request->file('image')->store('public/images/sliders');
             $banner->image  = basename($path);
         }
@@ -60,7 +60,6 @@ class SliderController extends Controller
         $banner->sort_order = $request->sort_order;
         $banner->save();
         return redirect()->route('admin_sliders');
-    
     }
 
     /**
@@ -81,11 +80,10 @@ class SliderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {   
+    {
         $banner = Banner::find($id);
         $cols = Helper::col_width();
-    	return view('admin.sliders.edit',compact('banner','cols'));
-    	 
+        return view('admin.sliders.edit', compact('banner', 'cols'));
     }
 
     /**
@@ -97,29 +95,29 @@ class SliderController extends Controller
      */
     public function update(Request $request, $id)
     {
-    	if ($request->isMethod('POST')) {
+        if ($request->isMethod('POST')) {
 
             $banner = Banner::find($id);
-            
-    		$this->validate ( $request, [
-    				'title' => 'required',
-    				'link' => 'required',
-    				'sort_order' => 'required',
-    				'image'=>'image:jpeg,png',
-    		] );
-    		if($request->hasFile('image')) {
-    			$path =  $request->file('image')->store('public/images/sliders');
+
+            $this->validate($request, [
+                'title' => 'required',
+                'link' => 'required',
+                'sort_order' => 'required',
+                'image' => 'image:jpeg,png',
+            ]);
+            if ($request->hasFile('image')) {
+                $path =  $request->file('image')->store('public/images/sliders');
                 $banner->image  = basename($path);
-    		} 
-    		$banner->title = $request->title;
-    		$banner->link = $request->link;
+            }
+            $banner->title = $request->title;
+            $banner->link = $request->link;
             $banner->sort_order = $request->sort_order;
             $banner->col   = $request->col_width;
-    		$banner->save();
-    		// $flash = app( 'App\Http\flash' );
-    		// $flash->success( "Success", "Details Updated" );
-    		return redirect()->route('admin_sliders');
-    	}
+            $banner->save();
+            // $flash = app( 'App\Http\flash' );
+            // $flash->success( "Success", "Details Updated" );
+            return redirect()->route('admin_sliders');
+        }
     }
 
     /**
@@ -130,24 +128,24 @@ class SliderController extends Controller
      */
     public function destroy(Request $request)
     {
-    	if ($request->isMethod ( 'post' )) {
-    		$rules = array (
-    				'_token' => 'required'
-    		);
-    		$validator = \Validator::make ( $request->all (), $rules );
-    		if (empty ( $request->selected )) {
-    			$validator->getMessageBag ()->add ( 'Selected', 'Nothing to Delete' );
-    			return \Redirect::back ()->withErrors ( $validator )->withInput ();
-    		}
-    		$path = base_path () . '/public/images/slider';
-    		$images_to_delete = Banner::whereIn ('id', $request->selected )->get();
-    		foreach ( $images_to_delete as $images ) {
-    			\File::Delete ( $path . '/' . $images->image );
-    		}
-    		Banner::destroy( $request->selected );
-    		$flash = app ( 'App\Http\flash' );
-    		$flash->success ( "Success", "Deleted" );
-    		return redirect()->back();
-    	}
+        if ($request->isMethod('post')) {
+            $rules = array(
+                '_token' => 'required'
+            );
+            $validator = \Validator::make($request->all(), $rules);
+            if (empty($request->selected)) {
+                $validator->getMessageBag()->add('Selected', 'Nothing to Delete');
+                return \Redirect::back()->withErrors($validator)->withInput();
+            }
+            $path = base_path() . '/public/images/slider';
+            $images_to_delete = Banner::whereIn('id', $request->selected)->get();
+            foreach ($images_to_delete as $images) {
+                \File::Delete($path . '/' . $images->image);
+            }
+            Banner::destroy($request->selected);
+            $flash = app('App\Http\flash');
+            $flash->success("Success", "Deleted");
+            return redirect()->back();
+        }
     }
 }
