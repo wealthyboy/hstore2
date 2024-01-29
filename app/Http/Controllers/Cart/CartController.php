@@ -5,17 +5,20 @@ namespace App\Http\Controllers\Cart;
 use Illuminate\Http\Request;
 
 use App\Http\Controllers\Controller;
-use App\Cart;
-use App\PendingCart;
+use App\Models\Cart;
+use App\Models\PendingCart;
 
-class CartController  extends Controller {
+class CartController  extends Controller
+{
 
-    public function index() {
+	public function index()
+	{
 		$page_title = "Your Cart  ";
-		return view('carts.index',compact('page_title'));
+		return view('carts.index', compact('page_title'));
 	}
 
-	public function meta(Request $request) {
+	public function meta(Request $request)
+	{
 
 		$pending_cart = PendingCart::firstOrNew(
 			['user_id' => $request->user_id]
@@ -29,9 +32,5 @@ class CartController  extends Controller {
 		$pending_cart->total = $request->total;
 		$pending_cart->save();
 		return $pending_cart;
-
 	}
-
-
-
 }
