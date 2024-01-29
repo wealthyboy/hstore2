@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Api\Reviews;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Review;
-use App\Product;
-use App\ProductVariation;
+use App\Models\Review;
+use App\Models\Product;
+use App\Models\ProductVariation;
 use App\Http\Resources\ReviewResourceCollection;
 use Illuminate\Notifications\Notification;
 use App\Notifications\ReviewNotification;
-use App\SystemSetting;
+use App\Models\SystemSetting;
 
 
 class ReviewsController extends Controller
@@ -22,19 +22,19 @@ class ReviewsController extends Controller
      */
 
 
-	public  $settings;
+    public  $settings;
 
-	public function __construct()
-	{
-		$this->settings =  SystemSetting::first();
+    public function __construct()
+    {
+        $this->settings =  SystemSetting::first();
     }
-    
+
 
     public function index(Request $request, $id)
-    {   
+    {
         $product_variation =  ProductVariation::find($id);
-        $reviews =  $product_variation->reviews()->orderBy('created_at','DESC')->paginate(10);
-        return ReviewResourceCollection::collection( $reviews );
+        $reviews =  $product_variation->reviews()->orderBy('created_at', 'DESC')->paginate(10);
+        return ReviewResourceCollection::collection($reviews);
     }
 
 
@@ -45,19 +45,19 @@ class ReviewsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,Review $review)
+    public function store(Request $request, Review $review)
     {
         //
         $user = $request->user();
 
         $pv = [];
-        foreach($user->ordered_products  as $ordered_product){
-           if ($ordered_product->product_variation_id == $request->product_variation_id) {
-               $pv[] = $request->product_variation_id;
-           }
+        foreach ($user->ordered_products  as $ordered_product) {
+            if ($ordered_product->product_variation_id == $request->product_variation_id) {
+                $pv[] = $request->product_variation_id;
+            }
         }
 
-        if( empty($pv) ) {
+        if (empty($pv)) {
             // return response()->json([
             //    'msg' => 'You are not elgible.'
             // ],422);
@@ -82,15 +82,13 @@ class ReviewsController extends Controller
         $new_review['email'] = $user->email;
         try {
             \Notification::route('mail', 'haute.signatures@gmail.com')
-            ->notify(new ReviewNotification($new_review));
+                ->notify(new ReviewNotification($new_review));
         } catch (\Throwable $th) {
             //throw $th;
         }
-       
+
         return response()->json([
             'msg' => 'Your review has been submitted successfully'
-        ],200);
-        
+        ], 200);
     }
-    
 }
