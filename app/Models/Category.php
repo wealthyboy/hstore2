@@ -36,7 +36,7 @@ class Category extends Model
 
     public function product_variations()
     {
-        return $this->belongsToMany('App\ProductVariation')->where('allow', true);
+        return $this->belongsToMany(ProductVariation::class)->where('allow', true);
     }
 
 
@@ -65,7 +65,7 @@ class Category extends Model
 
     public function attributes()
     {
-        return $this->belongsToMany('App\Attribute')
+        return $this->belongsToMany(Attribute::class)
             ->withPivot('id');
     }
 

@@ -24,7 +24,7 @@ use App\Models\BrandCategory;
 use App\Models\AttributeProduct;
 use App\Models\ProductAttribute;
 use App\Models\ProductVariation;
-use App\MailForOutOfStock;
+use App\Models\MailForOutOfStock;
 
 use Endroid\QrCode\QrCode;
 use Illuminate\Support\Str;
