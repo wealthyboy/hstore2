@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\Address;
 
 
-use App\Address;
+use App\Models\Address;
 
 use App\Models\User;
 
