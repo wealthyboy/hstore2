@@ -26,9 +26,9 @@ class MailChimpNewsletterServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(NewsletterContract::class, function ($app) {
-            $client = new Mailchimp($app->config->get('services.mailchimp.secret'));
-            return new MailChimpNewsletter($client);
-        });
+        // $this->app->singleton(NewsletterContract::class, function ($app) {
+        // $client = new Mailchimp($app->config->get('services.mailchimp.secret'));
+        // return new MailChimpNewsletter($client);
+        // });
     }
 }

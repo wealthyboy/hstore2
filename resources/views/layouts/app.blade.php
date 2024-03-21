@@ -36,7 +36,6 @@
 	<link rel="stylesheet" type="text/css" href="/vendor/fontawesome-free/css/all.min.css">
 	<link rel="stylesheet" href="/css/skins/skin-default.css?version={{ str_random(6) }}">
 	<link rel="stylesheet" href="/css/banner.css?version={{ str_random(6) }}">
-
 	@yield('page-css')
 	<link href="/css/custom.css?version={{ str_random(6) }}" rel="stylesheet" type="text/css" />
 	<meta property="og:site_name" content="hautesignatures Co">
