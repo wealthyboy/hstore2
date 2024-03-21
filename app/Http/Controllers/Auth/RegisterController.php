@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use App\Http\Helper;
 use Illuminate\Auth\Events\Registered;
 use App\Mail\ConfirmationEmail;
-use App\Voucher;
+use App\Models\Voucher;
 use App\Mail\NewUserCoupon;
-use App\State;
+use App\Models\State;
 use App\Permission;
 use App\Activity;
-use App\Newsletter;
+use App\Models\Newsletter;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -225,9 +225,9 @@ class RegisterController extends Controller
 		// 	//dd($e->getMessage());
 		// }
 
-		//Newsletter::create([
-		//'email' => $data['email']
-		//]);
+		Newsletter::create([
+			'email' => $data['email']
+		]);
 
 		$user->name = $data['first_name'];
 		$user->last_name = $data['last_name'];
