@@ -169,12 +169,12 @@
 
 			<div class="header-bottom sticky-header d-none d-lg-block">
 				<div style="padding-left: 50px;" class="container-fluid ">
-					<nav class="main-nav d-flex w-lg-max   justify-content-center">
+					<nav class="main-nav d-flex w-lg-max justify-content-center">
 						<ul class="menu">
 
 							@foreach( $global_categories as $category)
 							<li>
-								<a title="{{ $category->title }}" style="color: {{  $category->text_color }} !important" href="
+								<a title="{{ $category->title }}" style="color: {{  $category->text_color }} !important;" href="
 								       {{  $category->link ? $category->link : '/products/'.$category->slug }}
 								   
 								   ">{{ $category->name }}</a>
