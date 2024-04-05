@@ -4,8 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Helper;
-use App\Voucher;
-use App\SystemSetting;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
@@ -21,23 +19,23 @@ class Order extends Model
 
 	public function user()
 	{
-		return $this->belongsTo('App\User');
+		return $this->belongsTo(User::class);
 	}
 
 	public function address()
 	{
-		return $this->belongsTo('App\Address');
+		return $this->belongsTo(Address::class);
 	}
 
 
 	public function addres()
 	{
-		return $this->belongsTo('App\Address', 'address_id');
+		return $this->belongsTo(Address::class, 'address_id');
 	}
 
 	public function shipping()
 	{
-		return $this->belongsTo('App\Shipping');
+		return $this->belongsTo(Shipping::class);
 	}
 
 	public function getShipPriceAttribute()
