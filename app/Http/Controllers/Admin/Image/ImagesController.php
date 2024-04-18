@@ -122,14 +122,14 @@ class ImagesController extends Controller
             }
 
             $path = $request->file('file')->store('images/' . $request->folder);
-            dd($path);
+            // dd($path);
 
             $file = basename($path);
             $path =  public_path('images/' . $request->folder . '/' . $file);
 
             if ($request->folder == 'products') {
 
-                $img  = \Image::make($path)->fit($this->settings->products_items_size_w, $this->settings->products_items_size_h)->save(
+                $img  = \Image::make('/home/forge/hautesignatures.com.ng/public/images/products/zY8ANzD39BxN9i5xfU95q7842hgQNXBgGOO6a9Et.jpg')->fit($this->settings->products_items_size_w, $this->settings->products_items_size_h)->save(
                     public_path('images/products/m/' . $file)
                 );
                 $canvas = \Image::canvas(106, 145);
