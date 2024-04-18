@@ -151,7 +151,11 @@ class ImagesController extends Controller
                 // $path = $request->file('file')->store('images/' . $request->folder);
 
                 $destinationPath = public_path('images/products');
-                $image->move($destinationPath, $getimageName);
+                // $image->move($destinationPath, $getimageName);
+
+                \Image::make($path)->save(
+                    public_path('images/products/' . $getimageName)
+                );
 
                 return $path = asset('images/' . $request->folder . '/' . $getimageName);
             }
