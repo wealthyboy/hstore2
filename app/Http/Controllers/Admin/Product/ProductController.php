@@ -616,11 +616,11 @@ class ProductController extends Controller
         $product->sale_price = $sale_price;
         $product->sale_price_expires = Helper::getFormatedDate($request->sale_price_expires);
         $product->sale_price_starts = Helper::getFormatedDate($request->sale_price_starts);
-        $product->slug        =  str_slug($request->product_name);
-        $product->weight      = $request->weight;
-        $product->height      = $request->height;
-        $product->image       = $request->image;
-        $product->width       = $request->width;
+        $product->slug   =  str_slug($request->product_name);
+        $product->weight = $request->weight;
+        $product->height = $request->height;
+        $product->image  = $request->image;
+        $product->width  = $request->width;
         $product->description = $request->description;
         $product->allow       = $request->allow ? $request->allow : 0;
         $product->brand_id    = $request->brand_id;
@@ -628,13 +628,13 @@ class ProductController extends Controller
         $product->meta_description = $request->meta_description;
         $product->meta_keywords = $request->meta_keywords;
         $product->meta_title = $request->meta_title;
-        $product->total       = 2;
+        $product->total = 2;
         $product->product_type = $request->type;
-        $product->featured    =  $request->featured_product ? 1 : 0;
-        $product->pending     = 0;
-        $product->quantity    = $request->quantity;
-        $product->sku         = str_random(6);
-        $product->attributes  = $this->attributes($request);
+        $product->featured =  $request->featured_product ? 1 : 0;
+        $product->pending  = 0;
+        $product->quantity = $request->quantity;
+        $product->sku = str_random(6);
+        $product->attributes = $this->attributes($request);
         $product->save();
         $categories = Category::find($request->category_id);
         $meta_fields = array_filter(array_values($request->meta_fields));
@@ -769,7 +769,6 @@ class ProductController extends Controller
                             }
                         }
 
-                        dd(Helper::getFormatedDate($request->edit_variation_sale_price_expires[$variant_id]));
 
 
 
@@ -794,6 +793,8 @@ class ProductController extends Controller
 
                             ]
                         );
+
+                        dd($product_variation);
 
                         /**
                          * 
