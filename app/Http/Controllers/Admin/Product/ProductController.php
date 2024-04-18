@@ -653,7 +653,7 @@ class ProductController extends Controller
         if (null !== $product->default_variation) {
             $product_variation =  ProductVariation::find(optional($product->default_variation)->id);
 
-            dd($product_variation);
+            //dd($product_variation);
         } else {
             $product_variation =  new ProductVariation();
             $product_variation->sku = str_random(6);
@@ -666,9 +666,9 @@ class ProductController extends Controller
         $product_variation->width      = $request->width;
         $product_variation->sale_price_expires   = Helper::getFormatedDate($request->sale_price_expires);
         $product_variation->sale_price_starts   = Helper::getFormatedDate($request->sale_price_starts);
-        $product_variation->length     = $request->length;
-        $product_variation->weight     = $request->weight;
-        $product_variation->quantity   = $request->quantity;
+        $product_variation->length   = $request->length;
+        $product_variation->weight   = $request->weight;
+        $product_variation->quantity = $request->quantity;
         $product_variation->product_id = $product->id;
         $product_variation->allow       = $request->allow ? $request->allow : 0;
         $product_variation->is_gift_card       = $request->is_gift_card ? 1 : 0;
