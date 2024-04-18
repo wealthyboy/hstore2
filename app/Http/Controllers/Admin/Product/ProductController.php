@@ -769,6 +769,8 @@ class ProductController extends Controller
                             }
                         }
 
+                        dd(Helper::getFormatedDate($request->edit_variation_sale_price_expires[$variant_id]));
+
 
 
                         $product_variation       =  ProductVariation::updateOrCreate(
