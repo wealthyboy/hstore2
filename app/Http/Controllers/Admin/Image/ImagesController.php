@@ -127,24 +127,28 @@ class ImagesController extends Controller
             $path =  public_path('images/' . $request->folder . '/' . $file);
 
             $image = $request->file('file');
-            $salt1      = bin2hex(openssl_random_pseudo_bytes(22));
+            $salt1 = bin2hex(openssl_random_pseudo_bytes(22));
             $getimageName = $salt1 . '.' . $image->getClientOriginalExtension();
+
+            $path = $request->file('file')->getRealPath();
 
             if ($request->folder == 'products') {
 
-                $img  = \Image::make($request->file('file')->getRealPath())->fit($this->settings->products_items_size_w, $this->settings->products_items_size_h)->save(
+
+
+                $img  = \Image::make($path)->fit($this->settings->products_items_size_w, $this->settings->products_items_size_h)->save(
                     public_path('images/products/m/' . $getimageName)
                 );
-                // $canvas = \Image::canvas(106, 145);
-                // $image  = \Image::make($path)->resize(77, 105, function ($constraint) {
-                //     $constraint->aspectRatio();
-                // });
-                // $canvas->insert($image, 'center');
-                // $canvas->save(
-                //     public_path('images/products/tn/' . $file)
-                // );
+                $canvas = \Image::canvas(106, 145);
+                $image  = \Image::make($path)->resize(77, 105, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+                $canvas->insert($image, 'center');
+                $canvas->save(
+                    public_path('images/products/tn/' . $getimageName)
+                );
 
-                return ['message' => 'json'];
+                return $path = asset('images/' . $request->folder . '/' . $getimageName);
             }
 
             $img  = \Image::make($path)->fit(465, 465)->save(
