@@ -122,26 +122,29 @@ class ImagesController extends Controller
             }
 
             $path = $request->file('file')->store('images/' . $request->folder);
-            // dd($path);
 
             $file = basename($path);
             $path =  public_path('images/' . $request->folder . '/' . $file);
 
+            $image = $request->file('file');
+            $salt1      = bin2hex(openssl_random_pseudo_bytes(22));
+            $getimageName = $salt1 . '.' . $image->getClientOriginalExtension();
+
             if ($request->folder == 'products') {
 
-                $img  = \Image::make('/home/forge/hautesignatures.com.ng/public/images/products/zY8ANzD39BxN9i5xfU95q7842hgQNXBgGOO6a9Et.jpg')->fit($this->settings->products_items_size_w, $this->settings->products_items_size_h)->save(
-                    public_path('images/products/m/' . $file)
+                $img  = \Image::make($request->file('file')->getRealPath())->fit($this->settings->products_items_size_w, $this->settings->products_items_size_h)->save(
+                    public_path('images/products/m/' . $getimageName)
                 );
-                $canvas = \Image::canvas(106, 145);
-                $image  = \Image::make($path)->resize(77, 105, function ($constraint) {
-                    $constraint->aspectRatio();
-                });
-                $canvas->insert($image, 'center');
-                $canvas->save(
-                    public_path('images/products/tn/' . $file)
-                );
+                // $canvas = \Image::canvas(106, 145);
+                // $image  = \Image::make($path)->resize(77, 105, function ($constraint) {
+                //     $constraint->aspectRatio();
+                // });
+                // $canvas->insert($image, 'center');
+                // $canvas->save(
+                //     public_path('images/products/tn/' . $file)
+                // );
 
-                return $path = asset('images/' . $request->folder . '/' . $file);
+                return ['message' => 'json'];
             }
 
             $img  = \Image::make($path)->fit(465, 465)->save(
