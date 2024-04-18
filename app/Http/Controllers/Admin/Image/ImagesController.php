@@ -148,10 +148,8 @@ class ImagesController extends Controller
                     public_path('images/products/tn/' . $getimageName)
                 );
 
-                // $path = $request->file('file')->store('images/' . $request->folder);
 
                 $destinationPath = public_path('images/products');
-                // $image->move($destinationPath, $getimageName);
 
                 \Image::make($path)->save(
                     public_path('images/products/' . $getimageName)
