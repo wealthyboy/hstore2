@@ -155,6 +155,9 @@ class ProductController extends Controller
         ]);
 
 
+        dd($request->all());
+
+
         $image  = $request->image;
         $cA = [];
         $product_variation_id = [];
