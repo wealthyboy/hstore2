@@ -155,7 +155,6 @@ class ProductController extends Controller
         ]);
 
 
-        dd($request->all());
 
 
         $image  = $request->image;
@@ -599,6 +598,9 @@ class ProductController extends Controller
                 })->ignore($id)
             ],
         ]);
+
+        dd($request->all());
+
 
 
         $product = Product::findOrFail($id);
