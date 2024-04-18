@@ -160,7 +160,7 @@ class ImagesController extends Controller
             );
 
             \Image::make($path)->save(
-                public_path($request->folder . '/' . $getimageName)
+                public_path('images/' . $request->folder . '/' . $getimageName)
             );
 
             return $path = asset('images/' . $request->folder . '/' . $getimageName);
