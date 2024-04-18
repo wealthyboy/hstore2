@@ -653,7 +653,7 @@ class ProductController extends Controller
         if (null !== $product->default_variation) {
             $product_variation =  ProductVariation::find(optional($product->default_variation)->id);
 
-            //dd($product_variation);
+            dd($product_variation);
         } else {
             $product_variation =  new ProductVariation();
             $product_variation->sku = str_random(6);
