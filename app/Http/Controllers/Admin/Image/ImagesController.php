@@ -133,9 +133,6 @@ class ImagesController extends Controller
             $path = $request->file('file')->getRealPath();
 
             if ($request->folder == 'products') {
-
-
-
                 $img  = \Image::make($path)->fit($this->settings->products_items_size_w, $this->settings->products_items_size_h)->save(
                     public_path('images/products/m/' . $getimageName)
                 );
@@ -161,15 +158,12 @@ class ImagesController extends Controller
             $img  = \Image::make($path)->fit(465, 465)->save(
                 public_path('images/' . $request->folder . '/m/' . $file)
             );
-            $canvas = \Image::canvas(106, 145);
-            $image  = \Image::make($path)->resize(150, 250, function ($constraint) {
-                $constraint->aspectRatio();
-            });
-            $canvas->insert($image, 'center');
-            $canvas->save(
-                public_path('images/' . $request->folder . '/tn/' . $file)
+
+            \Image::make($path)->save(
+                public_path($request->folder . '/' . $getimageName)
             );
-            return $path = asset('images/' . $request->folder . '/' . $file);
+
+            return $path = asset('images/' . $request->folder . '/' . $getimageName);
         }
     }
 
