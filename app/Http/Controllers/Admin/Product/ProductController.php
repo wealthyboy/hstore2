@@ -770,7 +770,8 @@ class ProductController extends Controller
                         }
 
 
-                        dd(Helper::getFormatedDate($request->edit_variation_sale_price_expires[$variant_id])->toDateString());
+                        $sale_price_expires = !empty($request->edit_variation_sale_price_expires[$variant_id]) ?   Helper::getFormatedDate($request->edit_variation_sale_price_expires[$variant_id])->toDateString()  : Helper::getFormatedDate($request->sale_price_expires);
+                        $sale_price_starts = !empty($request->edit_variation_sale_price_starts[$variant_id]) ?   Helper::getFormatedDate($request->edit_variation_sale_price_starts[$variant_id])->toDateString()  : Helper::getFormatedDate($request->sale_price_starts);
 
                         $product_variation = ProductVariation::updateOrCreate(
                             ['id' => $variant_id],
@@ -780,10 +781,10 @@ class ProductController extends Controller
                                 'width' => $request->edit_variation_width[$variant_id]  ? $request->edit_variation_width[$variant_id] : $request->width,
                                 'length' => $request->edit_variation_length[$variant_id],
                                 'image' => $request->edit_variation_image[$variant_id],
-                                'sale_price_expires' => !empty($request->edit_variation_sale_price_expires[$variant_id]) ?   Helper::getFormatedDate($request->edit_variation_sale_price_expires[$variant_id]) : Helper::getFormatedDate($request->sale_price_expires),
-                                'sale_price_starts' => !empty($request->edit_variation_sale_price_starts[$variant_id]) ?   Helper::getFormatedDate($request->edit_variation_sale_price_starts[$variant_id]) : Helper::getFormatedDate($request->sale_price_starts),
+                                'sale_price_expires' => $sale_price_expires,
+                                'sale_price_starts' => $sale_price_starts,
                                 'weight' => $request->edit_variation_weight[$variant_id],
-                                'quantity'  =>  $request->edit_variation_quantity[$variant_id],
+                                'quantity' => $request->edit_variation_quantity[$variant_id],
                                 'product_id' => $product->id,
                                 //'extra_percent_off'  => $request->extra_percent_off[$variant_id],
                                 'name' => $request->edit_variation_name[$variant_id],
@@ -794,7 +795,6 @@ class ProductController extends Controller
                             ]
                         );
 
-                        dd($product_variation);
 
                         /**
                          * 
