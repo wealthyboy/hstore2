@@ -796,7 +796,7 @@ class ProductController extends Controller
                             ]
                         );
 
-                        dd($product_variation);
+                        // dd($product_variation);
 
 
                         /**
