@@ -573,6 +573,8 @@ class ProductController extends Controller
         $variants = $product->product_variations;
         $product_variant = $product->default_variation;
 
+        dd($variants,   $product_variant);
+
         $product_attributes = Attribute::parents()->where('type', 'both')->orderBy('sort_order', 'asc')->get();
         $meta_attributes = Attribute::parents()->where('type', '!=', 'both')->orderBy('sort_order', 'asc')->get();
 
