@@ -84,7 +84,7 @@
 
             <div class="col-md-4">
                 <div class="form-group label-floating">
-                    <label class="control-label">End Date {{ optional($variant->sale_price_expires)->format('m-d') }}</label>
+                    <label class="control-label">End Date {{ $variant->sale_price_expires }}</label>
                     <input class="form-control  pull-right" name="edit_variation_sale_price_expires[{{ $variant->id }}]" value="{{ $variant->sale_price_expires ? date('Y') .'-'. optional($variant->sale_price_expires)->format('m-d') : '' }}" type="date">
                 </div>
             </div>
