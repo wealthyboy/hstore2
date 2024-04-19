@@ -772,6 +772,7 @@ class ProductController extends Controller
 
                         $sale_price_expires = !empty($request->edit_variation_sale_price_expires[$variant_id]) ?   Helper::getFormatedDate($request->edit_variation_sale_price_expires[$variant_id])->toDateString()  : Helper::getFormatedDate($request->sale_price_expires);
                         $sale_price_starts = !empty($request->edit_variation_sale_price_starts[$variant_id]) ?   Helper::getFormatedDate($request->edit_variation_sale_price_starts[$variant_id])->toDateString()  : Helper::getFormatedDate($request->sale_price_starts);
+                        dd($sale_price_expires);
 
                         $product_variation = ProductVariation::updateOrCreate(
                             ['id' => $variant_id],
