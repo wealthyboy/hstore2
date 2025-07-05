@@ -4,7 +4,7 @@
 <div class="row">
    <div class="col-md-12">
       <div class="title">
-         <h3>Search</h3>
+         <h3>Stats</h3>
       </div>
       <!-- <form action="" method="get" >
          <div class="row">
