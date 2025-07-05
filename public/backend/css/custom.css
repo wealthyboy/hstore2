@@ -3,6 +3,12 @@
  } */
 
 
+ h1,h2,h3,h4,h5,h6 {
+     color: black;
+    font-weight: 800;
+ }
+
+
  .wizard-card .picture {
 
     width: 206px;
@@ -350,4 +356,33 @@ input.upload_input {
 }
 
 label.error{ color: red; display: block; margin: 0 auto;}
+
+.card .card-title:not(.card-calendar .card-title) ,th {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: black;
+    font-weight: 800;
+}
+
+th {
+   
+    color: black;
+    font-weight: 800 !important;
+}
+
+.form-group.label-floating label.control-label, .form-group.label-placeholder label.control-label, label {
+    font-weight: 700 !important;
+    color: black !important;
+}
+
+.sorting {
+  font-weight: 700 !important;
+  color: black !important;
+}
+
+.form-group select {
+    appearance: auto;
+    color: black;
+}
+
 

@@ -426,7 +426,6 @@ import message from "../message/index";
 import axios from "axios";
 import { mapGetters, mapActions } from "vuex";
 import ErrorMessage from "../messages/components/Error";
-import Connect from "@usezilla/zilla-connect";
 
 export default {
   components: {

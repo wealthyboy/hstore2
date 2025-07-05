@@ -1,4 +1,4 @@
-cd /home/forge/hautesignatures.com.ng
+cd /home/forge/theaurabydora.com
 git pull origin $FORGE_SITE_BRANCH
 
 $FORGE_COMPOSER install --no-dev --no-interaction --prefer-dist --optimize-autoloader

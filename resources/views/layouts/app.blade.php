@@ -7,15 +7,15 @@
 	<title>{{ isset( $page_title) ?  $page_title .' |  '.config('app.name') :  $system_settings->meta_title  }}</title>
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="google-site-verification" content="WQGOl-v7IztNDZtgNC1ZEBkG8nyRsHJ1oLsnsLeiuIQ" />
-	<link rel="preload" href="https://hautesignatures.com.ng/fonts/ProximaNovaAltRegular.otf" as="font" type="font/otf" crossorigin>
-	<link rel="preload" href="https://hautesignatures.com.ng/fonts/GalaxiePolaris-Bold.otf" as="font" type="font/otf" crossorigin>
-	<link rel="preload" href="https://hautesignatures.com.ng/fonts/porto-64334846.woff2" as="font" type="font/woff2" crossorigin>
-	<link rel="preload" href="https://hautesignatures.com.ng/css/bootstrap.min.css" as="style">
-	<link rel="preload" href="https://hautesignatures.com.ng/css/style.min.css" as="style">
-	<link rel="preload" href="https://hautesignatures.com.ng/css/all.min.css" as="style">
-	<link rel="preload" href="https://hautesignatures.com.ng/css/skins/skin-default.css" as="style">
+	<link rel="preload" href="https://theaurabydora.com/fonts/ProximaNovaAltRegular.otf" as="font" type="font/otf" crossorigin>
+	<link rel="preload" href="https://theaurabydora.com/fonts/GalaxiePolaris-Bold.otf" as="font" type="font/otf" crossorigin>
+	<link rel="preload" href="https://theaurabydora.com/fonts/porto-64334846.woff2" as="font" type="font/woff2" crossorigin>
+	<link rel="preload" href="https://theaurabydora.com/css/bootstrap.min.css" as="style">
+	<link rel="preload" href="https://theaurabydora.com/css/style.min.css" as="style">
+	<link rel="preload" href="https://theaurabydora.com/css/all.min.css" as="style">
+	<link rel="preload" href="https://theaurabydora.com/css/skins/skin-default.css" as="style">
 
-	<link rel="preload" href="https://hautesignatures.com.ng/js/app.js" as="script">
+	<link rel="preload" href="https://theaurabydora.com/js/app.js" as="script">
 
 
 	<meta name="description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
@@ -39,7 +39,7 @@
 	@yield('page-css')
 	<link href="/css/custom.css?version={{ str_random(6) }}" rel="stylesheet" type="text/css" />
 	<meta property="og:site_name" content="hautesignatures Co">
-	<meta property="og:url" content="https://hautesignatures.com.ng/">
+	<meta property="og:url" content="https://theaurabydora.com/">
 	<meta property="og:title" content=" hautesignatures">
 	<meta property="og:type" content="website">
 	<meta property="og:description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
@@ -76,16 +76,12 @@
 		})(window, document, 'script', 'dataLayer', 'GTM-TBZPGWQ');
 
 		Window.user = {
-			user: {
-				!!auth() - > check() ? auth() - > user() : 0000!!
-			},
-			loggedIn: {
-				!!auth() - > check() ? 1 : 0!!
-			},
+			user: {},
+			loggedIn: {},
 			settings: {
-				!!isset($system_settings) ? $system_settings : ''!!
+				id: 3
 			},
-			token: '{!! csrf_token() !!}'
+			token: '{!! csrf_token() !!}',
 		}
 	</script>
 
@@ -162,8 +158,6 @@
 						</a>
 					</div><!-- End .header-center -->
 					<nav-icon />
-
-
 				</div><!-- End .container -->
 			</div><!-- End .header-middle -->
 

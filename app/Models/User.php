@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Builder;
 
 class User extends Authenticatable
 {
@@ -21,7 +22,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'last_name', 'email', 'phone', 'verified', 'password', 'permission', 'user_type'
+        'name',
+        'last_name',
+        'email',
+        'phone',
+        'verified',
+        'password',
+        'permission',
+        'user_type'
     ];
 
     /**
@@ -30,7 +38,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
 
@@ -64,7 +73,6 @@ class User extends Authenticatable
 
     public function favorites()
     {
-
         return $this->hasMany(Favorite::class);
     }
 

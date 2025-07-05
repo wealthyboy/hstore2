@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Admin\Discounts;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Category;
-use App\Discount;
-use App\DiscountProduct;
+use App\Models\Category;
+use App\Models\Discount;
+use App\Models\DiscountProduct;
 use App\Http\Helper;
 use Illuminate\Validation\Rule;
-use App\Activity;
-use App\User;
+use App\Models\Activity;
+use App\Models\User;
 
 
 class DiscountsController extends Controller
@@ -23,7 +23,7 @@ class DiscountsController extends Controller
     public function index()
     {
         $discounts = Discount::all();
-        return view('admin.discounts.index',compact('discounts'));
+        return view('admin.discounts.index', compact('discounts'));
     }
 
     /**
@@ -32,9 +32,9 @@ class DiscountsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
+    {
         $categories = Category::parents()->get();
-        return view('admin.discounts.create',compact('categories'));
+        return view('admin.discounts.create', compact('categories'));
     }
 
     /**
@@ -45,20 +45,20 @@ class DiscountsController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'category_id'=>'required|unique:discounts,category_id',
-            'percentage_discount' =>'required',
-            'expires'=>'required',
+        $this->validate($request, [
+            'category_id' => 'required|unique:discounts,category_id',
+            'percentage_discount' => 'required',
+            'expires' => 'required',
         ]);
 
         $products = Category::find($request->category_id)->products;
         $discount = Discount::create([
             'category_id' => $request->category_id,
             'percentage_off' => $request->percentage_discount,
-            'expires'=> Helper::getFormatedDate($request->expires)
+            'expires' => Helper::getFormatedDate($request->expires)
         ]);
         foreach ($products as $product) {
-            $sale_price = Helper::getPercentageDiscount($request->percentage_discount,$product->price);
+            $sale_price = Helper::getPercentageDiscount($request->percentage_discount, $product->price);
             $discount->discount_products()->create([
                 'product_id' => $product->id,
                 'sale_price' => $sale_price,
@@ -85,10 +85,10 @@ class DiscountsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {   
+    {
         $discount = Discount::find($id);
         $categories = Category::parents()->get();
-        return view('admin.discounts.edit',compact('categories','discount'));
+        return view('admin.discounts.edit', compact('categories', 'discount'));
     }
 
     /**
@@ -101,13 +101,13 @@ class DiscountsController extends Controller
     public function update(Request $request, $id)
     {
         $discount = Discount::find($id);
-        $this->validate($request,[
-            'category_id'=>[
+        $this->validate($request, [
+            'category_id' => [
                 'required',
-                    Rule::unique('discounts')->ignore($id),   
+                Rule::unique('discounts')->ignore($id),
             ],
-            'percentage_discount' =>'required',
-            'expires'=>'required',
+            'percentage_discount' => 'required',
+            'expires' => 'required',
         ]);
         $discount->category_id = $request->category_id;
         $discount->percentage_off = $request->percentage_discount;
@@ -128,21 +128,21 @@ class DiscountsController extends Controller
     {
         User::canTakeAction(5);
 
-        $rules = array (
-                '_token' => 'required' 
+        $rules = array(
+            '_token' => 'required'
         );
-        $validator = \Validator::make ( $request->all (), $rules );
-        if (empty ( $request->selected )) {
-            $validator->getMessageBag ()->add ( 'Selected', 'Nothing to Delete' );
-            return \Redirect::back ()->withErrors ( $validator )->withInput ();
+        $validator = \Validator::make($request->all(), $rules);
+        if (empty($request->selected)) {
+            $validator->getMessageBag()->add('Selected', 'Nothing to Delete');
+            return \Redirect::back()->withErrors($validator)->withInput();
         }
         $count = count($request->selected);
         (new Activity)->Log("Deleted  {$count} Products");
-        Discount::destroy( $request->selected );
+        Discount::destroy($request->selected);
 
-        DiscountProduct::whereIn('discount_id',$request->selected)->delete();
+        DiscountProduct::whereIn('discount_id', $request->selected)->delete();
         return redirect()->back();
-        
+
 
         // $category =  Discount::find( $request->id );
         // (new Activity)->Log("Deleted  {$category->name} Discounts");

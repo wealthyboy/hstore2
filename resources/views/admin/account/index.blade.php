@@ -32,24 +32,26 @@
    <div class="col-lg-4 col-md-6 col-sm-6">
       <div class="card card-stats">
          <div class="card-content">
-            <p class="category">Today's Sales Total (Without shipping)</p>
-            <h3 class="card-title">{{ $currency }}{{ number_format($tows) ?? 0}}</h3>
+            <h5 class="card-title text-black">Today's Sales Total (Without shipping)</h3>
+               <p class="card-title">{{ $currency }}{{ number_format($tows) ?? 0}}</p>
          </div>
       </div>
    </div>
    <div class="col-lg-4 col-md-6 col-sm-6">
       <div class="card card-stats">
          <div class="card-content">
-            <p class="category">Today's Sales Total</p>
-            <h3 class="card-title">{{ $currency }}{{ number_format($todays_sales->items_total) ?? 0}}</h3>
+            <h5 class="card-title text-black">Today's Sales Total</h3>
+               <p class="card-title">{{ $currency }}{{ number_format($todays_sales->items_total) ?? 0}}</p>
+
+
          </div>
       </div>
    </div>
    <div class="col-lg-4 col-md-6 col-sm-6">
       <div class="card card-stats">
          <div class="card-content">
-            <p class="category">Items Sold Today</p>
-            <h3 class="card-title">{{ $todays_orders->qty ?? 0 }}</h3>
+            <h5 class="card-title text-black">Items Sold Today</h3>
+               <p class="card-title">{{ $todays_orders->qty ?? 0 }}</p>
          </div>
       </div>
    </div>
@@ -59,16 +61,16 @@
       <div class="card card-stats">
          <div class="card-content">
             <p class="category">All Products Value</p>
-            <h3 class="card-title">{{ $currency }}{{ number_format($total_value->total) ?? 0 }}</h3>
+            <h4 class="card-title">{{ $currency }}{{ number_format($total_value->total) ?? 0 }}</h4>
          </div>
       </div>
    </div>
 
-    <div class="col-lg-3 col-md-6 col-sm-6">
+   <div class="col-lg-3 col-md-6 col-sm-6">
       <div class="card card-stats">
          <div class="card-content">
             <p class="category">All Sales</p>
-            <h3 class="card-title">{{ number_format($all_sales->qty) }}</h3>
+            <h4 class="card-title">{{ number_format($all_sales->qty) }}</h4>
          </div>
       </div>
    </div>
@@ -76,7 +78,7 @@
       <div class="card card-stats">
          <div class="card-content">
             <p class="category">Sales Total</p>
-            <h3 class="card-title">{{ $currency }}{{ number_format($all_sales_value->items_total) }}</h3>
+            <h4 class="card-title">{{ $currency }}{{ number_format($all_sales_value->items_total) }}</h4>
          </div>
       </div>
    </div>
@@ -84,7 +86,7 @@
       <div class="card card-stats">
          <div class="card-content">
             <p class="category"> Remaining Products</p>
-            <h3 class="card-title">{{ number_format($remaining_products) }}</h3>
+            <h4 class="card-title">{{ number_format($remaining_products) }}</h4>
          </div>
       </div>
    </div>
@@ -93,7 +95,7 @@
       <div class="card card-stats">
          <div class="card-content">
             <p class="category">Best selling product this week</p>
-            <h3 class="card-title">{{  optional(optional($product_variation)->product_variation)->name  }}</h3>
+            <h4 class="card-title">{{ optional(optional($product_variation)->product_variation)->name  }}</h4>
          </div>
       </div>
    </div>
@@ -102,11 +104,11 @@
       <div class="card card-stats">
          <div class="card-content">
             <p class="category">Best selling product this month</p>
-            <h3 class="card-title">{{  optional(optional($product_variation_month)->product_variation)->name  }}</h3>
+            <h4 class="card-title">{{ optional(optional($product_variation_month)->product_variation)->name  }}</h4>
          </div>
       </div>
    </div>
- 
+
 </div>
 <div class="row">
    <div class="col-md-12">
@@ -129,7 +131,7 @@
                         <th>
                            <div class="checkbox">
                               <label>
-                              <input onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" type="checkbox" name="optionsCheckboxes" >
+                                 <input onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" type="checkbox" name="optionsCheckboxes">
                               </label>
                            </div>
                         </th>
@@ -143,7 +145,7 @@
                      </tr>
                   </thead>
                   <tbody>
-                     
+
                   </tbody>
                </table>
             </div>
