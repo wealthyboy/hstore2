@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Customers;
 
-use App\DownloadTime;
+use App\Models\DownloadTime;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
