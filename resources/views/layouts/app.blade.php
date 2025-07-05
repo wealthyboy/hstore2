@@ -7,15 +7,7 @@
 	<title>{{ isset( $page_title) ?  $page_title .' |  '.config('app.name') :  $system_settings->meta_title  }}</title>
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="google-site-verification" content="WQGOl-v7IztNDZtgNC1ZEBkG8nyRsHJ1oLsnsLeiuIQ" />
-	<link rel="preload" href="https://theaurabydora.com/fonts/ProximaNovaAltRegular.otf" as="font" type="font/otf" crossorigin>
-	<link rel="preload" href="https://theaurabydora.com/fonts/GalaxiePolaris-Bold.otf" as="font" type="font/otf" crossorigin>
-	<link rel="preload" href="https://theaurabydora.com/fonts/porto-64334846.woff2" as="font" type="font/woff2" crossorigin>
-	<link rel="preload" href="https://theaurabydora.com/css/bootstrap.min.css" as="style">
-	<link rel="preload" href="https://theaurabydora.com/css/style.min.css" as="style">
-	<link rel="preload" href="https://theaurabydora.com/css/all.min.css" as="style">
-	<link rel="preload" href="https://theaurabydora.com/css/skins/skin-default.css" as="style">
 
-	<link rel="preload" href="https://theaurabydora.com/js/app.js" as="script">
 
 
 	<meta name="description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
@@ -38,94 +30,26 @@
 	<link rel="stylesheet" href="/css/banner.css?version={{ str_random(6) }}">
 	@yield('page-css')
 	<link href="/css/custom.css?version={{ str_random(6) }}" rel="stylesheet" type="text/css" />
-	<meta property="og:site_name" content="hautesignatures Co">
+	<meta property="og:site_name" content="theaurabydora Co">
 	<meta property="og:url" content="https://theaurabydora.com/">
-	<meta property="og:title" content=" hautesignatures">
+	<meta property="og:title" content="theaurabydora">
 	<meta property="og:type" content="website">
 	<meta property="og:description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
 	<meta property="og:image:alt" content="">
-	<meta name="twitter:site" content="@hautesignatures">
+	<meta name="twitter:site" content="@theaurabydora">
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:title" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
 	<meta name="twitter:description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
 	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-JVYYVR9G8L"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
 
-		function gtag() {
-			dataLayer.push(arguments);
-		}
-		gtag('js', new Date());
-
-		gtag('config', 'G-JVYYVR9G8L');
-
-		(function(w, d, s, l, i) {
-			w[l] = w[l] || [];
-			w[l].push({
-				'gtm.start': new Date().getTime(),
-				event: 'gtm.js'
-			});
-			var f = d.getElementsByTagName(s)[0],
-				j = d.createElement(s),
-				dl = l != 'dataLayer' ? '&l=' + l : '';
-			j.async = true;
-			j.src =
-				'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-			f.parentNode.insertBefore(j, f);
-		})(window, document, 'script', 'dataLayer', 'GTM-TBZPGWQ');
-
-		Window.user = {
-			user: {},
-			loggedIn: {},
-			settings: {
-				id: 3
-			},
-			token: '{!! csrf_token() !!}',
-		}
-	</script>
 
 
 
 
 
 </head>
-<script>
-	(function(w, d, t, h, s, n) {
-		w.FlodeskObject = n;
-		var fn = function() {
-			(w[n].q = w[n].q || []).push(arguments);
-		};
-		w[n] = w[n] || fn;
-		var f = d.getElementsByTagName(t)[0];
-		var v = '?v=' + Math.floor(new Date().getTime() / (120 * 1000)) * 60;
-		var sm = d.createElement(t);
-		sm.async = true;
-		sm.type = 'module';
-		sm.src = h + s + '.mjs' + v;
-		f.parentNode.insertBefore(sm, f);
-		var sn = d.createElement(t);
-		sn.async = true;
-		sn.noModule = true;
-		sn.src = h + s + '.js' + v;
-		f.parentNode.insertBefore(sn, f);
-	})(window, document, 'script', 'https://assets.flodesk.com', '/universal', 'fd');
-</script>
-<script>
-	window.fd('form', {
-		formId: '62e12f9bbf22a55feeba5d45'
-	});
-</script>
-<script>
-	window.fd('form', {
-		formId: '62e10e95bf22a55feeba5d2f'
-	});
-</script>
-<script>
-	window.fd('form', {
-		formId: '62e10e95bf22a55feeba5d2f'
-	});
-</script>
+
+
 
 <body class="">
 
@@ -195,7 +119,7 @@
 
 										<div class="col-lg-3">
 											<div class="col-lg-12 p-0">
-												<a title="{{ $category->title }}" href="{{ $category->image_custom_link }}"><img src="{{ $category->image }}" alt="{{ $category->image }}" class="product-promo"></a>
+												<a title="{{ $category->title }}" href="{{ $category->image_custom_link }}"><img alt=" {{ $category->image }}" class="product-promo"></a>
 											</div><!-- End .col-lg-4 -->
 										</div>
 
