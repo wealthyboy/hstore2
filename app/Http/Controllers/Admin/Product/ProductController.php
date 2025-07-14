@@ -910,10 +910,10 @@ class ProductController extends Controller
 
                     $variation_images = !empty($request->variation_images[$key]) ? $request->variation_images[$key] : [];
 
-                    $product_variation->price              = null !== $request->variation_price[$key] ? $request->variation_price[$key] : $request->price;
+                    $product_variation->price   = null !== $request->variation_price[$key] ? $request->variation_price[$key] : $request->price;
                     $product_variation->sale_price         =  null !== $request->variation_sale_price[$key] ? $request->variation_sale_price[$key] : $sale_price;
-                    $product_variation->image              = $request->variation_image[$key];
-                    $product_variation->width              = $request->variation_width[$key];
+                    $product_variation->image  = $request->variation_image[$key];
+                    $product_variation->width = $request->variation_width[$key];
                     $product_variation->sale_price_expires = Helper::getFormatedDate($request->variation_sale_price_expires[$key]);
                     $product_variation->sale_price_starts  = Helper::getFormatedDate($request->variation_sale_price_starts[$key]);
 
@@ -1098,12 +1098,20 @@ class ProductController extends Controller
         $count = count($request->selected);
         (new Activity)->Log("Deleted  {$count} Products");
 
-        foreach ($request->selected as $selected) {
-            $delete = Product::find($selected);
-            $delete->variants()->delete();
-            $delete->variant()->delete();
-            $delete->delete();
+        $products = Product::all();
+
+        foreach ($products as $product) {
+            // Delete all variants (if plural relationship exists)
+            $product->variants()->delete();
+
+            // Delete single variant (if singular relationship exists)
+            $product->variant()->delete();
+
+            // Finally delete the product
+            $product->delete();
         }
+
+
 
         return redirect()->back();
     }
