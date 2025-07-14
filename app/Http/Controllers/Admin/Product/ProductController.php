@@ -1101,13 +1101,10 @@ class ProductController extends Controller
         $products = Product::all();
 
         foreach ($products as $product) {
-            // Delete all variants (if plural relationship exists)
             $product->variants()->delete();
 
-            // Delete single variant (if singular relationship exists)
             $product->variant()->delete();
 
-            // Finally delete the product
             $product->delete();
         }
 
