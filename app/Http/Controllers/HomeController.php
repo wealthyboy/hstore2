@@ -29,15 +29,11 @@ class HomeController extends Controller
     {
         $site_status = Live::first();
         $banners = Banner::banners()->get();
-        $products = ProductVariation::where('featured', 1)
-            ->orderBy('updated_at', 'DESC')
+        $products = ProductVariation::orderBy('updated_at', 'DESC')
             ->take(8)->get();
 
-        dd( $products );
 
-        $user = User::where('email', 'jacob.atam@gmail.com')->first();
-        $user->password = bcrypt(11223344);
-        $user->save();
+    
 
         $reviews = Review::where('is_verified', 1)->inRandomOrder()->orderBy('created_at', 'DESC')->take(20)->get();
         $posts = Information::orderBy('created_at', 'DESC')->where(['blog' => true, 'is_active' => true])->take(6)->get();
