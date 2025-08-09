@@ -33,6 +33,8 @@ class HomeController extends Controller
             ->orderBy('updated_at', 'DESC')
             ->take(8)->get();
 
+        dd( $products );
+
         $user = User::where('email', 'jacob.atam@gmail.com')->first();
         $user->password = bcrypt(11223344);
         $user->save();

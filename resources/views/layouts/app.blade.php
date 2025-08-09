@@ -110,7 +110,7 @@
 
 										<div class="col-lg-3">
 											<div class="col-lg-12 p-0">
-												<a title="{{ $category->title }}" href="{{ $category->image_custom_link }}"><img alt=" {{ $category->image }}" class="product-promo"></a>
+												<a title="{{ $category->title }}" href="{{ $category->image_custom_link }}"><img alt="{{ $category->image }}" class="product-promo"></a>
 											</div><!-- End .col-lg-4 -->
 										</div>
 
