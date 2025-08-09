@@ -2,9 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Support\Str;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -142,8 +140,10 @@ class User extends Authenticatable
 
     public static function canTakeAction($num)
     {
-        if (!User::userHasPermission($num)) {
-            dd('You dont have access,Permission Denied.');
+        if ( 
+            !User::userHasPermission($num) 
+        ) {
+            dd('You dont have access, Permission Denied.');
         }
     }
 

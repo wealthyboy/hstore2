@@ -42,25 +42,23 @@
 	<meta name="twitter:title" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
 	<meta name="twitter:description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }} ">
 
+	@php
+	$user = auth()->check() ? auth()->user() : 000;
+	$loggedIn = auth()->check() ? 1 : 0;
+	@endphp
+
 	<script>
-		Window.user = {
-			user: {
-				!!auth() - > check() ? auth() - > user() : 0000!!
-			},
-			loggedIn: {
-				!!auth() - > check() ? 1 : 0!!
-			},
-			settings: {
-				!!isset($system_settings) ? $system_settings : ''!!
-			},
-			token: '{!! csrf_token() !!}'
+		window.user = {
+			user: @json($user),
+			loggedIn: @json($loggedIn),
+			settings: @json($system_settings),
+			token: '{{ csrf_token() }}'
 		}
 	</script>
 </head>
 
 <body class="loaded">
 	<div id="app" class="page-wrapper">
-
 
 		<header class="header">
 			<div class="header-middle">

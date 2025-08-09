@@ -190,11 +190,11 @@
                     </div> -->
                   </div>
                   <!-- <div :class="{'border-danger': delivery_error}" class="border pl-3 mb-1">
-                                      <div  class="custom-control  mt-1 mb-1 custom-radio mt-1 mb-1">
-                                          <input type="radio" value="Stock Pilling" v-model="delivery_option" class="custom-control-input" id="stock_pilling" name="delivery_option" required>
-                                          <label class="custom-control-label" for="stock_pilling">Stock Pile  <span class="ml-3  text-info"> (Free for two weeks, after which ₦500 applies every week)</span></label>
-                                      </div>
-                                  </div> -->
+                    <div  class="custom-control  mt-1 mb-1 custom-radio mt-1 mb-1">
+                        <input type="radio" value="Stock Pilling" v-model="delivery_option" class="custom-control-input" id="stock_pilling" name="delivery_option" required>
+                        <label class="custom-control-label" for="stock_pilling">Stock Pile  <span class="ml-3  text-info"> (Free for two weeks, after which ₦500 applies every week)</span></label>
+                    </div>
+                  </div> -->
 
                   <div :class="{ 'border-danger': delivery_error }" class="border pl-3 mb-1">
                     <div class="custom-control  custom-radio mt-1 mb-1">
@@ -285,8 +285,8 @@
                   </template>
                   <template v-else>
                     <span class="price-amount amount bold float-right">
-                      <span style="" class="currencySymbol fa-2x">{{ meta.currency }}{{ amount || meta.sub_total |
-                        priceFormat }}
+                      <span style="" class="currencySymbol fa-2x">
+                        {{ meta.currency }}{{ amount || meta.sub_total | priceFormat }}
                       </span>
                     </span>
                   </template>
@@ -489,7 +489,7 @@ export default {
     delivery_option: function (val) {
       this.delivery_error = false;
       /**
-       * If the delivery option changes
+       * If the delivery option chan\ges
        */
 
       if (val != "shipping") {
@@ -526,7 +526,6 @@ export default {
       this.pageIsLoading = false;
     });
 
-    console.log(Connect);
   },
   methods: {
     ...mapActions({

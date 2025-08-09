@@ -17,9 +17,6 @@
 	<link rel="icon" href="/img/favicon.ico" type="image/x-icon">
 	<link rel="icon" type="image/png" href="/img/favicon-96x96.png">
 	<link rel="apple-touch-icon" href="/img/favicon-96x96.png">
-
-
-
 	<!-- CSS -->
 	<link rel="stylesheet" href="/css/bootstrap.min.css">
 	<!-- Main CSS File -->
@@ -40,12 +37,16 @@
 	<meta name="twitter:card" content="summary_large_image">
 	<meta name="twitter:title" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
 	<meta name="twitter:description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }} ">
-	<script>
-		Window.user = {
-			user: {
+	@php
+	$user = auth()->check() ? auth()->user() : 000;
+	$loggedIn = auth()->check() ? 1 : 0;
+	@endphp
 
-			},
-			loggedIn: {},
+	<script>
+		window.user = {
+			user: @json($user),
+			loggedIn: @json($loggedIn),
+			settings: @json($system_settings),
 			token: '{{ csrf_token() }}'
 		}
 	</script>
@@ -83,12 +84,6 @@
 	</div><!-- End .page-wrapper -->
 
 	<div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
-
-
-
-
-
-
 	<a id="scroll-top" href="#top" title="Top" role="button"><i class="icon-angle-up"></i></a>
 
 	<!-- Plugins JS File -->

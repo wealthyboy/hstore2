@@ -189,43 +189,8 @@
 
 
 
-<div class="container-fluid ">
-    <div class="feature-boxes-container row mt-6 mb-1">
-        <div class="col-md-4 col-4">
-            <div class="feature-box px-sm-5 px-md-4 mx-sm-5 mx-md-3 feature-box-simple text-center">
-                <i class="icon-earphones-alt"></i>
-                <div class="feature-box-content">
-                    <h3 class="mb-0 pb-1">Customer Support</h3>
-                    <h5 class="m-b-3">Need Assistance?</h5>
-                    <p></p>
-                </div><!-- End .feature-box-content -->
-            </div><!-- End .feature-box -->
-        </div><!-- End .col-md-4 -->
-
-        <div class="col-md-4 col-4">
-            <div class="feature-box px-sm-5 px-md-4 mx-sm-5 mx-md-3 feature-box-simple text-center">
-                <i class="icon-credit-card"></i>
-                <div class="feature-box-content">
-                    <h3 class="mb-0 pb-1">Secured Payment</h3>
-                    <h5 class="m-b-3">Safe &amp; Fast</h5>
-                    <p></p>
-                </div><!-- End .feature-box-content -->
-            </div><!-- End .feature-box -->
-        </div><!-- End .col-md-4 -->
-
-        <div class="col-md-4 col-4">
-            <div class="feature-box px-sm-5 px-md-4 mx-sm-5 mx-md-3 feature-box-simple text-center">
-                <i class="icon-action-undo"></i>
-
-                <div class="feature-box-content">
-                    <h3 class="mb-0 pb-1">DELIVERIES AND RETURNS</h3>
-                    <h5 class="m-b-3">Hassle Free</h5>
-                    <p></p>
-                </div><!-- End .feature-box-content -->
-            </div><!-- End .feature-box -->
-        </div><!-- End .col-md-4 -->
-    </div>
-
+<div class="container-fluid">
+    <div class="feature-boxes-container row mt-6 mb-1"></div>
 </div>
 
 

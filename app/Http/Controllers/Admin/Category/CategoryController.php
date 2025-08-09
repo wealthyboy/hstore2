@@ -245,9 +245,9 @@ class CategoryController extends Controller
         $count = count($request->selected);
         (new Activity)->Log("Deleted  {$count} Products");
         try {
-            Category::destroy($request->selected);
+            Category::destroy($request->selected); 
         } catch (\Throwable $th) {
-            //throw $th;
+            dd($th);
         }
         return redirect()->back();
         if ($request->isMethod('get')) {

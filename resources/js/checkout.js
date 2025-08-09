@@ -19,7 +19,7 @@ Vue.filter("priceFormat", function(value) {
 const app = new Vue({
   el: "#app",
   store,
-  data: Window.user,
+  data: window.user,
   components: {
     CheckoutIndex,
     Messages,

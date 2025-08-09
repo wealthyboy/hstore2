@@ -43,7 +43,19 @@
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 
 
+	@php
+	$user = auth()->check() ? auth()->user() : 000;
+	$loggedIn = auth()->check() ? 1 : 0;
+	@endphp
 
+	<script>
+		window.user = {
+			user: @json($user),
+			loggedIn: @json($loggedIn),
+			settings: @json($system_settings),
+			token: '{{ csrf_token() }}'
+		}
+	</script>
 
 
 
@@ -60,42 +72,21 @@
 	<div id="app" class="page-wrapper">
 		<header class="header fixed-top">
 			<div class="header-middle">
-				<div class="container">
+				<div class="container-fluid">
 					<div class="header-left w-lg-max ml-auto ml-lg-0">
-						<div class="header-icon header-search header-search-inline header-search-category">
-							<a href="#" class="search-toggle" role="button"><i class="icon-search-3"></i></a>
-							<form action="/search" method="get">
-								<div class="header-search-wrapper">
-									<input type="search" class="form-control" name="q" id="q" placeholder="Search..." required>
-									<button class="btn icon-search-3 p-0" type="submit"></button>
-								</div><!-- End .header-search-wrapper -->
-							</form>
-						</div><!-- End .header-search -->
-					</div><!-- End .header-left -->
-
-					<div class="header-center order-first order-lg-0 ml-0 ml-lg-auto">
-						<button class="mobile-menu-toggler" type="button">
-							<i class="icon-menu"></i>
-						</button>
-						<a href="/" class="logo">
-							<img src="{{ $system_settings->logo_path() }}" alt="{{ Config('app.name') }} Logo">
-						</a>
-					</div><!-- End .header-center -->
-					<nav-icon />
-				</div><!-- End .container -->
-			</div><!-- End .header-middle -->
-
-			<div class="header-bottom sticky-header d-none d-lg-block">
-				<div style="padding-left: 50px;" class="container-fluid ">
+						<div class="header-bottom sticky-header d-none d-lg-block">
+				  <div style="padding-left: 50px;" class="container-fluid ">
 					<nav class="main-nav d-flex w-lg-max justify-content-center">
 						<ul class="menu">
 
 							@foreach( $global_categories as $category)
 							<li>
-								<a title="{{ $category->title }}" style="color: {{  $category->text_color }} !important;" href="
-								       {{  $category->link ? $category->link : '/products/'.$category->slug }}
-								   
-								   ">{{ $category->name }}</a>
+								<a  title="{{ $category->title }}" 
+								    style="color: {{  $category->text_color }} !important;"
+									href="{{  $category->link ? $category->link : '/products/'.$category->slug }}"
+								>
+									{{ $category->name }}
+								</a>
 								@if ($category->isCategoryHaveMultipleChildren())
 
 								<div class="megamenu megamenu-fixed-width">
@@ -139,6 +130,25 @@
 					</nav>
 				</div><!-- End .container -->
 			</div><!-- End .header-bottom -->
+					</div><!-- End .header-left -->
+
+					<div class="header-center order-first order-lg-0 ml-0 ml-lg-auto">
+						<button class="mobile-menu-toggler" type="button">
+							 <svg aria-hidden="true" fill="none" focusable="false" width="24" class="header__nav-icon icon icon-hamburger" viewBox="0 0 24 24">
+								<path d="M1 19h22M1 12h22M1 5h22" stroke="currentColor" stroke-width="1" stroke-linecap="square"></path>
+							</svg>
+						</button>
+						<a href="/" class="logo ml-sm-9">
+							<img src="{{ $system_settings->logo_path() }}" alt="{{ Config('app.name') }} Logo">
+						</a>
+					</div><!-- End .header-center -->
+					<nav-icon />
+				</div><!-- End .container -->
+			</div><!-- End .header-middle -->
+
+			<div class="header-bottom sticky-header d-none d-lg-block">
+				
+			</div><!-- End .header-bottom -->
 		</header><!-- End .header -->
 		<main class="main main-page">
 			@yield('content')
@@ -157,8 +167,8 @@
 							<p>
 							<div class="contact-widget follow">
 								<div class="social-icons">
-									<a href="https://facebook.com/hautesignatures.ng/" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
-									<a href="https://instagram.com/hautesignatures.ng?igshid=zqjic4sfh041" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+									<a href="https://facebook.com/{{''}}" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+									<a href="https://instagram.com/{{''}}" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
 									<a href="https://wa.me/2348092907541" class="social-icon" target="_blank"><i class="fab fa-whatsapp"></i></a>
 								</div><!-- End .social-icons -->
 							</div>
@@ -209,7 +219,11 @@
 
 	<div class="mobile-menu-container">
 		<div class="mobile-menu-wrapper">
-			<span class="mobile-menu-close"><i class="icon-cancel"></i></span>
+			<span class="mobile-menu-close">
+				<svg aria-hidden="true" focusable="false" fill="none" width="16" class="icon icon-close" viewBox="0 0 16 16">
+					<path d="m1 1 14 14M1 15 15 1" stroke="currentColor" stroke-width="1"></path>
+				</svg>
+			</span>
 			<nav class="mobile-nav">
 				<ul class="mobile-menu">
 					@foreach( $global_categories as $category)

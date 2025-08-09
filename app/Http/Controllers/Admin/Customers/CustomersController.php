@@ -24,7 +24,7 @@ class CustomersController extends Controller
     {
         $d = DownloadTime::first();
         $users = (new User())->customers()->latest()->get();
-        return   view('admin.customers.index', compact('users', 'd'));
+        return view('admin.customers.index', compact('users', 'd'));
     }
 
     /**

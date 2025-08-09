@@ -33,6 +33,9 @@ const ChangePassword = require("./components/auth/ChangePassword.vue").default;
 const Comments = require("./components/blog/Comments.vue").default;
 const Images = require("./components/images/Images.vue").default;
 
+const CheckoutIndex = require("./components/checkout/CheckoutIndex.vue")
+  .default;
+
 let token = document.head.querySelector('meta[name="csrf-token"]');
 Window.token = token.content;
 
@@ -51,7 +54,7 @@ const app = new Vue({
   el: "#app",
   router,
   store,
-  data: Window.user,
+  data: window.user,
   components: {
     TopCart,
     CartSideBarMenu,
@@ -63,6 +66,7 @@ const app = new Vue({
     CartSummary,
     NewsLetter,
     FavoriteIndex,
+    CheckoutIndex,
     Messages,
     Addresses,
     ShipAddress,
@@ -78,5 +82,4 @@ const app = new Vue({
 require("../../public/js/plugins.js");
 require("./rotaterator.js");
 require("../../public/js/main.min.js");
-
 require("../../public/js/loadProducts.jquery")
