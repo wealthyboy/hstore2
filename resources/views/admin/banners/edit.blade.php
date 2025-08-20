@@ -58,7 +58,17 @@
                            </select>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="title" class="col-sm-2 control-label">Top Banner</label>
+                        <div class="col-sm-10">
+                           <select name="is_slider" required="required" class="form-control select2" style="width: 100%;">
+                              <option value="" selected="selected">--choose one--</option>
+                              <option value="1">Yes</option>
+                              <option value="0">No</option>
 
+                           </select>
+                        </div>
+                    </div>
 
 
                            <div class="form-group">
@@ -66,6 +76,7 @@
                                  <div class="col-sm-10">
                                     <select name="device"  class="form-control select2" style="width: 100%;">
                                        <option value="">--device--</option>
+                                       <option value="all">Show on all devices </option>
                                        <option  {{ $banner->device == "d-block d-sm-none" ? 'selected' : "" }} value="d-block d-sm-none">Show only on sm devices </option>
                                        <option  {{ $banner->device == "d-none d-lg-block d-xl-block" ? 'selected' : "" }} value="d-none d-lg-block d-xl-block">Show only on lg devices </option>
                                     </select>

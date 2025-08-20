@@ -59,15 +59,7 @@
 		<header class="header">
 
 
-			<div class="header-middle">
-				<div class="container">
-					<div class="header-center order-first order-lg-0 ml-0">
-						<a href="/" class="logo">
-							<img src="{{ $system_settings->logo_path() }}" alt="{{ Config('app.name') }} Logo">
-						</a>
-					</div><!-- End .header-center -->
-				</div><!-- End .container -->
-			</div><!-- End .header-middle -->
+		
 
 
 		</header><!-- End .header -->
@@ -77,7 +69,7 @@
 		<footer>
 			<div class="footer-bottom">
 				<div class="container d-flex justify-content-center align-items-center flex-wrap">
-					<p class="footer-copyright py-3 pr-4 mb-0">© {{ config('app.name') }}. 2020. All Rights Reserved</p>
+					<p class="footer-copyright py-3 pr-4 mb-0">© {{ config('app.name') }}. {{ date('Y')}}. All Rights Reserved</p>
 				</div><!-- End .container -->
 			</div><!-- End .footer-bottom -->
 		</footer>

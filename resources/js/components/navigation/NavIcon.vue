@@ -13,30 +13,10 @@
 
         <div v-if="$root.loggedIn" class="header-dropdown ml-4">
             <a href="/acoount" class="header-icon  pl-1">
-                <svg aria-hidden="true" fill="none" focusable="false" width="24" class="header__nav-icon icon icon-account" viewBox="0 0 24 24">
-                    <path d="M16.125 8.75c-.184 2.478-2.063 4.5-4.125 4.5s-3.944-2.021-4.125-4.5c-.187-2.578 1.64-4.5 4.125-4.5 2.484 0 4.313 1.969 4.125 4.5Z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path>
-                    <path d="M3.017 20.747C3.783 16.5 7.922 14.25 12 14.25s8.217 2.25 8.984 6.497" stroke="currentColor" stroke-width="1" stroke-miterlimit="10"></path>
-                </svg>
+                
             </a>
 
-            <div class="header-menu">
-                <ul>  
-                    <li><a href="/account"><i class="icon-user-2 left"></i>  Account</a></li>
-                    <li><a href="/orders"><i class="fas fa-shopping-cart left"></i> Orders</a></li>
-                    <li>
-                        <a class="" href="/logout"
-                                                onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
-                                            <i class="fas fa-sign-out-alt left"></i>
-                                            
-                                            Logout
-                                        </a>
-                                        <form id="logout-form" action="/logout" method="POST" style="display: none;">
-                                            <input type="hidden" name="_token" :value="$root.token">
-                                        </form>
-                    </li>
-                </ul>
-            </div><!-- End .header-menu  -->
+           
         </div>
         <a href="/wishlist" class="header-icon  pl-1 pr-2">
             <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none"><path d="M19.6706 5.4736C17.6806 3.8336 14.7206 4.1236 12.8906 5.9536L12.0006 6.8436L11.1106 5.9536C9.29063 4.1336 6.32064 3.8336 4.33064 5.4736C2.05064 7.3536 1.93063 10.7436 3.97063 12.7836L11.6406 20.4536C11.8406 20.6536 12.1506 20.6536 12.3506 20.4536L20.0206 12.7836C22.0706 10.7436 21.9506 7.3636 19.6706 5.4736Z" stroke="currentColor" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>

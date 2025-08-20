@@ -25,7 +25,7 @@ class BannersController extends Controller
      */
     public function index()
     {
-        $banners = Banner::banners()->get();
+        $banners = Banner::get();
         return view('admin.banners.index', compact('banners'));
     }
 
@@ -60,6 +60,9 @@ class BannersController extends Controller
         $banner->col = $request->col_width;
         $banner->image = $request->image;
         $banner->device = $request->device;
+        $banner->is_slider = $request->is_slider;
+
+        
         $banner->img_alt = $request->img_alt;
         $banner->sort_order = $request->sort_order;
         $banner->save();
@@ -111,6 +114,8 @@ class BannersController extends Controller
         $banner->sort_order = $request->sort_order;
         $banner->col = $request->col_width;
         $banner->image = $request->image;
+        $banner->is_slider = $request->is_slider;
+
         $banner->img_alt = $request->img_alt;
         $banner->device = $request->device;
         $banner->save();

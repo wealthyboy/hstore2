@@ -3,13 +3,17 @@
 @section('content')
 @include('_partials.top_banner')
 
+ 
+
+
+
 <div class="container-fliud">
     <div class="row align-items-start">
-        @foreach( $banners as $banner )
-        <div data-title="{{ $banner->title }}" class="{{ $banner->col }} {{ $banner->col == 'col-lg-3' ?  'col-6    p-0' : '' }}  {{ $banner->title }} p-0 text-center          {{ $banner->device }}">
+        @foreach( $sliders as $slider )
+        <div data-title="{{ $slider->title }}" class="{{ $slider->col }} {{ $slider->col == 'col-lg-3' ?  'col-6    p-0' : '' }}  {{ $slider->title }} p-0 text-center          {{ $slider->device }}">
             <div class="banner-box">
-                <a class="portfolio-thumb" href="{{ $banner->link }}">
-                    <img src="{{ $banner->image }}" title="{{ $banner->title }}" alt="{{ $banner->img_alt }}" />
+                <a class="portfolio-thumb" href="{{ $slider->link }}">
+                    <img src="{{ $slider->image }}" title="{{ $slider->title }}" alt="{{ $slider->img_alt }}" />
                 </a>
             </div>
         </div>
@@ -18,7 +22,7 @@
 </div>
 
 
-
+ 
 
 
 
@@ -28,7 +32,7 @@
     @if ( optional($products)->count() )
 
     <div class="products-section pt-0">
-        <h1 title="fashion  top picks" class="text-center text-sm-25  eee mb-3 mt-3 ">Top Picks for You</h1>
+        <h1 title="fashion  top picks" class="text-center text-sm-25  eee mb-3 mt-3 ">Trending Now</h1>
         <div class="products-slider owl-carousel owl-theme dots-top">
             @foreach( $products as $related_product)
             @if (optional($related_product)->product_type == 'variable')
@@ -104,6 +108,21 @@
 </div><!-- End .container -->
 
 
+<div class="container-fliud">
+    <div class="row align-items-start">
+        @foreach( $banners as $banner )
+        <div data-title="{{ $banner->title }}" class="{{ $banner->col }} {{ $banner->col == 'col-lg-3' ?  'col-6    p-0' : '' }}  {{ $banner->title }} p-0 text-center          {{ $banner->device }}">
+            <div class="banner-box">
+                <a class="portfolio-thumb" href="{{ $banner->link }}">
+                    <img src="{{ $banner->image }}" title="{{ $banner->title }}" alt="{{ $banner->img_alt }}" />
+                </a>
+            </div>
+        </div>
+        @endforeach
+    </div>
+</div>
+
+
 @if ($posts->count() && optional($blog_status)->is_active)
 
 <div class="blog-section pt-0 mt-3">
@@ -139,53 +158,72 @@
 
 
 
-<section class="section-6    appear-animate">
+<section class="section-6 appear-animate">
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-12">
-                <h2 class="section-title">Latest Product Reviews</h2>
-                <div class="owl-carousel owl-theme testimonials-carousel" data-owl-options="{
-                        'autoplay': false,
-                        'autoHeight': true
-                    }">
+                <h2 class="section-title text-center mb-4">Latest Product Reviews</h2>
+
+                <div class="owl-carousel owl-theme reviews-carousel" 
+                     data-owl-options='{
+                        "loop": true,
+                        "margin": 20,
+                        "autoplay": false,
+                        "autoHeight": true,
+                        "dots": true,
+                        "nav": false,
+                        "responsive": {
+                            "0": { "items": 1 },
+                            "576": { "items": 2 },
+                            "992": { "items": 3 }
+                        }
+                    }'>
+
                     @foreach($reviews as $review)
+                    <div class="card border-0 shadow-sm h-100">
+                        {{-- Product Image --}}
+                        @if(optional($review->product_variation)->image_to_show_m)
+                            <img src="{{ optional($review->product_variation)->image_to_show_m }}" 
+                                 class="card-img-top p-3" 
+                                 alt="{{ $review->title }}" 
+                                 style="max-height:180px; object-fit:contain;">
+                        @endif
 
-                    <div class="testimonial bg-white pt-3">
-                        <div class="testimonial-owner pl-3">
-                            <figure>
-                                <img title="{{ $review->title }}" src="{{ optional($review->product_variation)->image_to_show_m }}" width="96" height="96" alt="{{ $review->title }} ">
-
-                            </figure>
-
-                            <div class="testi-content">
-                                <div class="ratings-container mb-1">
-                                    <div class="product-ratings">
-                                        <div class="ratings" style="width: {{ $review->rating }}%"></div>
-                                    </div>
-                                </div>
-
-                                <h4 class="testimonial-title p-0">{{ optional($review->product)->product_name }}</h4>
-
-                                <blockquote class="ml-3 pr-0">
-                                    <p>{{ $review->description }}</p>
-
-                                </blockquote>
-
-                                <h5 class="testi-author">{{ optional($review->user)->name }} {{ optional($review->user)->last_name[0]  }}.</h5>
+                        <div class="card-body text-center">
+                            {{-- Stars --}}
+                            <div class="mb-2">
+                                @for($i=1; $i<=5; $i++)
+                                    <span class="{{ $i <= $review->rating ? 'text-warning' : 'text-muted' }}">★</span>
+                                @endfor
                             </div>
+
+                            {{-- Review Title --}}
+                            <h6 class="fw-bold mb-1">{{ $review->title }}</h6>
+
+                            {{-- Review Description --}}
+                            <p class="small text-muted">“{{ $review->description }}”</p>
+
+                            {{-- Product Name --}}
+                            <p class="text-dark mb-0">
+                                <strong>{{ optional($review->product)->product_name }}</strong>
+                            </p>
+                        </div>
+
+                        <div class="card-footer bg-white text-center">
+                            {{-- Reviewer --}}
+                            <small class="text-muted">
+                                – {{ optional($review->user)->name }} {{ optional($review->user)->last_name[0] ?? '' }}.
+                            </small>
                         </div>
                     </div>
-
                     @endforeach
 
-
                 </div>
-                <!-- End .testimonial-slider -->
             </div>
         </div>
     </div>
 </section>
-<!-- End .blog-section -->
+
 
 
 

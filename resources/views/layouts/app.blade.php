@@ -61,6 +61,38 @@
 
 </head>
 
+<style>
+    .review-card {
+      border: none;
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+    .review-img {
+      max-width: 100px;
+      margin: 0 auto 1rem;
+      border-radius: 8px;
+    }
+    .stars {
+      color: #f5c518;
+      margin-bottom: 0.5rem;
+    }
+    .review-text {
+      font-style: italic;
+      color: #444;
+      margin: 1rem 0;
+    }
+    .review-author {
+      font-weight: 500;
+      margin-top: 0.5rem;
+      color: #666;
+    }
+
+	
+  </style>
+
 
 
 <body class="">

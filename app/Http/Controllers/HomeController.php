@@ -29,23 +29,21 @@ class HomeController extends Controller
     {
         $site_status = Live::first();
         $banners = Banner::banners()->get();
+        $sliders = Banner::sliders()->get();
+
         $products = ProductVariation::orderBy('updated_at', 'DESC')
             ->take(8)->get();
-
-
-    
-
         $reviews = Review::where('is_verified', 1)->inRandomOrder()->orderBy('created_at', 'DESC')->take(20)->get();
         $posts = Information::orderBy('created_at', 'DESC')->where(['blog' => true, 'is_active' => true])->take(6)->get();
 
-        return view('index', compact('banners', 'reviews', 'products', 'posts'));
+        return view('index', compact('sliders','banners', 'reviews', 'products', 'posts'));
 
         if (!$site_status->make_live) {
-            return view('index', compact('banners', 'reviews', 'products', 'posts'));
+            return view('index', compact('sliders','banners', 'reviews', 'products', 'posts'));
         } else {
             //Show site if admin is logged in
             if (auth()->check()  && auth()->user()->isAdmin()) {
-                return view('index', compact('banners', 'reviews', 'products', 'posts'));
+                return view('index', compact('sliders','banners', 'reviews', 'products', 'posts'));
             }
             return view('underconstruction.index');
         }

@@ -11,12 +11,12 @@ class Banner extends Model
     //
     public function scopeSliders(Builder $builder)
     {
-        return $builder->where('slider', true)->orderBy('sort_order', 'asc');
+        return $builder->where('is_slider', true)->orderBy('sort_order', 'asc');
     }
 
     public function scopeBanners(Builder $builder)
     {
-        return $builder->orderBy('sort_order', 'asc');
+        return $builder->where('is_slider', false)->orderBy('sort_order', 'asc');
     }
 
     public function image_path()
