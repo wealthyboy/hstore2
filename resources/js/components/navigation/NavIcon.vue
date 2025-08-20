@@ -11,9 +11,12 @@
             </svg>
         </a>
 
-        <div v-if="$root.loggedIn" class="header-dropdown ml-4">
-            <a href="/acoount" class="header-icon  pl-1">
-                
+        <div v-if="$root.loggedIn" class="header-icon pl-1">
+            <a href="/account" class="header-icon  pl-1">
+                <svg aria-hidden="true" fill="none" focusable="false" width="24" class="header__nav-icon icon icon-account" viewBox="0 0 24 24">
+                    <path d="M16.125 8.75c-.184 2.478-2.063 4.5-4.125 4.5s-3.944-2.021-4.125-4.5c-.187-2.578 1.64-4.5 4.125-4.5 2.484 0 4.313 1.969 4.125 4.5Z" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path>
+                    <path d="M3.017 20.747C3.783 16.5 7.922 14.25 12 14.25s8.217 2.25 8.984 6.497" stroke="currentColor" stroke-width="1" stroke-miterlimit="10"></path>
+                </svg>
             </a>
 
            
@@ -22,7 +25,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none"><path d="M19.6706 5.4736C17.6806 3.8336 14.7206 4.1236 12.8906 5.9536L12.0006 6.8436L11.1106 5.9536C9.29063 4.1336 6.32064 3.8336 4.33064 5.4736C2.05064 7.3536 1.93063 10.7436 3.97063 12.7836L11.6406 20.4536C11.8406 20.6536 12.1506 20.6536 12.3506 20.4536L20.0206 12.7836C22.0706 10.7436 21.9506 7.3636 19.6706 5.4736Z" stroke="currentColor" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>
         </a>
 
-        <a href="#"  @click="openCart" class="header-icon  pl-1 pr-2">
+        <a href="#"  @click.prevent="toggleSearch"  title="serach" class="header-icon  pl-1 pr-2">
             <svg aria-hidden="true" fill="none" focusable="false" width="24" class="header__nav-icon icon icon-search" viewBox="0 0 24 24">
                 <path d="M10.364 3a7.364 7.364 0 1 0 0 14.727 7.364 7.364 0 0 0 0-14.727Z" stroke="currentColor" stroke-width="1" stroke-miterlimit="10"></path>
                 <path d="M15.857 15.858 21 21.001" stroke="currentColor" stroke-width="1" stroke-miterlimit="10" stroke-linecap="round"></path>
@@ -39,8 +42,7 @@
                 <svg aria-hidden="true" fill="none" focusable="false" width="24" class="header__nav-icon icon icon-cart" viewBox="0 0 24 24"><path d="M4.75 8.25A.75.75 0 0 0 4 9L3 19.125c0 1.418 1.207 2.625 2.625 2.625h12.75c1.418 0 2.625-1.149 2.625-2.566L20 9a.75.75 0 0 0-.75-.75H4.75Zm2.75 0v-1.5a4.5 4.5 0 0 1 4.5-4.5v0a4.5 4.5 0 0 1 4.5 4.5v1.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path></svg>
                 <span class="cart-count badge-circle">{{ cartItemCount }}</span>
             </a>
-            <div class="dropdown-menu">
-            </div><!-- End .dropdown-menu -->
+            
         </div><!-- End .dropdown -->
 
           <transition name="fade">
@@ -48,20 +50,27 @@
         </transition>
 
           <transition name="slide" @after-leave="resetPanel">
-      <div 
-        v-if="showCart" 
-        class="cart-panel" 
-        @click.stop
-      >
-        <div class="cart-header">
-          <h5>Cart</h5>
-          <button @click="closeCart" class="close-btn">×</button>
-        </div>
-        <div class="cart-body">
-          <p>You are eligible for free shipping.</p>
-        </div>
-      </div>
+            <div 
+              v-if="showCart" 
+              class="cart-panel" 
+              @click.stop
+            >
+            <div class="cart-header">
+              <h5>Cart</h5>
+              <button @click="closeCart" class="mobile-menu-toggler bg-dark" type="button">
+                  <svg aria-hidden="true" fill="none" focusable="false" width="24" class="header__nav-icon icon icon-hamburger" viewBox="0 0 24 24">
+                    <path d="M1 19h22M1 12h22M1 5h22" stroke="currentColor" stroke-width="1" stroke-linecap="square"></path>
+                  </svg>
+              </button>
+            </div>
+            <div class="cart-body">
+              <CartSideBarMenu />
+            </div>
+          </div>
     </transition>
+
+      <!-- Search Bar -->
+    
     </div>
 
 </template>
@@ -71,20 +80,25 @@ import { mapGetters,mapActions } from 'vuex'
 
 
 import DropDown from '../cart/DropDown'
+import CartSideBarMenu from '../cart/CartSideBarMenu'
+
 
 export default {
     data(){
         return {
           user:Window.auth,
           token:null,
-         cartOffcanvas: null,
-         showCart: false,
-      cartCount: 1
+          cartOffcanvas: null,
+          showCart: false,
+          cartCount: 1,
+          isSearchOpen: false,
+
 
         } 
     },
     components:{
         DropDown,
+        CartSideBarMenu
     },
     computed:{
         ...mapGetters({
@@ -106,6 +120,9 @@ export default {
         ...mapActions({
              getWislist:'getWislist',
         }),
+         toggleSearch() {
+          this.isSearchOpen = !this.isSearchOpen;
+        },
 
        openCart() {
         this.showCart = true;
@@ -223,5 +240,19 @@ export default {
 }
 .slide-leave-to {
   transform: translateX(100%);
+}
+
+
+/* Slide transition */
+.slide-fade-enter-active {
+  transition: all 0.3s ease;
+}
+.slide-fade-leave-active {
+  transition: all 0.3s ease;
+}
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translateY(-100%);
+  opacity: 0;
 }
 </style>

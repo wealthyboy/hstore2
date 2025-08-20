@@ -657,15 +657,14 @@
 
 .owl-theme .owl-dots .owl-dot span {
     position: relative;
-    width: 15px;
-    height: 15px;
+    width: 23px;
+    height: 0px;
     margin: 2px 2px;
     background: 0 0;
     display: block;
     -webkit-backface-visibility: visible;
     transition: all 0.3s ease;
     border: 0.2rem solid rgba(0, 0, 0, 0.4);
-    border-radius: 50%;
 }
 
 .owl-theme .owl-dots .owl-dot span:before {
@@ -6634,8 +6633,8 @@ a:hover {
 }
 
 .owl-carousel .owl-dots .owl-dot span:before {
-    width: 7px;
-    height: 7px;
+    width: 9px;
+    height: 0px;
     margin-top: -3.5px;
     margin-left: -3.5px;
 }
@@ -7021,7 +7020,7 @@ header .separator {
 }
 
 .header-icon:not(:last-child) {
-    margin-right: 2.2rem;
+    margin-right: 1.5rem;
 }
 
 .header-icon i {
@@ -8052,7 +8051,7 @@ header .separator {
     display: block;
     position: relative;
     margin-right: 4.5rem;
-    padding: 1.1rem 0 1.1rem 1.5rem;
+    padding: 2.1rem 0 2.1rem 1.5rem;
     color: #fff;
 }
 

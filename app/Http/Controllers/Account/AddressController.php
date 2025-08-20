@@ -10,9 +10,9 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 use Validator;
-use App\State;
+use App\Models\State;
 use App\Http\Controllers\Controller;
-use App\Location;
+use App\Models\Location;
 
 use Illuminate\Http\Request;
 
