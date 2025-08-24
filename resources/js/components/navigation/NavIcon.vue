@@ -25,12 +25,13 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none"><path d="M19.6706 5.4736C17.6806 3.8336 14.7206 4.1236 12.8906 5.9536L12.0006 6.8436L11.1106 5.9536C9.29063 4.1336 6.32064 3.8336 4.33064 5.4736C2.05064 7.3536 1.93063 10.7436 3.97063 12.7836L11.6406 20.4536C11.8406 20.6536 12.1506 20.6536 12.3506 20.4536L20.0206 12.7836C22.0706 10.7436 21.9506 7.3636 19.6706 5.4736Z" stroke="currentColor" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path></svg>
         </a>
 
-        <a href="#"  @click.prevent="toggleSearch"  title="serach" class="header-icon  pl-1 pr-2">
+        <a href="#"   id="toggleSearch"  title="serach" class="header-icon  pl-1 pr-2">
             <svg aria-hidden="true" fill="none" focusable="false" width="24" class="header__nav-icon icon icon-search" viewBox="0 0 24 24">
                 <path d="M10.364 3a7.364 7.364 0 1 0 0 14.727 7.364 7.364 0 0 0 0-14.727Z" stroke="currentColor" stroke-width="1" stroke-miterlimit="10"></path>
                 <path d="M15.857 15.858 21 21.001" stroke="currentColor" stroke-width="1" stroke-miterlimit="10" stroke-linecap="round"></path>
             </svg>
         </a>
+
 
         <div   class="dropdown cart-dropdown">
             <a @click="openCart" href="#" class="dropdown-toggle dropdown-arrow d-none d-lg-block" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
@@ -49,7 +50,7 @@
             <div v-if="showCart" class="overlay" @click="closeCart"></div>
         </transition>
 
-          <transition name="slide" @after-leave="resetPanel">
+          <transition name="slide">
             <div 
               v-if="showCart" 
               class="cart-panel" 
@@ -64,7 +65,7 @@
               </button>
             </div>
             <div class="cart-body">
-              <CartSideBarMenu />
+              <CartSideBarMenu @close-cart="closeCart" />
             </div>
           </div>
     </transition>
@@ -92,8 +93,6 @@ export default {
           showCart: false,
           cartCount: 1,
           isSearchOpen: false,
-
-
         } 
     },
     components:{
@@ -107,18 +106,19 @@ export default {
         })
     } ,
     created(){
-       this.getWislist()
-       let token = document.head.querySelector('meta[name="csrf-token"]');
-       this.token = token.content
+      this.getWislist()
+      this.getCart()
+      let token = document.head.querySelector('meta[name="csrf-token"]');
+      this.token = token.content
     },
     mounted() {
-    // Initialize Bootstrap Offcanvas
-        const element = document.getElementById("cartPanel");
-        this.cartOffcanvas = new bootstrap.Offcanvas(element);
+      const element = document.getElementById("cartPanel");
     },
     methods:{
         ...mapActions({
-             getWislist:'getWislist',
+            getWislist:'getWislist',
+            getCart:'getCart',
+
         }),
          toggleSearch() {
           this.isSearchOpen = !this.isSearchOpen;
@@ -126,14 +126,14 @@ export default {
 
        openCart() {
         this.showCart = true;
-        document.body.style.overflow = "hidden"; // prevent background scroll
+        document.body.style.overflow = "hidden"; 
     },
 
     closeCart() {
       this.showCart = false;
       document.body.style.overflow = "auto";
     }
-    }
+  }
 }
 </script>
 <style scoped>

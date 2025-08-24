@@ -22,7 +22,7 @@
                 <!-- <input type="submit" class="btn" value="Go!"> -->
                 <button  type="submit" class="newsletter-btn btn btn--primary" name="Sign_Up" id="Sign_Up" value="Sign Up" data-value="Sign_Up">
                     <span  v-if="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                    SUBSCRIBE
+                    SUBSCRIBEd
                 </button>
             </div><!-- End .from-group -->
         </form>

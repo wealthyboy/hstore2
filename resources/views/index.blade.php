@@ -3,6 +3,30 @@
 @section('content')
 @include('_partials.top_banner')
 
+<!-- 🔍 Search Bar Section -->
+<!-- Search Overlay (below navbar) -->
+<div id="searchOverlay" class="search-overlay">
+  <div id="searchBarWrapper" class="search-bar-wrapper border py-4">
+    <div class="container-fluid">
+      <form id="predictive-search-form" action="/search" method="GET" role="search" class="search-form mb-0 d-flex align-items-center">
+        <svg aria-hidden="true" fill="none" focusable="false" width="20" class="icon icon-search me-2" viewBox="0 0 24 24">
+          <path d="M10.364 3a7.364 7.364 0 1 0 0 14.727 7.364 7.364 0 0 0 0-14.727Z" stroke="currentColor" stroke-width="1" stroke-miterlimit="10"></path>
+          <path d="M15.857 15.858 21 21.001" stroke="currentColor" stroke-width="1" stroke-miterlimit="10" stroke-linecap="round"></path>
+        </svg>
+
+        <input type="search" name="q" placeholder="Search for... and press enter" aria-label="Search" class="form-control border-0 shadow-none fs-5"> 
+
+        <button type="button" class="btn-close-search bg-transparent border-0 ms-2">
+          <svg width="20" viewBox="0 0 16 16" class="icon-close">
+            <path d="m1 1 14 14M1 15 15 1" stroke="currentColor"></path>
+          </svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
  
 
 
@@ -239,4 +263,44 @@
 
 @endsection
 @section('page-scripts')
+ 
 @stop
+
+@section('inline-scripts')
+     window.addEventListener("load", function() {
+    const toggleBtn = document.getElementById("toggleSearch");
+    const overlay = document.getElementById("searchOverlay");
+    const closeBtn = document.querySelector(".btn-close-search");
+    const input = overlay.querySelector("input[type='search']");
+
+    function openSearch() {
+      overlay.classList.add("show");
+      setTimeout(() => input.focus(), 300);
+    }
+
+    function closeSearch() {
+      overlay.classList.remove("show");
+    }
+
+    // Toggle with search icon
+    toggleBtn.addEventListener("click", function() {
+      overlay.classList.contains("show") ? closeSearch() : openSearch();
+    });
+
+    // Close with overlay background
+    overlay.addEventListener("click", function(e) {
+      if (e.target === overlay) closeSearch();
+    });
+
+    // Close with "X" button
+    closeBtn.addEventListener("click", closeSearch);
+
+    // ✅ Close with ESC key
+    document.addEventListener("keydown", function(e) {
+      if (e.key === "Escape" && overlay.classList.contains("show")) {
+        closeSearch();
+      }
+    });
+  }); 
+@stop
+

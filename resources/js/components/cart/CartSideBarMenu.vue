@@ -5,7 +5,7 @@
     <!-- Header -->
     <div class="d-flex justify-content-between align-items-center border-bottom p-3">
         <h5 class="mb-0">CART</h5>
-        <button type="button" class="close" onclick="closeCart()">&times;</button>
+        <button type="button" class="close" @click="closeCart()">&times;</button>
     </div>
     
     <!-- Free shipping notice -->
@@ -17,30 +17,30 @@
     <div class="cart-items flex-grow-1 overflow-auto p-3" style="max-height: calc(100vh - 180px);">
         
         <!-- Cart Item -->
-        <div  v-for="cart in carts" :key="cart.id" class="d-flex mb-4">
-            <img :src="cart.image"
-                  :alt="cart.product_name"
-                  width="80"
-                  height="80" class="img-fluid rounded mr-3" style="width:100px; height:120px; object-fit:cover;">
-            
-            <div class="flex-grow-1">
-                <h6 class="mb-1">{{ cart.product_name }}</h6>
-                <div class="text-muted small mb-1">{{ cart.currency }}{{ cart.price | priceFormat }}</div>
-                <div v-if="cart.variations.length" class="text-muted small mb-2">{{ cart.variations.toString() }}</div>
-               
-                
-                <!-- Quantity Control -->
-                <div class="d-flex align-items-center mb-1">
-                    <button class="btn btn-outline-secondary btn-sm">−</button>
-                    <span class="px-3">{{ 3 }}</span>
-                    <button class="btn btn-outline-secondary btn-sm">+</button>
-                </div>
-                
-                <a href="#"   
-                @click.prevent="removeFromCart(cart.id)"  class="text-muted small">Remove</a>
-            </div>
+<div v-for="cart in carts" :key="cart.id" class="d-flex mb-4">
+    <img :src="cart.image"
+         :alt="cart.product_name"
+         class="img-fluid rounded mr-3"
+         style="width:100px; height:120px; object-fit:cover;">
+    
+    <div class="flex-grow-1">
+        <h6 class="mb-1">{{ cart.product_name }}</h6>
+        <div class="text-muted small mb-1">
+            {{ cart.currency }}{{ cart.price | priceFormat }}
         </div>
-        <!-- /Cart Item -->
+        <div v-if="cart.variations.length" class="text-muted small mb-2">
+            {{ cart.variations.toString() }}
+        </div>
+
+        <!-- Quantity Control -->
+
+        <a href="#" @click.prevent="removeFromCart(cart.id)" class="remove-link">
+            Remove
+        </a>
+    </div>
+</div>
+<!-- /Cart Item -->
+
 
         <div
             class="cart-sidebar-content d-flex justify-content-center"
@@ -68,7 +68,7 @@
             View Cart
         </a>
         <a href="/checkout" class="btn btn-dark btn-block">
-            CHECKOUT • ₦236,200.00
+            CHECKOUT • {{  meta.currency }}{{ meta.sub_total | priceFormat}}
         </a>
     </div>
 </div>
@@ -79,27 +79,51 @@ import  { mapGetters,mapActions } from 'vuex'
 
 export default {
     
-    computed: {
+     computed: {
         ...mapGetters({
             carts: 'carts',
-            meta: 'meta'
+            meta:  'meta',
+            loading:'loading'
         })
-    },  
+    }, 
     mounted(){
        this.getCart()
     },
     methods: {
         ...mapActions({
             getCart:'getCart',
-            deleteCart: 'deleteCart'
+            deleteCart: 'deleteCart',
+            getCart:'getCart',
+            updateCart: 'updateCart'
         }),
         removeFromCart(cart_id){
             this.deleteCart({
                 cart_id:cart_id
             })
+        },
+        updateCartQty(e,product_variation_id){
+            let qty = e.target.value
+            this.updateCart({
+                product_variation_id: product_variation_id,
+                quantity:qty
+            })
+        },
+        closeCart() {
+            this.$emit('close-cart')
         }
 
     }
     
 }
 </script>
+<style scoped>
+.btn {
+    padding: .5rem 2.2rem;
+    font-family: Polaris-Book, sans-serif;
+    line-height: 1.429;
+}
+
+.quantity-control.mb-2.border {
+    width: 137px;
+}
+</style>

@@ -27,7 +27,9 @@
                     </button>
                 </div>
         </form> 
-        <error-message  :error="error" />
+        <div v-if="error" class="text-danger">
+            Oops! Something went wrong while signing up. Please check your details and try again.
+        </div>
     </div>
 </template>
 

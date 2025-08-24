@@ -73,12 +73,7 @@
 @endforeach
 
 @else
-    <div class="col-12 d-flex justify-content-center">
-        <div class="text-center pb-3">
-            <img  width="200" height="200" src="/images/utilities/empty_product.svg" /> 
-            <p class="bold">No products found</p>
-        </div>
-    </div>
+   
 @endif
 
 

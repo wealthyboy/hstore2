@@ -31,6 +31,18 @@
 
 <div class="container-fluid mb-3">
     <div  class="row">
+      @if (!$products->count())
+        <div class="col-lg-12 main-content" bis_skin_checked="1">
+          
+            <div id="load-products" class="row" bis_skin_checked="1">
+                <div class="col-12 d-flex justify-content-center" bis_skin_checked="1">
+                    <div class="text-center pb-3" bis_skin_checked="1">
+                        <svg width="400" height="200" viewBox="0 0 400 240" role="img" aria-label="No products found" xmlns="http://www.w3.org/2000/svg"><title>No products found</title> <desc>A stylized empty state with a magnifying glass and dashed product card.</desc> <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3f4f6"></stop> <stop offset="1" stop-color="#e5e7eb"></stop></linearGradient></defs> <ellipse cx="200" cy="170" rx="130" ry="18" fill="#e5e7eb"></ellipse> <path d="M60 70c0-18 14-32 32-32h216c18 0 32 14 32 32v54c0 18-14 32-32 32H92c-18 0-32-14-32-32V70z" fill="url(#g)"></path> <rect x="95" y="78" width="210" height="88" rx="10" fill="#fff" stroke="#e5e7eb" stroke-width="2" stroke-dasharray="6 6"></rect> <rect x="110" y="92" width="60" height="60" rx="8" fill="#f9fafb" stroke="#e5e7eb"></rect> <rect x="180" y="92" width="100" height="12" rx="6" fill="#e5e7eb"></rect> <rect x="180" y="112" width="70" height="10" rx="5" fill="#e5e7eb"></rect> <rect x="180" y="130" width="90" height="10" rx="5" fill="#e5e7eb"></rect> <g transform="translate(245 120) rotate(15)"><circle cx="0" cy="0" r="28" fill="#fff" stroke="#9ca3af" stroke-width="3"></circle> <path d="M18 18L44 44" stroke="#9ca3af" stroke-width="4" stroke-linecap="round"></path> <circle cx="-8" cy="-4" r="2" fill="#9ca3af"></circle> <circle cx="8" cy="-4" r="2" fill="#9ca3af"></circle> <path d="M-10 6c6 6 14 6 20 0" fill="none" stroke="#9ca3af" stroke-width="3" stroke-linecap="round"></path></g> <g stroke="#d1d5db" stroke-linecap="round"><path d="M310 86h10M315 81v10"></path> <path d="M100 152h8M104 148v8"></path></g> <g fill="#6b7280" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Ubuntu, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif"><text x="200" y="200" font-size="16" text-anchor="middle">No products found</text> <text x="200" y="220" font-size="12" text-anchor="middle" fill="#9ca3af">Try adjusting your filters or search terms</text></g></svg> 
+                    </div>
+                </div> 
+            </div> 
+        </div>
+      @endif
         
         
        @if ( isset($category) &&  isset($category_attributes) && !empty($category_attributes) )
@@ -40,7 +52,7 @@
                         <div class="loader"></div>
                     </div>
                 </div>
-       @else
+        @else
             <div class="col-lg-12 main-content">
         @endif
         @if ($products->count() && isset($category) && strtolower($category->name) !== 'gift cards')
@@ -74,7 +86,7 @@
                 </div><!-- End .toolbox-right -->
             </nav>
         @endif
-            <div id="load-products" class="row">
+        <div id="load-products" class="row">
             
  
             @if ( isset($category) &&  isset($category_attributes) && !empty($category_attributes) )
@@ -82,7 +94,7 @@
             @else
                 @include('_partials.products',['no_attr' => false])
             @endif
-            </div>
+        </div>
 
            
             <div id="pagination" class="col-md-10 text-center mb-20 md-offset-1">
