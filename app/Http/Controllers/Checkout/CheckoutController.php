@@ -77,28 +77,29 @@ class CheckoutController extends Controller
 		$order->address_id  = $user->active_address->id;
 		$code   = trim(session('coupon'));
 		$coupon =  Voucher::where('code', $code)->first();
-		$order->coupon          = null !== $coupon && $coupon->is_gift_card ? null :  session('coupon');
-		$order->status          = 'Processing';
-		$order->shipping_id     =  $request->shipping_id;
-		$order->shipping_price  =  optional(Shipping::find($request->shipping_id))->converted_price;
-		$order->currency        =  Helper::getCurrency();
-		$order->invoice         =  "INV-" . date('Y') . "-" . rand(10000, 39999);
+		$order->coupon = null !== $coupon && $coupon->is_gift_card ? null :  session('coupon');
+		$order->status = 'Processing';
+		$order->shipping_id = $request->shipping_id;
+		$order->shipping_price = optional(Shipping::find($request->shipping_id))->converted_price;
+		$order->currency = Helper::getCurrency();
+		$order->invoice = "INV-" . date('Y') . "-" . rand(10000, 39999);
 		$order->payment_type    =  $request->payment_method;
 		$order->order_type      =  $request->admin;
 		$order->total           =  $request->total;
 		$order->delivery_option =  $request->delivery_option;
-		$order->delivery_note   =  $request->delivery_note;
-		$order->first_name      =  optional($user->active_address)->first_name;
-		$order->last_name       =  optional($user->active_address)->last_name;
-		$order->address         =  optional($user->active_address)->address;
-		$order->email           =  optional($user->active_address)->email;
-		$order->phone_number    =  optional($user->active_address)->phone_number;
-		$order->city            =  optional($user->active_address)->city;
-		$order->state           =  optional(optional($user->active_address)->address_state)->name;
-		$order->country         =  optional(optional($user->active_address)->address_country)->name;
-		$order->ip              =  $request->ip();
+		$order->delivery_note = $request->delivery_note;
+		$order->first_name = optional($user->active_address)->first_name;
+		$order->last_name = optional($user->active_address)->last_name;
+		$order->address = optional($user->active_address)->address;
+		$order->email = optional($user->active_address)->email;
+		$order->phone_number = optional($user->active_address)->phone_number;
+		$order->city = optional($user->active_address)->city;
+		$order->state = optional(optional($user->active_address)->address_state)->name;
+		$order->country =  optional(optional($user->active_address)->address_country)->name;
+		$order->ip =  $request->ip();
 		$order->user_agent      =  $request->server('HTTP_USER_AGENT');
 		$order->save();
+
 
 		foreach ($carts   as $cart) {
 			$insert = [
@@ -129,8 +130,8 @@ class CheckoutController extends Controller
 			}
 
 			//Delete all the cart
-			$cart->status = 'paid';
-			$cart->delete();
+			//$cart->status = 'paid';
+			////$cart->delete();
 		}
 
 
@@ -141,6 +142,8 @@ class CheckoutController extends Controller
 
 		try {
 			$when = now()->addMinutes(5);
+
+			//dd($order->load('ordered_products'));
 			\Mail::to(optional($user->active_address)->email)
 				->bcc($admin_emails[0])
 				->send(new OrderReceipt($order, $this->settings, $symbol, $sub_total));
@@ -177,12 +180,9 @@ class CheckoutController extends Controller
 	protected function coupon(Request $request)
 	{
 
-		$cart_total      = Cart::sum_items_in_cart();
-
+		$cart_total = Cart::sum_items_in_cart();
 		$items_on_sale_in_cart_total  = Cart::sum_sale_items_in_cart();
 		$items_not_on_sale_in_cart_total   = Cart::sum_items_in_cart_that_is_not_on_sale();
-
-
 		if (!$cart_total) {
 			$error['error'] = 'We cannot process your voucher';
 			return response()->json($error, 422);

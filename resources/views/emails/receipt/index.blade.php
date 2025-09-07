@@ -46,7 +46,10 @@
                                                    <table class="centerize" data-border-bottom-color="LogoDivider-OnMobile" style="border-bottom-color:#67bffd; margin-left:0;" cellspacing="0" cellpadding="0" border="0">
                                                       <tr>
                                                          <td class="esFrMb" width="30"></td>
-                                                         <td style="line-height:1px;" align="center"><a href="/" target="_blank" style="text-decoration: none;"><img src="https://hautesignatures.com/images/logo/1607193380Untitled%20design-29(1).png" style=" max-width:100px; height: 30px; margin-top: 37px;display: block;text-decoration: none;border: none;" alt="Logo Image" vspace="0" hspace="0" border="0" align="top"></a></td>
+                                                         <td style="line-height:1px;" align="center">
+                                                            <a href="{{ Config('app.url') }}" target="_blank" style="text-decoration: none;">
+                                                            <img src="{{ $settings->logo_path() }}" style=" max-width:100px; height: 30px; margin-top: 37px;display: block;text-decoration: none;border: none;" alt="Logo Image" vspace="0" hspace="0" border="0" align="top"></a>
+                                                         </td>
                                                          <td class="esFrMb" width="30"></td>
                                                       </tr>
                                                    </table>
@@ -58,7 +61,7 @@
                                                 <td colspan="2" style="font-size:0;line-height:0;" height="10">&nbsp;</td>
                                              </tr>
                                              <tr>
-                                                <td class="antd" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="AnnouncementLink" data-color="AnnouncementTXT" style="color: #425065;font-family: sans-serif;font-size: 18px;text-align: right;line-height: 150%;font-weight: bold;letter-spacing: 2px;" width="318" valign="middle" height="80" align="right"><a href="#" target="_blank" style="text-decoration: none;color: #425065;" data-color="AnnouncementLink"></a>YOUR INVOICE</td>
+                                                <td class="antd" data-link-style="text-decoration:none; color:#67bffd;" data-link-color="AnnouncementLink" data-color="AnnouncementTXT" style="color: #425065;font-family: sans-serif;font-size: 18px;text-align: right;line-height: 150%;font-weight: bold;letter-spacing: 2px;" width="318" valign="middle" height="80" align="right"><a href="#" target="_blank" style="text-decoration: none;color: #425065;" data-color="AnnouncementLink"></a>Your Reciept</td>
                                                 <td class="esFrMb" width="30"></td>
                                              </tr>
                                              <tr>

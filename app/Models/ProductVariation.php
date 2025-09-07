@@ -49,9 +49,9 @@ class ProductVariation extends Model
         'sale_price_starts'
     ];
 
-    protected $dates = [
-        'sale_price_expires',
-        'sale_price_starts'
+    protected $casts = [
+    'sale_price_expires' => 'datetime',
+    'sale_price_starts' => 'datetime',
     ];
 
     public $appends = [
@@ -125,10 +125,9 @@ class ProductVariation extends Model
     public function link()
     {
         $slug = $this->categories->count() ? $this->categories->first()->slug : null;
-        $pv_slug =  $this->slug;
-        $link  = '/product/';
-        $link .=  optional(optional($this->category)->category)->slug ?
-            optional(optional($this->category)->category)->slug . '/' :
+        $pv_slug = $this->slug;
+        $link = '/product/';
+        $link .= optional(optional($this->category)->category)->slug ? optional(optional($this->category)->category)->slug . '/' :
             $slug . '/';
         $link .= $pv_slug;
         return $link;

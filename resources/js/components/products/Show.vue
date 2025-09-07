@@ -58,20 +58,9 @@
               <div v-if="cartError" class="text-danger text-center bold col-12">
                 {{ cartError }}
               </div>
-              <div class="col-2 pl-3">
-                <div v-if="quantity >= 1" id="quantity_1234" class="select-custom">
-                  <select id="add-to-cart-quantity" name="qty" class="form-control">
-                    <option v-for="x in parseInt(quantity)">{{ x }}</option>
-                  </select>
-                </div>
-                <div v-else id="quantity_1234" class="">
-                  <select id="add-to-cart-quantity" name="qty" class="form-control">
-                    <option value=""></option>
-                  </select>
-                </div>
-              </div>
+            
 
-              <div v-if="!product.is_gift_card" class="col-9">
+              <div v-if="!product.is_gift_card" class="col-11 ml-3">
                 <cart-button :loading="loading" :canAddToCart="canAddToCart" :cartText="cartText" @add="addToCart" />
               </div>
 
@@ -348,7 +337,7 @@ export default {
       getReviews: "getReviews",
     }),
     addToCart: function () {
-      let qty = document.getElementById("add-to-cart-quantity").value;
+      let qty = 1;
 
       this.cText = "Adding....";
       this.loading = true;

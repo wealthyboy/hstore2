@@ -702,8 +702,8 @@ background: white;
 
 .product-variation-box {
   height: 35px;
-  width: auto;
-  border-radius: 5%;
+  width: 50px;
+  border-radius: 17%;
   cursor: pointer;
 }
 

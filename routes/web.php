@@ -210,6 +210,7 @@ Route::group(['middleware' => 'currencyByIp'], function () {
     //Route::get('products/all',                    'Products\ProductsController@all');
 
     Route::get('products/{category}',             'Products\ProductsController@index');
+
     Route::get('product/quick/view',             'Products\ProductsController@quickView');
     Route::get('product/size/guide',             'Products\ProductsController@sizeGuide');
 

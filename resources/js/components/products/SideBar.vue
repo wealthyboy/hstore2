@@ -1,130 +1,180 @@
 <template>
-   
-<div class="">
-    <!--Widget-->
+  <form id="collections">
+    <!-- Price Widget -->
     <div class="widget">
-        <h3 class="widget-title">
-            <a data-toggle="collapse" href="#widget-category" role="button" aria-expanded="true" aria-controls="widget-body-2"><h4>{{ categories.name }}</h4></a>
-        </h3>
+      <h3 class="widget-title">
+        <a
+          data-toggle="collapse"
+          href="#widget-prices"
+          role="button"
+          class="bold"
+          aria-expanded="true"
+          aria-controls="widget-prices"
+        >
+          Prices
+        </a>
+      </h3>
+      <div id="widget-prices" class="collapse show">
+        <div class="widget-body">
+          <ul class="cat-list">
+            <li v-for="(price, index) in priceOptions" :key="index">
+              <div class="checkbox">
+                <label :for="'price-' + price.value" class="checkbox-label">
+                  <input
+                    :id="'price-' + price.value"
+                    name="prices[]"
+                    type="checkbox"
+                    class="filter-product"
+                    :value="price.value"
+                    v-model="selected.prices"
+                  />
+                  <span class="checkbox-custom rectangular"></span>
+                  <span class="checkbox-label-text">{{ price.label }}</span>
+                </label>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
-        <div class="collapse show" id="widget-category">
-            <div class="widget-body">
-                <ul class="cat-list">
-                    <li v-for="sub_category in categories.children" :key="sub_category.id"><a href="">{{ sub_category.name }} </a></li>
-                </ul>
-            </div><!-- End .widget-body -->
-        </div><!-- End .collapse -->
-    </div><!-- End .widget -->
+    <!-- Dynamic Categories -->
+    <div
+      v-for="category in categories"
+      :key="category.id"
+      class="widget"
+    >
+      <h3 class="widget-title">
+        <a
+          class="collapsed bold"
+          :data-toggle="'collapse'"
+          :href="'#widget-body-' + category.id"
+          role="button"
+          aria-expanded="false"
+          :aria-controls="'widget-body-' + category.id"
+        >
+          {{ category.attribute?.name || category.name }}
+        </a>
+      </h3>
+      <div
+        class="collapse"
+        :id="'widget-body-' + category.id"
+      >
+        <div class="widget-body">
+          <ul
+            class="cat-list"
+            :class="{ 'widget-scroll': category.children.length > 6 }"
+          >
+            <li
+              v-for="child in category.children"
+              :key="child.id"
+            > 
+              <div v-if="child.name  != ''"  class="checkbox">
+                <label
+                  :for="`box-${child.id}`"
+                  class="checkbox-label"
+                >
+                  <input
+                    type="checkbox"
+                    class="filter-product"
+                    :id="`box-${child.id}`"
+                    @change="activateFilter"
 
-    <div v-for="filter in categories.attributes" :key="filter.id"  class="widget">
-        <h3 class="widget-title">
-            <a data-toggle="collapse" :href="'#widget-body-4'+ filter.id" role="button" aria-expanded="true" :aria-controls="'widget-body-4'+ filter.id">{{ filter.name }}</a>
-        </h3>
+                    :name="`${slugify(category.name)}[]`"
+                    :value="child.attribute?.slug"
+                  />
+                  <span class="checkbox-custom rectangular"></span>
+                  <span class="checkbox-label-text color--primary">
+                    {{ child.attribute?.name  }} {{ child.slug }}
+                  </span>
+                </label>
+              </div>
 
-        <div class="collapse cln show" :class="filter.children.length" :id="'widget-body-4'+ filter.id">
-            <div class="widget-body">
-                <ul class="cat-list">
-                    <li v-for="children in filter.children" :key="children.id" >
-                        <div class="checkbox">
-                            <label @change="activateFilter(filter.name,children)" :id="'box'+ children" class="checkbox-label">
-                            <input for="'box'+ children" :name="filter.name" :value="children" class="filter-product" type="checkbox">
-                                <span class="checkbox-custom rectangular"></span>
-                                <span class="checkbox-label-text">{{ children }}</span> 
-                            </label>
-                        </div>
-                    </li>
-                </ul>
-            </div><!-- End .widget-body -->
-        </div><!-- End .collapse -->
-    </div><!-- End .widget -->
-    <!-- Content -->
-    
-</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </form>
 </template>
 
 <script>
 export default {
     props:{
-       category: Object
+       category: Object,
+       categories: Array
     },
     data(){
         return {
             isOpen: false,
             filters:[],
-            categories:[],
             selectedFilters: _.omit(this.$route.query, ['page']),
             qS: [],
-            filter: true
+            filter: true,
+            priceOptions: [
+                { value: 2500, label: "Less Than 2500" },
+                { value: 5000, label: "Less Than 5000" },
+                { value: 10000, label: "Less Than 10000" },
+                { value: "10000+", label: "More than 10,000" }
+            ],
+            selected: {
+                prices: []
+            }
         }  
     },
-    watch(){
-
-    },
+   
     created(){
       
     },
     mounted(){
         let path = this.$route.path
+        this.selected = { ...this.initialFilters };
+
         axios.get("/api/filters" +path).then((response) => {
             this.filters = response.data.data
-            this.categories = response.data.data
+           // this.categories = response.data.data
         })
          
     },
     methods:{
+        slugify(text) {
+        return text
+            .toLowerCase()
+            .replace(/\s+/g, "_") // spaces → underscores
+            .replace(/[^a-z0-9_]/g, ""); // strip anything else
+        },
         toggleAccordion(){
            this.isOpen = !this.isOpen
         },
-        activateFilter (key,value) {
-            var inputs = document.querySelectorAll("input.filter-product:checked");
-            var checkboxesChecked = [];
-            var checked = []
-            let values;
-            let filters ={}
-            console.log(inputs.length)
-            for(var i = 0; i < inputs.length; i++) {
-                checked.push(key)
-                if (inputs[i].checked) {
-                    filters = {
-                        [inputs[i].name] : inputs[i].value,
-                    }
-                    checkboxesChecked.push(filters); 
-                }  
-            }
-          // console.log(checkboxesChecked)
+        activateFilter() {
+            const inputs = document.querySelectorAll("input.filter-product:checked");
+            let filters = {};
 
-            const res = checkboxesChecked.reduce((acc, x) => {
-            const key = Object.keys(x)[0];
-            const index = acc.findIndex(obj => Object.keys(obj)[0].includes(key))
-            if (index >= 0) {
-                acc[index][key] = acc[index][key] + '-' + x[key];
-            } else {
-                acc.push(x)
-            }
-            return acc;
-            }, [])
-            if (res.length){
-                for (const f in res) {
-                    const element = res[f];
-                    //console.log(res[f]) 
-                    //console.log(Object.keys(res[0]).includes(key)) 
-                    console.log(res)
-
-                    if (element[key]){
-                        this.selectedFilters = Object.assign({}, this.selectedFilters, { [key]: element[key] })  
-                    }
-
-                    console.log(this.selectedFilters) 
-                      //  console.log(key)
-                       // delete this.selectedFilters[key]
-                  // }
+            inputs.forEach(input => {
+                if (!filters[input.name]) {
+                    filters[input.name] = [];
                 }
-                this.selectedFilters = Object.assign({}, this.selectedFilters, { filter: true}) 
-            } else {
-                this.selectedFilters =  {} 
-            }
+                filters[input.name].push(input.value);
+            });
 
-            this.updateQueryString()
+            this.selectedFilters = filters;
+            this.$emit("filters-updated", this.selectedFilters);
+
+
+            this.updateQueryString();
+        },
+
+        updateQueryString() {
+            const params = new URLSearchParams();
+
+            Object.keys(this.selectedFilters).forEach(key => {
+                this.selectedFilters[key].forEach(val => {
+                    params.append(`${key}[]`, val);
+                });
+            });
+
+            const newUrl = `${window.location.pathname}?${params.toString()}`;
+            window.history.replaceState({}, "", newUrl);
         },
        
         updateQueryString () {

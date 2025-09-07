@@ -11,7 +11,7 @@ use App\Models\Product;
 use App\Models\ProductVariation;
 use App\Models\Attribute;
 use App\Models\ProductVariationValue;
-use  App\Models\RelatedProduct;
+use App\Models\RelatedProduct;
 use App\Models\Review;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filters\ProductsFilter\AttributesFilter;
@@ -37,34 +37,50 @@ class ProductsController extends Controller
 
     public function  index(Request $request, Category $category)
     {
+        
+        //Get color image
+        if ($request->color && $request->product_id) {
+            return $this->getColorImage($request);
+        }
 
         $page_title = $category->title;
         $meta_tag_keywords = $category->keywords;
         $page_meta_description = $category->meta_description;
-        $category_attributes = $category->attribute_parents()->has('children')->get();
+        $category_attributes = $category->attribute_parents()
+                            ->has('children')
+                            ->with(['children' => function ($q) {
+                                $q->whereHas('attribute', function ($q2) {
+                                    $q2->whereNotNull('name')->where('name', '!=', '');
+                                })->with(['attribute' => function ($q2) {
+                                    $q2->whereNotNull('name')->where('name', '!=', '');
+                                }]);
+                            }])
+                            ->get();
+
+
+
         $products = ProductVariation::whereNotNull('name')
             ->where('allow', true)->paginate(4);
 
         $products = ProductVariation::whereNotNull('name')
             ->where('allow', true)
             ->where('quantity', '>=', 1)
-            ->whereHas('categories', function (Builder  $builder) use ($category) {
+            ->whereHas('categories', function (Builder $builder) use ($category) {
                 $builder->where('categories.name', $category->name);
-            })->filter($request, $this->getFilters($category_attributes))->latest()->paginate($this->settings->products_items_per_page);
-        $products->appends(request()->all());
-        $products->load('product');
+            })
+            ->filter($request, $this->getFilters($category_attributes))
+            ->latest()
+            ->with(['product:id']) // 👈 only these fields
+            ->paginate($this->settings->products_items_per_page);
+
         $all = false;
         $colors = [];
 
-
-
-
         if ($request->ajax()) {
             return response()->json([
-                'products' => $products->toArray(),
-                'category_attributes' => $category_attributes->count(),
+                'products' => $products,
+                'category_attributes' => $category_attributes->load('attribute'),
                 'd' => true,
-
             ]);
         }
 
@@ -83,7 +99,23 @@ class ProductsController extends Controller
     }
 
 
+    public function getColorImage(Request $request)
+    {
+        
+        $variationValue = ProductVariationValue::where(['name' => $request->color, 'product_id' => $request->product_id ])
+                        ->with('product_variation.product')->first();
 
+
+        if (!$variationValue) {
+            return response()->json(['status' => 'error', 'message' => 'No match found'], 404);
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'product_variation' => $variationValue,
+          
+        ]);
+    }
 
     public function  all(Request $request, Category $category)
     {
@@ -204,6 +236,7 @@ class ProductsController extends Controller
         $attributes =  collect($data);
         $attributes = $attributes->count() && $product->product_type == 'variable' ? $attributes : '{}';
         $product_variation->load(["images"]);
+
 
         return view('products.show', compact('meta_tag_keywords', 'page_meta_description', 'inventory', 'stock', 'category', 'attributes', 'product_variation', 'page_title'));
     }

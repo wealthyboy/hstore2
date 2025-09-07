@@ -58,12 +58,15 @@ trait FormatPrice
 
 
   public function getDefaultPercentageOffAttribute()
-  {
+  { 
+    if ($this->salePrice())
+
     return $this->calPercentageOff($this->price, $this->sale_price);
   }
 
   public function percentageOff()
-  {
+  { 
+    if ($this->salePrice())
     return $this->calPercentageOff($this->price, $this->sale_price);
   }
 
@@ -78,7 +81,7 @@ trait FormatPrice
 
   public function getPercentageOffAttribute()
   {
-    return $this->percentageOff();
+    return $this->salePrice() ?: $this->percentageOff();
   }
 
   public function getDiscountedPriceAttribute()
@@ -95,29 +98,25 @@ trait FormatPrice
   public function salePrice()
   {
 
-    if (null !== $this->sale_price  && null !== $this->sale_price_starts) {
-      if (optional($this->sale_price_starts)->isPast()   || optional($this->sale_price_starts)->isToday()) {
-        if (optional($this->sale_price_expires)->isFuture() ||  optional($this->sale_price_starts)->isToday()) {
-          // return $this->ConvertCurrencyRate($this->sale_price);
-          return $this->sale_price;
-        }
+      if ($this->sale_price !== null && $this->sale_price_starts !== null) {
+          if ($this->sale_price_starts->isPast() || $this->sale_price_starts->isToday()) {
+
+              if (
+                  $this->sale_price_expires &&
+                  ($this->sale_price_expires->endOfDay()->isFuture() || $this->sale_price_expires->isToday())
+              ) {
+                  return $this->ConvertCurrencyRate($this->sale_price);
+              }
+          }
       }
-    }
 
-
-    // if ( null !== $this->sale_price  && null !== $this->sale_price_starts  ) {
-    //     if ( optional($this->sale_price_expires)->isFuture() ) { 
-    //       return $this->ConvertCurrencyRate($this->sale_price);
-    //     }
-    // }
-
-    return null;
+      return null;
   }
 
   public function getDefaultDiscountedPriceAttribute()
   {
 
-    return $this->salePrice();
+    return  $this->salePrice();
   }
 
   public function getCurrencyAttribute()

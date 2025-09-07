@@ -60,6 +60,7 @@
 @if (!$all)
 
 @foreach($category_attributes as $category)
+
     <div  class="widget">
         <h3 class="widget-title">
             <a class="collapsed bold"   data-toggle="collapse" href="#widget-body-4{{ $category->id }}" role="button" aria-expanded="true" aria-controls="widget-body-4{{ $category->id}}">{{ optional($category->attribute)->name }}</a>

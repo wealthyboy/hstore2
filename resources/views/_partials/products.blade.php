@@ -6,7 +6,7 @@
 @if( !optional($product->product)->allow  || !$product->converted_price || $product->converted_price == 0 )
  @continue
 @endif
-<div  class="col-6   {{ isset($category_attributes) && $category_attributes->count() ? 'col-md-4' : 'col-md-3' }}">
+<div  class="col-6 {{ isset($category_attributes) && $category_attributes->count() ? 'col-md-4' : 'col-md-3' }}">
     <div class="product-default inner-quickview inner-icon">
         <figure>
             <a href="{{ optional($product)->link }}">

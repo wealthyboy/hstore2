@@ -22,7 +22,7 @@ trait ImageFiles
 
     public function getImageToShowAttribute()
     {
-        $image =  optional($this->variant)->image ??  optional(optional($this->variant)->img)->image;
+        $image = optional($this->variant)->image ??  optional(optional($this->variant)->img)->image;
         return $this->product_type  == 'variable'
             ? $image
             : $this->image;
@@ -36,11 +36,11 @@ trait ImageFiles
             ? $image
             : $this->image_m;
     }
-
+ 
 
     public function getImageToShowTnAttribute()
     {
-        $image =  optional($this->variant)->image_tn ??  optional(optional($this->variant)->img)->image_tn;
+        $image = optional($this->variant)->image_tn ??  optional(optional($this->variant)->img)->image_tn;
         return $this->product_type  == 'variable'
             ? $image
             : $this->image_tn;

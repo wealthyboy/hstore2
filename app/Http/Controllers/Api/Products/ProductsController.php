@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Api\Products;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\SystemSetting;
-use App\Category;
-use App\Product;
-use App\ProductVariation;
-use App\Attribute;
-use App\ProductVariationValue;
+use App\Models\SystemSetting;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\ProductVariation;
+use App\Models\Attribute;
+use App\Models\ProductVariationValue;
 use App\Http\Resources\ProductIndexResourceCollection;
 use App\Http\Resources\ProductIndexResource;
 use App\Http\Resources\ProductResource;
@@ -122,7 +122,7 @@ class ProductsController extends Controller
 
     public function filters(Category $category){
         return  new ProductFilterResource(
-                $category
+            $category
         );
     }
 

@@ -163,7 +163,7 @@ class ProductController extends Controller
         $meta_fields = null;
         $sale_price = $request->has('sale_price') ? $request->sale_price : null;
         $product->product_name = $request->product_name;
-        $product->price        = $request->price;
+        $product->price = $request->price;
         $product->sale_price   = $sale_price;
         $product->slug         = str_slug($request->product_name);
         $product->weight       = $request->weight;
@@ -239,7 +239,6 @@ class ProductController extends Controller
                 ]);
             }
         }
-
 
 
         $product_variation = new  ProductVariation();
@@ -662,18 +661,18 @@ class ProductController extends Controller
 
         $product_variation->price      = $request->price;
         $product_variation->sale_price = $request->sale_price;
-        $product_variation->image      = $request->image;
+        $product_variation->image  = $request->image;
         $product_variation->width      = $request->width;
-        $product_variation->sale_price_expires   = Helper::getFormatedDate($request->sale_price_expires);
-        $product_variation->sale_price_starts   = Helper::getFormatedDate($request->sale_price_starts);
+       
         $product_variation->length   = $request->length;
         $product_variation->weight   = $request->weight;
         $product_variation->quantity = $request->quantity;
         $product_variation->product_id = $product->id;
-        $product_variation->allow       = $request->allow ? $request->allow : 0;
-        $product_variation->is_gift_card       = $request->is_gift_card ? 1 : 0;
+        $product_variation->allow  = $request->allow ? $request->allow : 0;
+        $product_variation->is_gift_card = $request->is_gift_card ? 1 : 0;
         $product_variation->default = 1;
         $product_variation->save();
+
         if (!empty($request->category_id)) {
             $product_variation->categories()->sync($request->category_id);
         }
@@ -764,7 +763,6 @@ class ProductController extends Controller
                                                 ->later(now()->addMinutes(10), new OutOfStockMail($pd));
                                         } catch (\Throwable $th) {
                                             //throw $th;
-                                            dd($th);
                                         }
                                     }
                                 }
@@ -774,7 +772,7 @@ class ProductController extends Controller
 
                         $sale_price_expires = !empty($request->edit_variation_sale_price_expires[$variant_id]) ?   Helper::getFormatedDate($request->edit_variation_sale_price_expires[$variant_id])->toDateString()  : Helper::getFormatedDate($request->sale_price_expires);
                         $sale_price_starts = !empty($request->edit_variation_sale_price_starts[$variant_id]) ?   Helper::getFormatedDate($request->edit_variation_sale_price_starts[$variant_id])->toDateString()  : Helper::getFormatedDate($request->sale_price_starts);
-                        // dd($request->edit_variation_sale_price_expires[$variant_id],   Helper::getFormatedDate($request->edit_variation_sale_price_expires[$variant_id])->toDateString(), $sale_price_expires);
+                        //// dd($sale_price_expires,   $sale_price_starts, $sale_price_expires);
 
                         $product_variation = ProductVariation::updateOrCreate(
                             ['id' => $variant_id],
@@ -783,7 +781,7 @@ class ProductController extends Controller
                                 'sale_price' => $request->edit_variation_sale_price[$variant_id] ? $request->edit_variation_sale_price[$variant_id]  : $sale_price,
                                 'width' => $request->edit_variation_width[$variant_id]  ? $request->edit_variation_width[$variant_id] : $request->width,
                                 'length' => $request->edit_variation_length[$variant_id],
-                                'image' => $request->edit_variation_image[$variant_id],
+                                'image' =>  isset($request->edit_variation_image[$variant_id])  ? $request->edit_variation_image[$variant_id] : null ,
                                 'sale_price_expires' => $sale_price_expires,
                                 'sale_price_starts' => $sale_price_starts,
                                 'weight' => $request->edit_variation_weight[$variant_id],
@@ -798,7 +796,7 @@ class ProductController extends Controller
                             ]
                         );
 
-                        // dd($product_variation);
+                       // dd($product_variation);
 
 
                         /**

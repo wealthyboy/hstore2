@@ -1,49 +1,111 @@
 <template>
-      <div :class="rowClass" class="col-6">
-        <div class="product-default inner-quickview inner-icon">
-            <figure>
-                <a :href="product.link">
-                    <img :src="product.image_to_show_m" :alt="product.product_name" />
-                </a>
-                <div class="label-group">
-                    <div  v-if="product.default_percentage_off" class="product-label label-sale">-{{ product.default_percentage_off }}%</div>
-                </div>
-                <div class="btn-icon-group">
-                    <button  v-if="!$root.loggedIn" data-toggle="modal" data-target="#login-modal"  :style=" [wishlistIsActive ? wishA : '']"  class="btn-icon btn-add-cart" @click="addToWishList(product.default_variation_id)"><i :style=" [wishlistIsActive ? wishA : '']"  class="icon-heart"></i></button>
-                    <button   v-if="$root.loggedIn"  :style=" [wishlistIsActive ? wishA : '']"  class="btn-icon btn-add-cart" @click="addToWishList(product.default_variation_id)"> <button>
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2l2.868 6.922L22 9.844l-5.11 4.804L18.225 22 12 18.322 5.776 22l1.333-7.352L2 9.844l7.132-.922L12 2zm-1.49 8.816l-3.976.513 2.733 2.57-.745 4.11L12 15.955l3.478 2.056-.745-4.111 2.733-2.57-3.975-.514L12 7.219l-1.49 3.598z"></path></svg>
-                    </button></button>
-                </div>
-            </figure>
-            <div class="product-details text-center">
-                <div class="mx-auto">
-                    <div  v-if="product.colours.length" class="justify-content-center d-flex mb-1">
-                        <div v-for="color in product.colours" :style="{ 'background-color': color.color_code }"  style="border:1px solid #222; height: 15px; width: 15px; border-radius: 50%;" class="mr-1">
-                        </div>
-                        <symbol data-icon-id="star" data-icon-set="farfetch-2020" id="iconLoaded-star"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2l2.868 6.922L22 9.844l-5.11 4.804L18.225 22 12 18.322 5.776 22l1.333-7.352L2 9.844l7.132-.922L12 2zm-1.49 8.816l-3.976.513 2.733 2.57-.745 4.11L12 15.955l3.478 2.056-.745-4.111 2.733-2.57-3.975-.514L12 7.219l-1.49 3.598z"></path></svg></symbol>
-                    </div>
-                    <div v-if="product.brand_name" class="product-brand bold">
-                        {{ product.brand_name }}
-                    </div>
-                    <div class="">
-                        <a :href="product.link">{{ product.product_name }}</a>
-                    </div>
-                </div>
-                <div class="price-box mx-auto mt-1">
-                    <template v-if="product.default_discounted_price">
-                        <span class="old-price">{{ product.currency }}{{ product.converted_price | priceFormat  }}</span>
-                        <span class="product-price">{{ product.currency }}{{ product.default_discounted_price | priceFormat }}</span>
-                    </template>
-                    <template v-else>
-                        <span class="product-price">{{ product.currency }}{{ product.converted_price | priceFormat }}</span>
-                    </template>
-                </div><!-- End .price-box -->
-            </div><!-- End .product-details -->
-        </div>
-        <login-modal />
+  <div :class="layout">
+    <div class="product-default inner-quickview inner-icon position-relative">
+      <figure class="position-relative" style="width:100%; height:auto; overflow:hidden;">
 
-    </div><!-- End .col-sm-4 -->
-   
+        <a
+          :href="product.link"
+          class="d-block position-relative w-100 h-100"
+          style="background:#f5f5f5;"
+        >         
+
+        <transition name="fade">
+          <img
+            v-show="imageLoaded"
+            :src="product.image_to_show_m"
+            :alt="product.product_name"
+            class="w-100 h-100"
+            style="object-fit:cover;"
+            @load="onImageLoad"
+            @error="onImageError"
+          />
+        </transition>
+
+          <!-- Placeholder (shows until image loads) -->
+          <div
+            v-if="!imageLoaded"
+            class="w-100 h-100 d-flex align-items-center justify-content-center text-uppercase font-weight-bold text-muted position-absolute top-0 left-0"
+            style="background:#eaeaea; font-size: 1rem; letter-spacing: 1px;"
+          >
+            TheAuraByDora
+          </div>
+        </a>
+
+        <!-- Discount Badge -->
+        <div
+          v-if="product.default_percentage_off"
+          class="badge badge-danger position-absolute"
+          style="top: 10px; left: 10px; font-size: 0.8rem; padding: 6px 10px; border-radius: 50px;"
+        >
+          -{{ product.default_percentage_off }}%
+        </div>
+      </figure>
+
+      <div class="product-details">
+        <div>
+          <div class="justify-content-between d-flex mb-1">
+            <!-- Ratings -->
+            <div class="ratings-container" v-if="product.average_rating_count >= 1">
+              <div class="product-ratings">
+                <span
+                  class="ratings"
+                  :style="{ width: product.average_rating + '%' }"
+                ></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Name + Price -->
+          <div class="d-sm-flex color--primary justify-content-between">
+            <div class="cl">
+              <div class="text-left mr-md-5">
+                <a :href="product.link">{{ product.name }}</a>
+              </div>
+            </div>
+
+            <div v-if="!product.is_gift_card" class="text-lg-right">
+              <template v-if="product.default_discounted_price">
+                <span class="old-price bold text-muted">
+                  {{ product.currency }}{{ formatNumber(product.converted_price) }}
+                </span>
+                <span class="product-price bold text-danger">
+                  {{ product.currency }}{{ formatNumber(product.default_discounted_price) }}
+                </span>
+              </template>
+              <template v-else>
+                <span class="product-price bold">
+                  {{ product.currency }}{{ formatNumber(product.converted_price) }}
+                </span>
+              </template>
+            </div>
+          </div>
+
+          <!-- Colors -->
+          <div class="d-sm-flex mt-1">
+            <div
+              v-for="(color, index) in product.product.colours"
+              :key="index"
+              class="mr-1 cursor-pointer"
+              @click="getColorImage(product, color)"
+              :style="{
+                border:
+                  ( product.active_color.name  === color.name
+                    ? '2px'
+                    : '0px') + ' solid #000',
+                height: '18px',
+                width: '18px',
+                borderRadius: '50%',
+                backgroundColor: color.image ? '' : color.color_code,
+                backgroundImage: color.image ? `url(${color.image})` : 'none',
+                backgroundSize: color.image ? 'cover' : 'initial',
+              }"
+            >
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -56,28 +118,46 @@ export default {
         product:Object,
         category:Object,
         user: Object,
+        layout: String
     }, 
     components:{
        LoginModal
     },
     data(){
-        return {
-            product_variation_id: '',
-            is_wishlist: this.product.item_is_wishlist,
-            wishA: {
-                background: '#222',
-                color: '#ffffff'
-            },
-        }
+      return {
+        product_variation_id: '',
+        is_wishlist: this.product.item_is_wishlist,
+        wishA: {
+            background: '#222',
+            color: '#ffffff'
+        },
+        imageLoaded: false
+      }
     },
+    watch: {
+        'product.image_to_show_m': {
+          handler(src) {
+            if (src) {
+              const img = new Image();
+              img.src = src;
+              if (img.complete) {
+                this.imageLoaded = true;
+              }
+            }
+          },
+          immediate: true
+        }
+      },
     computed: {
         ...mapGetters({
             loggedIn:'loggedIn',
             wishlist:'wishlist',
         }),
         rowClass: function () {
-           return Object.keys(this.category)[0] == 'no_attributes' ? 'col-lg-3 col-md-3' : 'col-lg-4 col-md-4'
+           return 'col-lg-4 col-md-4'
         },
+      
+        
         wishlistIsActive: function(){
             if (this.wishlist.length){
                 if(this.wishlist.some(wishlist => wishlist.product_variation.id === this.product.default_variation_id)){
@@ -93,7 +173,12 @@ export default {
     },
    
     methods: {
-
+       onImageLoad() {
+        this.imageLoaded = true
+      },
+      onImageError() {
+        this.imageLoaded = false
+      },
         ...mapActions({
             addProductToWishList: 'addProductToWishList'
         }),
@@ -102,10 +187,33 @@ export default {
                 product_variation_id:product_variation_id,
             }).then((response)=>{
                 if(this.wishlist.some(wishlist => wishlist.product_variation.id === product_variation_id)){
-                    $("#addCartModal").modal('show') 
-                } 
-                
+                  $("#addCartModal").modal('show') 
+                }
             })
+        },
+        formatNumber(value) {
+          if (!value) return 0;
+          return new Intl.NumberFormat().format(value);
+        },
+        getColorImage(product, color){
+           console.log(product, color)
+          const url = window.location.href;
+
+          axios.get(url, { 
+              params: {
+                product_id: product.product.id,
+                color: color.name
+              }
+          })
+          .then(response => {
+            let res = response.data.product_variation;
+              product.image_to_show_m = res.product_variation.image_to_show_m;
+              product.active_color = res.product_variation.active_color;
+            
+          })
+          .catch(err => {
+            console.error(err);
+          });
         },
         
 
@@ -114,3 +222,17 @@ export default {
     
 }
 </script>
+<style scoped>
+.cursor-pointer{
+  cursor: pointer;
+}
+/* Fade-in transition */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
