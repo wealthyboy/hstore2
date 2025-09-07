@@ -1,5 +1,5 @@
 <template>
-  <div :class="layout">
+  <div id="jfhjf" :class="layout">
     <div class="product-default inner-quickview inner-icon position-relative">
       <figure class="position-relative" style="width:100%; height:auto; overflow:hidden;">
 

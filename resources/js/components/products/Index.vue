@@ -68,7 +68,7 @@
 
         </div>
 
-        <div v-if="loading &&  !items.length" class="row">
+        <div v-if="loading" class="row">
             <div
                 v-for="n in skeletonCount"
                 :key="n"
@@ -86,12 +86,7 @@
         </div>
 
         <div v-if="!loading && items.length" class="row">
-             <transition-group
-                name="stagger"
-                tag="div"
-                class="row"
-                appear
-                >
+            
                 <items
                     v-for="(product, index) in items"
                     :key="product.id"
@@ -104,7 +99,6 @@
                     transitionDuration: '600ms'             /* each animation lasts longer */
                     }"
                 />
-                </transition-group>
 
         </div>
         <template v-if="!loading && !items.length">
@@ -196,7 +190,7 @@ export default {
     mounted(){
         this.loading = true;
         this.getProducts().then(() => {
-          this.loading =false
+          //this.loading =false
         })
     },
     methods: {
@@ -217,7 +211,7 @@ export default {
                 }).then((response) => {
                     this.items = response.data.products.data;
                     this.meta = response.data.products;
-                    //this.loading = false
+                    this.loading = false
                     this.has_filters = response.data.has_filters;
                     this.categories = response.data.category_attributes;
                 }).catch(() => {
