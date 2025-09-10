@@ -99,11 +99,11 @@ trait FormatPrice
   {
 
       if ($this->sale_price !== null && $this->sale_price_starts !== null) {
-          if ($this->sale_price_starts->isPast() || $this->sale_price_starts->isToday()) {
+          if (optional($this->sale_price_starts)->isPast() || optional($this->sale_price_starts)->isToday()) {
 
               if (
                   $this->sale_price_expires &&
-                  ($this->sale_price_expires->endOfDay()->isFuture() || $this->sale_price_expires->isToday())
+                  (optional($this->sale_price_expires->endOfDay())->isFuture() || optional($this->sale_price_expires)->isToday())
               ) {
                   return $this->ConvertCurrencyRate($this->sale_price);
               }

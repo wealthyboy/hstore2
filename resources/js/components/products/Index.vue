@@ -11,12 +11,19 @@
                 </div>
             </div>
         </div>
+
         <div class="sidebar-overlay"></div>
         <div class="sidebar-toggle"><i class="fas fa-sliders-h"></i></div>
-        <aside  v-if="!loading && items.length " class="sidebar-shop  order-lg-first mobile-sidebar">
+        <aside  
+            v-if="!loading" 
+            class="sidebar-shop  order-lg-first mobile-sidebar"
+        >
             <div class="pin-wrapper" style="">
                 <div class="sidebar-wrapper" style="">
-                    <side-bar @filters-updated="getProducts" :categories="categories" />
+                    <side-bar 
+                       @filters-updated="getProducts" 
+                       :categoryFilters="filters" 
+                    />
                 </div>
             </div>
         </aside><!-- End .col-lg-3 -->
@@ -25,13 +32,24 @@
     <!-- Products column -->
     <div class="col-md-9">
         
-        <nav class="toolbox horizontal-filter filter-sorts mb-0">
+        <nav class="toolbox horizontal-filter filter-sorts mb-1">
             <div class="toolbox-left">
-                <div class="toolbox-item toolbox-sort pr-1">
+                <div class="pr-1">
+                    Showing <strong>{{ meta.from }}</strong> to <strong>{{ meta.to }}</strong> of <strong>{{ meta.total }}</strong> results
+                </div>
+            </div>
 
-                     <label class="ml-3"></label>
-                        <div class="select-custom">
-                            <select  name="sort_by" id="sort_by" class="form-control">
+
+                <div class="toolbox-right">
+                       <div class="select-custom">
+                            <select  
+                                  v-model="sortBy" 
+                                  name="sort_by" 
+                                  id="sort_by" 
+                                  class="form-control"
+                                  @change="updateSort"
+                                  
+                                >
                                 <option value="" selected="selected">Sort By</option>
                                 <option value="created_at,asc">Oldest</option>
                                 <option value="created_at,desc">Newest</option>
@@ -39,34 +57,26 @@
                                 <option value="price,desc">Highest Price</option>
                             </select>
                         </div>
-                    </div><!-- End .toolbox-item -->
-                </div><!-- End .toolbox-left -->
-
-
-                <div class="toolbox-right">
-                <div class="toolbox-item layout-modes">
-                    <a  @click.prevent="setLayout('col-6 col-md-4')" href="#" type="button" value="large" class=" bg-transparent mr-3 border-0 cursor-pointer" aria-label="Switch to larger product images"><svg role="presentation" width="18" viewBox="0 0 18 18" fill="none">
-                        <path fill="currentColor" d="M0 0h8v8H0zM0 10h8v8H0zM10 0h8v8h-8zM10 10h8v8h-8z"></path>
-                        </svg>
-                    </a>
-                    <a href="#" @click.prevent="setLayout('col-6 col-md-3')" type="button" value="medium" class="bg-transparent mr-3 cursor-pointer border-0" aria-label="Switch to smaller product images">
-                        <svg role="presentation" width="18" viewBox="0 0 18 18" fill="none">
-                            <path fill="currentColor" d="M0 0h4v4H0zM0 7h4v4H0zM0 14h4v4H0zM7 0h4v4H7zM7 7h4v4H7zM7 14h4v4H7zM14 0h4v4h-4zM14 7h4v4h-4zM14 14h4v4h-4z"></path>
-                        </svg>
-                    </a>
-                    <a href="#"  @click.prevent="setLayout('col-6 col-md-2')" type="button" value="compact" class="bg-transparent border-0  cursor-pointer" aria-label="Switch to compact product images">
-                        <svg role="presentation" width="18" viewBox="0 0 18 18" fill="none">
-                            <path fill="currentColor" d="M0 0h18v2H0zm0 4h18v2H0zm0 4h18v2H0zm0 4h18v2H0zm0 4h18v2H0z"></path>
-                        </svg>
-                    </a>       
-                </div>
+                    <div class="toolbox-item layout-modes">
+                        <a  @click.prevent="setLayout('col-6 col-md-4')" href="#" type="button" value="large" class=" bg-transparent mr-3 border-0 cursor-pointer" aria-label="Switch to larger product images"><svg role="presentation" width="18" viewBox="0 0 18 18" fill="none">
+                            <path fill="currentColor" d="M0 0h8v8H0zM0 10h8v8H0zM10 0h8v8h-8zM10 10h8v8h-8z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" @click.prevent="setLayout('col-6 col-md-3')" type="button" value="medium" class="bg-transparent mr-3 cursor-pointer border-0" aria-label="Switch to smaller product images">
+                            <svg role="presentation" width="18" viewBox="0 0 18 18" fill="none">
+                                <path fill="currentColor" d="M0 0h4v4H0zM0 7h4v4H0zM0 14h4v4H0zM7 0h4v4H7zM7 7h4v4H7zM7 14h4v4H7zM14 0h4v4h-4zM14 7h4v4h-4zM14 14h4v4h-4z"></path>
+                            </svg>
+                        </a>
+                        <a href="#"  @click.prevent="setLayout('col-6 col-md-2')" type="button" value="compact" class="bg-transparent border-0  cursor-pointer" aria-label="Switch to compact product images">
+                            <svg role="presentation" width="18" viewBox="0 0 18 18" fill="none">
+                                <path fill="currentColor" d="M0 0h18v2H0zm0 4h18v2H0zm0 4h18v2H0zm0 4h18v2H0zm0 4h18v2H0z"></path>
+                            </svg>
+                        </a>       
+                    </div>
             </div>
 
         </nav>
-        <div>
-            Showing <strong>{{ meta.from }}</strong> to <strong>{{ meta.to }}</strong> of <strong>{{ meta.total }}</strong> results
-
-        </div>
+      
 
         <div v-if="loading" class="row">
             <div
@@ -86,7 +96,6 @@
         </div>
 
         <div v-if="!loading && items.length" class="row">
-            
                 <items
                     v-for="(product, index) in items"
                     :key="product.id"
@@ -95,10 +104,10 @@
                     :layout="layout"
                     :category="category"
                     :style="{
-                    transitionDelay: (index * 200) + 'ms',  /* 200ms per item */
-                    transitionDuration: '600ms'             /* each animation lasts longer */
+                        transitionDelay: (index * 200) + 'ms',  /* 200ms per item */
+                        transitionDuration: '600ms'             /* each animation lasts longer */
                     }"
-                />
+                />    
 
         </div>
         <template v-if="!loading && !items.length">
@@ -109,7 +118,7 @@
                             <div class="mt-4 mb-4">
                                 No products found
                             </div>
-                        </div>
+                        </div>  
                     </div>
                 </div>
             </section>
@@ -140,6 +149,7 @@ export default {
         endpoint:Object,
         user:Object,
         products: Object,
+        filters: Array,
         skeletonCount: {
           type: Number,
                 default: 12, // how many skeletons to show
@@ -166,7 +176,8 @@ export default {
            full_width: false,
            loading:true,
            categories: [],
-           layout: 'col-md-4 col-6'
+           layout: 'col-md-4 col-6',
+           sortBy: ''
         }
     },
     computed: {
@@ -182,38 +193,41 @@ export default {
     watch: {
         '$route.query':{
             handler(query){
-              this.getProducts(this.$route.query.page,query)
+            //  this.getProducts(this.$route.query.page,query)
             },
             deep:true
         },
     },
     mounted(){
         this.loading = true;
-        this.getProducts().then(() => {
-          //this.loading =false
-        })
+        this.getProducts().then(() => {})
     },
     methods: {
         setLayout(mode) {
             this.layout = mode;
         },
+        updateSort() {
+            const url = new URL(window.location.href);
+            if (this.sortBy) {
+                url.searchParams.set("sort_by", this.sortBy);
+            } else {
+                url.searchParams.delete("sort_by");
+            }
+
+            // ✅ Update the URL in the browser without reload
+            window.history.replaceState({}, "", url);
+
+            this.getProducts();
+        },
         getProducts(page = this.$route.query.page, filters = this.$route.query) {
             let category = this.$route.params.category;
-           let url = this.$route.path  
 
-                return axios.get(url, {
-                    params: {
-                    page,
-                    ...filters,
-                    t: new Date().getTime() // 👈 timestamp added to avoid caching
-
-                    }
-                }).then((response) => {
+            let url = this.$route.path  
+                return axios.get(window.location).then((response) => {
                     this.items = response.data.products.data;
                     this.meta = response.data.products;
                     this.loading = false
                     this.has_filters = response.data.has_filters;
-                    this.categories = response.data.category_attributes;
                 }).catch(() => {
                     this.loading = true
                 });

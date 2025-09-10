@@ -61,7 +61,9 @@
       </div>
     </div>
     <div class="col-12 mt-1 text-danger bold">{{ qty }}</div>
-    <notify :quantity="quantity" />
+    <notify 
+      :quantity="quantity" 
+    />
   </div>
 </template>
 <script>

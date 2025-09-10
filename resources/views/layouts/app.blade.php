@@ -230,22 +230,7 @@
 			<div class="footer-middle">
 				<div class="container-fluid">
 					<div class="row">
-						<div class="col-sm-6 col-xl-6">
-							<div class="widget widget-newsletter">
-								<h4 class="widget-title">Subscribe to our newsletter.</h4>
-								<p>Get all the latest information on events, sales and offers. Sign up for newsletter today.</p>
-								<news-letter />
-							</div>
-							<p>
-							<div class="contact-widget follow">
-								<div class="social-icons">
-									<a href="{{ $system_settings->facebook_link }}" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
-									<a href="{{ $system_settings->facebook_link }}" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
-									<a href="https://wa.me/{{ optional($system_settings)->store_phone }}" class="social-icon" target="_blank"><i class="fab fa-whatsapp"></i></a>
-								</div><!-- End .social-icons -->
-							</div>
-							</p>
-						</div>
+						
 
 						<div class="col-lg-6 col-md-6">
 							<div class="row ">
@@ -270,12 +255,31 @@
 								@endforeach
 							</div>
 						</div>
+
+						<div class="col-sm-6 col-xl-6">
+							<div class="widget widget-newsletter">
+								<h4 class="widget-title">Subscribe to our newsletter.</h4>
+								<p>Get all the latest information on events, sales and offers. Sign up for newsletter today.</p>
+								<news-letter />
+							</div>
+							<p>
+						
+							</p>
+						</div>
 					</div><!-- End .row -->
 				</div><!-- End .container -->
 			</div><!-- End .footer-middle -->
 
 			<div class="footer-bottom">
+					<div class="contact-widget  d-flex justify-content-center ">
+								<div class="social-icons">
+									<a href="{{ $system_settings->facebook_link }}" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+									<a href="{{ $system_settings->facebook_link }}" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+									<a href="https://wa.me/{{ optional($system_settings)->store_phone }}" class="social-icon" target="_blank"><i class="fab fa-whatsapp"></i></a>
+								</div><!-- End .social-icons -->
+				</div>
 				<div class="container d-flex justify-content-center align-items-center flex-wrap">
+					
 					<p class="footer-copyright py-3 pr-4 mb-0">© {{ config('app.name') }}. {{ date('Y') }}. All Rights Reserved</p>
 					@if ( auth()->check() && auth()->user()->isAdmin() )
 					<p class="footer-copyright py-3 pr-4 mb-0"><a target="_blank" href="/admin">Go to Admin</a></p>
@@ -333,10 +337,6 @@
 
 		</div><!-- End .mobile-menu-wrapper -->
 	</div><!-- End .mobile-menu-container -->
-
-
-
-
 
 
 	<div class="watsapp pt-3">

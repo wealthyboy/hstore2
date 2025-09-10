@@ -25,8 +25,10 @@
                     name="prices[]"
                     type="checkbox"
                     class="filter-product"
+                    @change="activateFilter"
+
                     :value="price.value"
-                    v-model="selected.prices"
+
                   />
                   <span class="checkbox-custom rectangular"></span>
                   <span class="checkbox-label-text">{{ price.label }}</span>
@@ -85,7 +87,7 @@
                   />
                   <span class="checkbox-custom rectangular"></span>
                   <span class="checkbox-label-text color--primary">
-                    {{ child.attribute?.name  }} {{ child.slug }}
+                    {{ child.attribute?.name  }} {{ child.attribute.hex_code }}
                   </span>
                 </label>
               </div>
@@ -102,7 +104,6 @@
 export default {
     props:{
        category: Object,
-       categories: Array
     },
     data(){
         return {
@@ -111,11 +112,12 @@ export default {
             selectedFilters: _.omit(this.$route.query, ['page']),
             qS: [],
             filter: true,
+            categories: [],
             priceOptions: [
-                { value: 2500, label: "Less Than 2500" },
-                { value: 5000, label: "Less Than 5000" },
-                { value: 10000, label: "Less Than 10000" },
-                { value: "10000+", label: "More than 10,000" }
+                { value: 25000, label: "Less Than 25000" },
+                { value: 50000, label: "Less Than 50000" },
+                { value: 100000, label: "Less Than 100,000" },
+                { value: "100000+", label: "More than 1,000,000" }
             ],
             selected: {
                 prices: []
@@ -130,9 +132,8 @@ export default {
         let path = this.$route.path
         this.selected = { ...this.initialFilters };
 
-        axios.get("/api/filters" +path).then((response) => {
-            this.filters = response.data.data
-           // this.categories = response.data.data
+        axios.get(window.location).then((response) => {
+          this.categories  = response.data.category_attributes;
         })
          
     },
@@ -148,39 +149,41 @@ export default {
         },
         activateFilter() {
             const inputs = document.querySelectorAll("input.filter-product:checked");
-            let filters = {};
+            let filters = [];
+
+            let sort_by = document.getElementById("sort_by");
+
+            if (sort_by) {
+                filters.push(sort_by.name + "=" + sort_by.value);
+            }
+
 
             inputs.forEach(input => {
-                if (!filters[input.name]) {
-                    filters[input.name] = [];
-                }
-                filters[input.name].push(input.value);
+              filters.push(input.name + "=" + input.value);
             });
 
             this.selectedFilters = filters;
+            window.history.pushState({}, "", "?" + filters.join("&"));
+
             this.$emit("filters-updated", this.selectedFilters);
-
-
-            this.updateQueryString();
         },
 
-        updateQueryString() {
-            const params = new URLSearchParams();
+        // updateQueryString() {
+        //     const params = new URLSearchParams();
+        //     Object.keys(this.selectedFilters).forEach(key => {
+        //         this.selectedFilters[key].forEach(val => {
+        //             params.append(`${key}`, val);
+        //         });
+        //     });
 
-            Object.keys(this.selectedFilters).forEach(key => {
-                this.selectedFilters[key].forEach(val => {
-                    params.append(`${key}[]`, val);
-                });
-            });
-
-            const newUrl = `${window.location.pathname}?${params.toString()}`;
-            window.history.replaceState({}, "", newUrl);
-        },
+        //     const newUrl = `${window.location.pathname}?${params.toString()}`;
+        //     window.history.replaceState({}, "", newUrl);
+        // },
        
         updateQueryString () {
             this.$router.replace({
                 query: {
-                   ...this.selectedFilters,
+                  ...this.selectedFilters,
                 }
             })
         }

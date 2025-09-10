@@ -158,34 +158,13 @@ hr {
     <p></p>
   </div>
   <div class="middle">
-    <h1> Hautesignatures is under maintainance</h1>
+    <h1> theaurabydora is under maintainance</h1>
     <p>Please check back later</p>
 
     <hr>
     <h1 class="target"></h1>
     <p>
-<!--      
-      <form id="signup-form"  class="form-group" action="#" >
 
-       <div class="form-row align-items-center">
-          <div class="col-sm-3 my-1">
-            <label class="sr-only" for="inlineFormInputName">First Name</label>
-            <input type="text" class="form-control" id="inlineFormInputName" name="fname" placeholder="First Name">
-          </div>
-          <div class="col-sm-3 my-1">
-            <label class="sr-only" for="inlineFormInputName">Last Name</label>
-            <input type="text" class="form-control" id="inlineFormInputName"  name="lname" placeholder="Last Name">
-          </div>
-          <div class="col-sm-3 my-1">
-            <label class="sr-only" for="inlineFormInputName">Email</label>
-            <input type="email" class="form-control" id="inlineFormInputName"  name="email" placeholder="Email">
-          </div>
-        
-          <div class="col-auto my-1">
-            <button type="submit" style="background-color: #000000; color: #ffffff; outline: none; border: none;" class="btn btn-primary">Sign Up</button>
-          </div>
-        </div>
-      </form> -->
     </p>
   </div>
   <div class="bottomleft">
@@ -218,7 +197,7 @@ $("#signup-form").submit(function(e){
       $(".btn-primary").text("Loading......")
       $("h1.target").html(res.message)
   }).fail(function(){
-    $("h1.target").html("We could not sign you up at the moment .Please try again")
+      $("h1.target").html("We could not sign you up at the moment .Please try again")
   });
 })
 

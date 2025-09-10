@@ -3,7 +3,7 @@
 
 <head>
 	<meta charset="utf-8" />
-	<title>{{ isset( $page_title) ?  $page_title .' |  '.config('app.name') : 'HauteSignatures' }}</title>
+	<title>{{ isset( $page_title) ?  $page_title .' |  '.config('app.name') : 'theaurabydora' }}</title>
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
 	<meta name="keywords" content="{{ isset($system_settings->meta_tag_keywords) ? $system_settings->meta_tag_keywords : 'cleanse,detox,flattummy,flattummy tea ng,slimming tea' }}" />
@@ -28,7 +28,7 @@
 	<link href="/css/custom.css?version={{ str_random(6) }}" rel="stylesheet" type="text/css" />
 	<link href="/css/custom.css?version={{ str_random(6) }}" rel="stylesheet" type="text/css" />
 	<meta property="og:site_name" content="hautesignatures Co">
-	<meta property="og:url" content="https://theaurabydora.com.com/">
+	<meta property="og:url" content="https://hautesignatures.com.com/">
 	<meta property="og:title" content=" hautesignatures">
 	<meta property="og:type" content="website">
 	<meta property="og:description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
@@ -57,9 +57,6 @@
 
 
 		<header class="header">
-
-
-		
 
 
 		</header><!-- End .header -->

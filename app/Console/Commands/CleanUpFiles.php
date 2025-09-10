@@ -16,21 +16,7 @@ class CleanUpFiles extends Command
     {
         $folderPath = public_path('images/products/m');
         $databaseImages = ProductVariation::get();
-        //$databaseImages = Image::get();
-
-        // foreach ($databaseImages as $databaseImage) {
-        //     $databaseImage->image = str_replace('https://hautesignatures.com', 'https://hautesignatures.com.ng', $databaseImage->image);
-        //     $databaseImage->save();
-        //     $this->info('Deleted: ' . $databaseImage->image);
-        // }
-
-
-
-        // foreach ($databaseImages as $databaseImage) {
-        //     $databaseImage->image = str_replace('https://hautesignatures.com', 'https://hautesignatures.com.ng', $databaseImage->image);
-        //     $databaseImage->save();
-        //     $this->info('Deleted: ' . $databaseImage->image);
-        // }
+       
 
         $images = [];
         foreach ($databaseImages as $databaseImage) {

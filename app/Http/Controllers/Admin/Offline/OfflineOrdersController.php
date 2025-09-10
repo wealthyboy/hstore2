@@ -96,7 +96,7 @@ class OfflineOrdersController extends Controller{
 				if($request->has('email')){
 					$address = $ad;
 					\Mail::to($request->email)
-					->cc('teju@hautesignatures.com')
+					
 					->send(new OfflineOrderMail($address));
 				}
 
@@ -114,17 +114,17 @@ class OfflineOrdersController extends Controller{
 		
 		$flash = app('App\Http\Flash');
 
-				if($request->isMethod('post')){
-					$this->validate ( $request, [
-						'name' => 'required',
-						'last_name' => 'required',
-						'phone' => 'required',
-						'address'=>'required',
-						'city' => 'required',
-						'state_id'=>'required'
-					]);
+		if($request->isMethod('post')) {
+			$this->validate ( $request, [
+				'name' => 'required',
+				'last_name' => 'required',
+				'phone' => 'required',
+				'address'=>'required',
+				'city' => 'required',
+				'state_id'=>'required'
+			]);
 					// dd($request);
-					$address = $oda->create($request->only(['name','last_name','email','phone','address','address_2','city','state_id']));
+			$address = $oda->create($request->only(['name','last_name','email','phone','address','address_2','city','state_id']));
 					
 					foreach ( $carts   as $cart){
 						$insert = [

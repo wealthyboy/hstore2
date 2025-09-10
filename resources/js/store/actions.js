@@ -14,7 +14,7 @@ export const addProductToCart = (
     .then((response) => {
       commit("appendToCart", response.data.data);
       commit("setCartMeta", response.data.meta);
-      document.getElementById("icon-trigger").click();
+      document.getElementById('cart-dropdown').click()
       return Promise.resolve();
     });
 };

@@ -220,9 +220,6 @@ class ProductVariation extends Model
         return optional($this->product_variation_value)->attribute;
     }
 
-
-
-
     public function getVariationAttribute()
     {
         return $this->product_variation_names();

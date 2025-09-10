@@ -202,7 +202,7 @@
                         id="shipping" name="delivery_option" required>
                       <label class="custom-control-label" for="shipping">Shipping <span class="ml-3  text-info">(Based on
                           your location. If in Lagos, please check our shipping & return policy <a target="_blank"
-                            href="https://hautesignatures.com/pages/delivery-and-returns">link</a> to see where your
+                            href="/pages/delivery-and-returns">link</a> to see where your
                           location falls in order for you select the correct shipping option.)</span></label>
                     </div>
                   </div>

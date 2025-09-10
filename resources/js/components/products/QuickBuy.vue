@@ -16,14 +16,14 @@
         <!-- <images :images="images" :image="image" /> -->
         <div class="col-md-6 product-single-gallery">
           <div class="product-slider-container">
-            <div class="product-single-carousel owl-carousel owl-theme">
+            <div class="product-single-carouse owl-carouse owl-theme">
               <div class="product-item">
                 <img class="product-single-image" :data-zoom-image="image" :src="image" />
               </div>
-              <div v-for="image in images" :key="image.id" class="product-item">
+              <!-- <div v-for="image in images" :key="image.id" class="product-item">
                 <img class="product-single-image" :data-zoom-image="image.image" :src="image.image"
                   v-if="image.image !== ''" :alt="image.image_tn" />
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -60,43 +60,22 @@
 
             <gift-card-form v-if="product.is_gift_card" :product="product" />
 
-            <div v-if="!product.is_gift_card" class="row no-gutters mb-2 d-flex align-items-center">
+            <div v-if="!product.is_gift_card" class="row no-gutters mb-2">
               <div v-if="cartError" class="text-danger text-center bold col-12">
                 {{ cartError }}
               </div>
-               <div v-if="!product.is_gift_card" class="col-2 ml-3">
-                     <div class="d-flex align-items-center border rounded-md">
-                <a
-                  href="#"
-                  role="button"
-                  class="px-3 py-3 cursor-pointer text-lg font-bold text-gray-600 hover:bg-gray-100"
-                  @click.prevent="decrement"
-                >
-                  −
-                </a>
-                <span class="px-4 py-2 text-base font-semibold text-gray-800 border-l border-r">
-                  {{ quantity_count }}
-                </span>
-                <a
-                  href="#"
-                  role="button"
-                  class="px-3 py-3 text-lg font-bold text-gray-600 hover:bg-gray-100"
-                  @click.prevent="increment"
-                >
-                  +
-                 </a>
-              </div>
-              </div>
-         
-              <div v-if="!product.is_gift_card" class="col-7 ml-4">
+            
+
+              <div v-if="!product.is_gift_card" class="col-11 ml-3">
                 <cart-button :loading="loading" :canAddToCart="canAddToCart" :cartText="cartText" @add="addToCart" />
               </div>
 
               <wishlist v-if="!product.is_gift_card" @wishlistChange="addToWishList" :wishlistText="wishlistText" />
+
+              <size-guide v-if="!product.is_gift_card" :attributes="attributes" />
             </div>
           </div>
           <!-- End .product-filters-container -->
-          <description :product="product" />
           <!-- End .product-single-tabs -->
         </div>
         <!-- End .product-single-details -->
@@ -104,10 +83,7 @@
       <!-- End .row -->
     </div>
     <!-- End .product-single-container -->
-    <reviews :product="product" :meta="meta" :reviews="reviews" />
-    <login-modal />
-    <register-modal />
-    <out-of-stock :product_variation="product_variation" />
+ 
   </div>
 </template>
 <script>
@@ -167,6 +143,7 @@ export default {
       noRating: false,
       user: Window.auth,
       file: null,
+      quantity: null,
       useUrl: false,
       price: null,
       discounted_price: null,
@@ -189,7 +166,6 @@ export default {
       product_slug: this.product.slug,
       wishlistText: false,
       cartError: null,
-      quantity_count: 1,
       form: {
         description: null,
         rating: null,
@@ -279,6 +255,7 @@ export default {
         } catch (error) { }
       });
     }
+
   },
   methods: {
     getStarRating(e, rating) {
@@ -303,30 +280,26 @@ export default {
         });
     },
 
-    increment: function() {
-      quantity_count++;
-    },  
-
-   
-
     currentSlide: function (image) {
       this.fadeIn = !this.fadeIn;
       this.image = image;
-     
+      // jQuery(function() {
+      //   $(".product-single-default .product-single-carousel").owlCarousel({
+      //     nav: 0,
+      //     dotsContainer: "#carousel-custom-dots",
+      //     autoplay: !1,
+      //   });
+
+      //   $(".carousel-custom-dots .owl-dot").click(function() {
+      //     $(".product-single-carousel").trigger("to.owl.carousel", [
+      //       $(this).index(),
+      //       300,
+      //     ]);
+      //   });
+      // });
       setTimeout(() => {
         this.fadeIn = !this.fadeIn;
       }, 1000); // Will alert once, after a second.
-    },
-
-    increment() {
-      if (this.quantity_count > this.quantity) { return; }
-
-      this.quantity_count++;
-    },
-    decrement() {
-      if (this.quantity_count > 1) {
-        this.quantity_count--;
-      }
     },
 
     getAttribute: function ({ vTs, key }) {
@@ -367,7 +340,7 @@ export default {
       getReviews: "getReviews",
     }),
     addToCart: function () {
-      let qty = this.quantity_count;
+      let qty = 1;
 
       this.cText = "Adding....";
       this.loading = true;
@@ -383,8 +356,6 @@ export default {
           this.cText = "Add To Cart";
           this.loading = false;
         });
-
-
     },
     addToWishList: function () {
       this.wishlistText = true;
@@ -430,9 +401,3 @@ export default {
   },
 };
 </script>
-<style scoped>
- .mt-4 {
-   margin-left: 1.8rem !important;
- }
-</style>
-

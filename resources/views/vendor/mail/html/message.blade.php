@@ -2,7 +2,7 @@
 {{-- Header --}}
 @slot('header')
 @component('mail::header', ['url' => config('app.url')])
-<img src="https://hautesignatures.com/images/logo/1607193380Untitled%20design-29(1).png" style=" max-width:200px; height: 60px;" alt="Logo Image" >
+<img src="/images/logo/1607193380Untitled%20design-29(1).png" style=" max-width:200px; height: 60px;" alt="Logo Image" >
 
 @endcomponent
 @endslot

@@ -16,6 +16,24 @@
 
 
 @font-face {
+  font-family: luxurySaleFont9;
+  src: url(../fonts/mark-simonson-proxima-nova-semibold-ChC6l_3H\ \(1\).otf);
+  font-weight: bold;
+  font-display: swap;
+
+}
+
+
+@font-face {
+  font-family: luxurySaleFont10;
+  src: url(../fonts/mark-simonson-proxima-nova-black-DQbc3XgK.otf);
+  font-weight: bold;
+  font-display: swap;
+
+}
+
+
+@font-face {
   font-family: luxurySaleFont5;
     src: url(../fonts/ProximaNovaAltRegular.otf);
 
@@ -137,6 +155,8 @@ input {
 }
 
 
+
+
 input:-webkit-autofill, input:-webkit-autofill:focus {
   -webkit-box-shadow: 0 0 0 1000px white inset;
   -webkit-text-fill-color: #333;
@@ -144,7 +164,13 @@ input:-webkit-autofill, input:-webkit-autofill:focus {
 
 
 .bold{
-  font-family: 'luxurySaleFont5', sans-serif;
+  font-family: 'luxurySaleFont9', sans-serif;
+  color: #222;
+}
+
+
+.bold-4{
+  font-family: 'luxurySaleFont10', sans-serif;
   color: #222;
 }
 
@@ -1044,4 +1070,11 @@ footer a:hover, footer a:focus {
 }
 
 
+.border-raduis-btn {
+  border-radius: 9999px !important;
+}
+
+button {
+  cursor: pointer !important;
+}
 

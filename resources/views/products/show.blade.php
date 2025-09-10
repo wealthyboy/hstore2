@@ -13,13 +13,13 @@
     </div>
 </nav>
 
-<div class="container-fluid">
+<div class="container">
     <div>
         <product-show :attributes="{{ $attributes }}" :stock="{{ $stock }}" :inventory="{{ $inventory }}"  :product="{{ $product_variation }}" />
     </div>
     @if ( optional($product_variation->product)->related_products->count() )
 
-    <div class="products-section pt-0">
+    <div class="products-section pt-0 mt-3">
         <h2 class="section-title bold">Related Products</h2>
 
         <div class="products-slider owl-carousel owl-theme dots-top">

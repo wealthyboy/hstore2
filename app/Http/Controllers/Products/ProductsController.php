@@ -58,7 +58,6 @@ class ProductsController extends Controller
                             ->get();
 
 
-
         $products = ProductVariation::whereNotNull('name')
             ->where('allow', true)->paginate(4);
 
@@ -113,7 +112,6 @@ class ProductsController extends Controller
         return response()->json([
             'status' => 'success',
             'product_variation' => $variationValue,
-          
         ]);
     }
 
@@ -236,6 +234,17 @@ class ProductsController extends Controller
         $attributes =  collect($data);
         $attributes = $attributes->count() && $product->product_type == 'variable' ? $attributes : '{}';
         $product_variation->load(["images"]);
+
+        if ($request->ajax()) {
+
+              return response()->json([
+                'attributes' => trim($attributes) !== "{}" ? $attributes : [],
+                'inventory' => json_decode($inventory, true),
+                'stock' => json_decode($stock, true),
+                'product_variation' => $product_variation,
+            ]);
+        }
+       
 
 
         return view('products.show', compact('meta_tag_keywords', 'page_meta_description', 'inventory', 'stock', 'category', 'attributes', 'product_variation', 'page_title'));
