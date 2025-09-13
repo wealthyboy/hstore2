@@ -12176,6 +12176,7 @@ section {
     .home-slide1 {
         font-size: 2.5vw;
     }
+   
 }
 
 
@@ -12280,6 +12281,10 @@ section {
 
 .text-white {
     color: #fff;
+}
+
+.top-notice.text-white {
+    margin-top: 80px;
 }
 
 
