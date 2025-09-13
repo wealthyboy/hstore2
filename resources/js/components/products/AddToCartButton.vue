@@ -5,7 +5,7 @@
     type="button"
     name="add-to-cart"
     value="add_to_cart"
-    class="bold pt-4 pb-4 btn btn--primary btn-lg btn-block border-raduis-btn"
+    class="btn btn-sm btn-dark w-100 py-4"
   >
 
     <span v-if="loading" class="wave-loader">

@@ -57,19 +57,18 @@
 
             <gift-card-form v-if="product.is_gift_card" :product="product" />
 
-            <div v-if="!product.is_gift_card" class="row no-gutters mb-2">
+            <div v-if="!product.is_gift_card" class="row no-gutters mb-2 justify-content-between">
               <div v-if="cartError" class="text-danger text-center bold col-12">
                 {{ cartError }}
               </div>
             
 
-              <div v-if="!product.is_gift_card" class="col-10 ml-3">
+              <div v-if="!product.is_gift_card" class="col-10 ml-3 ">
                 <cart-button :loading="loading" :canAddToCart="canAddToCart" :cartText="cartText" @add="addToCart" />
               </div>
 
               <wishlist v-if="!product.is_gift_card" @wishlistChange="addToWishList" :wishlistText="wishlistText" />
 
-              <size-guide v-if="!product.is_gift_card" :attributes="attributes" />
             </div>
           </div>
           <!-- End .product-filters-container -->
@@ -348,6 +347,9 @@ export default {
         .then(() => {
           this.cText = "Add To Cart";
           this.loading = false;
+
+
+          this.$emit('product-added')
         })
         .catch((error) => {
           this.cText = "Add To Cart";

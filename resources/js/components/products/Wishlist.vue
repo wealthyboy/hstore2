@@ -1,5 +1,5 @@
 <template>
-    <div class="position-relative d-flex align-items-center  ml-3">
+    <div class="position-relative wishlist-box d-flex align-items-center ml-3 justify-content-center border">
          <div
 
         class="wishlist-icon "
@@ -64,3 +64,11 @@ export default {
   },
 };
 </script>
+
+<style>
+.wishlist-box {
+    height: 44px;
+    width: 44px;
+    border-radius: 50%;
+}
+</style>

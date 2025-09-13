@@ -12288,4 +12288,9 @@ section {
 }
 
 
+.border-raduis-btn {
+  border-radius: 9999px !important;
+}
+
+
 

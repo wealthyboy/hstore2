@@ -155,7 +155,7 @@
 
   <QuickBuyModal :show="showQuickBuy" @close="showQuickBuy = false">
       <QuickBuySkelenton v-if="quickBuyIsLoading" />
-      <QuickBuy v-if="!quickBuyIsLoading"  :attributes="attributes" :stock="stock" :inventory="inventory"  :product="product_variation" />
+      <QuickBuy @product-added="showQuickBuy = false" v-if="!quickBuyIsLoading"  :attributes="attributes" :stock="stock" :inventory="inventory"  :product="product_variation" />
   </QuickBuyModal>
 </div>
  
