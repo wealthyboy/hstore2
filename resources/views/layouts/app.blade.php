@@ -239,12 +239,12 @@
 								@foreach($footer_info as $info)
 								<div class="col-sm-4 col-6 col-lg-4">
 									<div class="widget">
-										<h2 class="widget-title">{{ title_case($info->title) }}</h2>
+										<h2 class="widget-title bold" >{{ title_case($info->title) }}</h2>
 										@if($info->children->count())
 										<ul class="">
 											@foreach($info->children as $info)
 											<li>
-												<a href="{{ $info->link }}">
+												<a class="font-weight-lighter text-neutral-500" href="{{ $info->link }}">
 													{{ $info->title }}
 												</a>
 											</li>
@@ -260,22 +260,16 @@
 
 						<div class="col-sm-6 col-xl-6">
 							<div class="widget widget-newsletter">
-								<h4 class="widget-title">Subscribe to our newsletter.</h4>
+								<h4 class="widget-title bold">Subscribe to our newsletter.</h4>
 								<p>Get all the latest information on events, sales and offers. Sign up for newsletter today.</p>
 								<news-letter />
 								
 							</div>
-							<div class="text-white">
-								By signing up for email, you agree to our Terms of Service and Privacy Policy.
-								By submitting your email, you agree to receive recurring automated promotional and personalized marketing text messages (e.g. cart reminders) from Theaurabydora at the cell number used when signing up. Consent is not a condition of any purchase. Reply HELP for help and STOP to cancel. Msg frequency varies. Msg & data rates may apply. View Terms & Privacy
-							</div>
+							
 
-							<div class="text-white">
-								By signing up for email, you agree to our Terms of Service and Privacy Policy.
-								By submitting your email, you agree to receive recurring automated promotional and personalized marketing text messages (e.g. cart reminders) from Theaurabydora at the cell number used when signing up. Consent is not a condition of any purchase. Reply HELP for help and STOP to cancel. Msg frequency varies. Msg & data rates may apply. View Terms & Privacy
-							</div>
+						
 
-							<div class="social-icons">
+							<div class="social-icons mt-3">
 								<a href="{{ $system_settings->facebook_link }}" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
 								<a href="{{ $system_settings->facebook_link }}" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
 								<a href="https://wa.me/{{ optional($system_settings)->store_phone }}" class="social-icon" target="_blank"><i class="fab fa-whatsapp"></i></a>

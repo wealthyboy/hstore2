@@ -19,11 +19,12 @@
                     </nav>
                     <h1 class="breadcrumb-title">{{ $breadcrumb }}</h1>
                     @if( isset($category) )
-                    <div class="category-description product-description">
+                    <div class="category-description product-description  ">
                         <p class="text-left description-text mb-0"> {{ isset($category) ? $category->description : '' }} 
-                            
                         </p>
-                        <a href="#" class="toggle-desc">Show More</a>
+                        <div class="text-center w-100">
+                            <a href="#" class="toggle-desc">Show More</a>
+                        </div>
                     </div>
 
                     @endif

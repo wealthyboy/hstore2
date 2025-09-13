@@ -7944,11 +7944,11 @@ header .separator {
     bottom: 0;
     left: 0;
     width: 100%;
-    max-width: 250px;
+    max-width: 395px;
     transform: translateX(-100%);
     transition: all 0.25s;
-    background-color: #1d1e20;
-    font-size: 1.2rem;
+    background-color: #2C3639;
+    font-size: 1.5rem;
     line-height: 1.5;
     box-shadow: 0.1rem 0 0.6rem 0 rgba(50, 50, 50, 0.65);
     visibility: hidden;
@@ -12216,6 +12216,59 @@ section {
   cursor: pointer;
   display: inline-block;
   margin-top: 5px;
+}
+
+
+.text-neutral-350 {
+    color: #efefef  !important;
+}
+
+.text-neutral-400 {
+    color: #e6e6e6  !important;
+}
+
+.text-neutral-50 {
+    color: #fafafa !important;
+}
+
+.text-neutral-500 {
+    color: #d0d0d0 !important;
+}
+
+.text-neutral-600 {
+    color: #7e7e7e  !important;
+}
+
+.text-neutral-650 {
+    color: #757575  !important;
+}
+
+.text-neutral-700 {
+    color: #4d4d4d  !important;
+}
+
+.text-neutral-800 {
+    color: #272727  !important;
+}
+
+.text-neutral-900 {
+    color: #000  !important;
+}
+
+.text-red-500 {
+    color: #be2d2e  !important;
+}
+
+.text-red-600 {
+    color: #9d2226  !important;
+}
+
+.text-transparent {
+    color: transparent  !important;
+}
+
+.text-white {
+    color: #fff;
 }
 
 

@@ -164,7 +164,7 @@ input:-webkit-autofill, input:-webkit-autofill:focus {
 
 
 .bold{
-  font-family: 'luxurySaleFont9', sans-serif;
+  font-family: 'luxurySaleFont10', sans-serif;
   color: #222;
 }
 
@@ -1033,16 +1033,16 @@ footer a , footer p{
 }
 
 footer a{
-  font-size: 15px;
+  font-size: 13px;
 }
 
 
 footer a:hover, footer a:focus {
-  color: #fff;
+  color: #fff !important;
 }
 
 .footer {
-  background: #000;
+  background: #2C3639;
 }
 
 @media only screen and (max-width: 850px) {

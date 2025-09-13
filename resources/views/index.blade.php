@@ -106,10 +106,10 @@
                     </h3>
                     <div class="price-box">
                         @if (optional($related_product)->salePrice() )
-                        <span class="old-price">{{ optional($related_product)->currency }}{{ number_format(optional($related_product)->price)  }}</span>
-                        <span class="product-price">{{ optional($related_product)->currency }}{{ number_format(optional($related_product)->salePrice())  }}</span>
+                        <span class="old-price bold">{{ optional($related_product)->currency }}{{ number_format(optional($related_product)->price)  }}</span>
+                        <span class="product-price bold text-danger">{{ optional($related_product)->currency }}{{ number_format(optional($related_product)->salePrice())  }}</span>
                         @else
-                        <span title="{{ optional($related_product)->default_discounted_price }} pppp" class="product-price  pppp">{{ optional($related_product)->currency }}{{ number_format(optional($related_product)->converted_price)  }}</span>
+                        <span title="{{ optional($related_product)->default_discounted_price }} " class="product-price  bold">{{ optional($related_product)->currency }}{{ number_format(optional($related_product)->converted_price)  }}</span>
                         @endif
                     </div><!-- End .price-box -->
                 </div><!-- End .product-details -->

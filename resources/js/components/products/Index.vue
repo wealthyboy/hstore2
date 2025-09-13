@@ -39,22 +39,21 @@
 
 
                 <div class="toolbox-right">
-                    <a @click.prevent="toggleSideBar" href="#" class="sidebar-toggle">
-                        <svg data-name="Layer 3" id="Layer_3" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-                            <line x1="15" x2="26" y1="9" y2="9" class="cls-1"></line>
-                            <line x1="6" x2="9" y1="9" y2="9" class="cls-1"></line>
-                            <line x1="23" x2="26" y1="16" y2="16" class="cls-1"></line>
-                            <line x1="6" x2="17" y1="16" y2="16" class="cls-1"></line>
-                            <line x1="17" x2="26" y1="23" y2="23" class="cls-1"></line>
-                            <line x1="6" x2="11" y1="23" y2="23" class="cls-1"></line>
-                            <path d="M14.5,8.92A2.6,2.6,0,0,1,12,11.5,2.6,2.6,0,0,1,9.5,8.92a2.5,2.5,0,0,1,5,0Z" class="cls-2">
-                            </path>
-                            <path d="M22.5,15.92a2.5,2.5,0,1,1-5,0,2.5,2.5,0,0,1,5,0Z" class="cls-2"></path>
-                            <path d="M21,16a1,1,0,1,1-2,0,1,1,0,0,1,2,0Z" class="cls-3"></path>
-                            <path d="M16.5,22.92A2.6,2.6,0,0,1,14,25.5a2.6,2.6,0,0,1-2.5-2.58,2.5,2.5,0,0,1,5,0Z" class="cls-2">
-                            </path>
-                        </svg>
-                        <span>Filter</span>
+                    <a @click.prevent="toggleSideBar" href="#" class="sidebar-toggle ">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <!-- Top line -->
+                                <line x1="4" y1="6" x2="20" y2="6"></line>
+                                <circle cx="9" cy="6" r="2"></circle>
+                                
+                                <!-- Middle line -->
+                                <line x1="4" y1="12" x2="20" y2="12"></line>
+                                <circle cx="15" cy="12" r="2"></circle>
+                                
+                                <!-- Bottom line -->
+                                <line x1="4" y1="18" x2="20" y2="18"></line>
+                                <circle cx="12" cy="18" r="2"></circle>
+                            </svg>
+
                     </a>
                     <div class="select-custom">
                         <select  name="sort_by" v-model="sortBy"   @change="updateSort" id="sort_by" class="form-control">
