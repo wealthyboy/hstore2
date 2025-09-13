@@ -11,7 +11,7 @@
             </div>
         </div>
 
-        <div class="sidebar-overlay"></div>
+        <div @click="toggleSideBar" class="sidebar-overlay"></div>
         <div class="sidebar-toggle"><i class="fas fa-sliders-h"></i></div>
         <aside  
             v-if="!loading" 

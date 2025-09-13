@@ -7,7 +7,7 @@
           data-toggle="collapse"
           href="#widget-prices"
           role="button"
-          class="bold"
+          class="bold-2"
           aria-expanded="true"
           aria-controls="widget-prices"
         >
@@ -48,7 +48,7 @@
     >
       <h3 class="widget-title">
         <a
-          class="collapsed bold"
+          class="collapsed bold-2"
           :data-toggle="'collapse'"
           :href="'#widget-body-' + category.id"
           role="button"

@@ -84,6 +84,18 @@
     margin-bottom: 10rem !important;
 }
 
+@media (min-width: 565px) {
+    .mt-sm-0 {
+        margin-top: 0 !important;
+    }
+    .mt-sm-1 {
+        margin-top: 1rem !important;
+    }
+    .mt-sm-2 {
+        margin-top: 2rem !important;
+    }
+}
+
 @media (min-width: 768px) {
     .mt-md-0 {
         margin-top: 0 !important;
@@ -12172,7 +12184,6 @@ section {
     
     /* Make mobile header look like first image */
     .header-middle {
-        background-color:  #a27b5b; /* match your mobile background */
         display: flex;
         align-items: center;
         justify-content: space-between;
