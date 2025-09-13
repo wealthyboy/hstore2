@@ -2,9 +2,9 @@
 
 use Illuminate\Http\Request;
 
-use App\Favorite;
+use App\Models\Favorite;
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Models\User;
 use Auth;
 use App\Http\Resources\FavoritesResource;
 
@@ -36,7 +36,6 @@ class FavoritesController  extends Controller
 		$user = $request->user();
 		$favorite = Favorite::CreateOrDelete($user->id,$request->product_variation_id);
 		return FavoritesResource::collection($user->favorites);
-	}
 
 	public function destroy(Request $request,$id) 
 	{ 

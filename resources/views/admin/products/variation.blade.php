@@ -105,7 +105,7 @@
                     <div class="  text-center"></div>
                     <div class="col-md-12 col-sm-6 col-xs-6">
                         <div id="j-drop" class=" j-drop">
-                            <input accept="image/*" required="true" onchange="handleFiles(this,'variation_image[{{ $counter }}]')" class="upload_input" data-msg="Upload  your image" type="file" name="img" />
+                            <input accept="image/*" required="true" onchange="getFile(this,'variation_image[{{ $counter }}]')" class="upload_input" data-msg="Upload  your image" type="file" name="img" />
                             <div class=" upload-text  {{ $counter }}">
                                 <a class="" href="#">
                                     <img class="" src="/backend/img/upload_icon.png">

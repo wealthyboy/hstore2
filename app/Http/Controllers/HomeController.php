@@ -31,11 +31,16 @@ class HomeController extends Controller
         $banners = Banner::banners()->get();
         $sliders = Banner::sliders()->get();
 
-        $products = ProductVariation::orderBy('updated_at', 'DESC')
-            ->take(8)->get();
+        $products = ProductVariation::whereNotNull('price')
+            ->where('price', '>', 0) // optional: only positive prices
+            ->whereNotNull('name')
+            ->where('name', '!=', '') // makes sure name is not empty string
+            ->orderBy('updated_at', 'DESC')
+            ->take(8)
+            ->get();
+
         $reviews = Review::where('is_verified', 1)->inRandomOrder()->orderBy('created_at', 'DESC')->take(20)->get();
         $posts = Information::orderBy('created_at', 'DESC')->where(['blog' => true, 'is_active' => true])->take(6)->get();
-
         return view('index', compact('sliders','banners', 'reviews', 'products', 'posts'));
 
         if (!$site_status->make_live) {

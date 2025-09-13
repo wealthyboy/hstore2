@@ -38,10 +38,49 @@
         -{{ product.default_percentage_off }}%
       </div>
 
+      <div
+        @click="addToWishList(product.id)"
+
+        class="wishlist-icon position-absolute"
+        style="top: 10px; right: 10px; cursor: pointer;"
+      >
+        <!-- Outlined heart -->
+        <svg
+          v-if="!is_wishlist"
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <path
+            d="M19.6706 5.4736C17.6806 3.8336 14.7206 4.1236 12.8906 5.9536L12.0006 6.8436L11.1106 5.9536C9.29063 4.1336 6.32064 3.8336 4.33064 5.4736C2.05064 7.3536 1.93063 10.7436 3.97063 12.7836L11.6406 20.4536C11.8406 20.6536 12.1506 20.6536 12.3506 20.4536L20.0206 12.7836C22.0706 10.7436 21.9506 7.3636 19.6706 5.4736Z"
+            stroke="currentColor"
+            stroke-miterlimit="10"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+        </svg>
+
+        <!-- Filled heart -->
+        <svg
+          v-else
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="black"
+        >
+          <path
+            d="M19.6706 5.4736C17.6806 3.8336 14.7206 4.1236 12.8906 5.9536L12.0006 6.8436L11.1106 5.9536C9.29063 4.1336 6.32064 3.8336 4.33064 5.4736C2.05064 7.3536 1.93063 10.7436 3.97063 12.7836L11.6406 20.4536C11.8406 20.6536 12.1506 20.6536 12.3506 20.4536L20.0206 12.7836C22.0706 10.7436 21.9506 7.3636 19.6706 5.4736Z"
+          />
+        </svg>
+      </div>
+
       <!-- Quick Buy Button (overlay, bottom) -->
-      <div class="quick-buy-overlay position-absolute w-100 text-center px-2">
+      <div class="quick-buy-overlay position-absolute w-100 text-center">
         <button
-          class="btn btn-sm btn-dark w-100"
+          class="btn btn-sm btn-dark w-100 py-4"
           @click.prevent="openQuickBuy(product)"
         >
           <i class="fas fa-bolt mr-1"></i> Quick Buy
@@ -65,29 +104,29 @@
         </div>
 
           <div class="d-flex mb-1">
-          <div
-            v-for="(color, index) in product.product.colours"
-            :key="index"
-            class="mr-1 cursor-pointer"
-            @click="getColorImage(product, color)"
-            :style="{
-              border:
-                (product.active_color.name === color.name ? '2px' : '0px') + ' solid #000',
-              height: '18px',
-              width: '18px',
-              borderRadius: '50%',
-              backgroundColor: color.image ? '' : color.color_code,
-              backgroundImage: color.image ? `url(${color.image})` : 'none',
-              backgroundSize: color.image ? 'cover' : 'initial',
-            }"
-          ></div>
+            <div
+              v-for="(color, index) in product.product.colours"
+              :key="index"
+              class="mr-1 cursor-pointer"
+              @click="getColorImage(product, color)"
+              :style="{
+                border:
+                  (product.active_color.name === color.name ? '2px' : '0px') + ' solid #000',
+                height: '18px',
+                width: '18px',
+                borderRadius: '50%',
+                backgroundColor: color.image ? '' : color.color_code,
+                backgroundImage: color.image ? `url(${color.image})` : 'none',
+                backgroundSize: color.image ? 'cover' : 'initial',
+              }"
+            ></div>
         </div>
 
         <!-- Name + Price -->
         <div class="d-sm-flex color--primary justify-content-between align-items-center">
           <div class="cl">
             <div class="text-left mr-md-5">
-              <a :href="product.link">{{ product.name }}</a>
+               <a :href="product.link">{{ product.name }}</a>
             </div>
           </div>
 
@@ -205,10 +244,10 @@ export default {
        onImageLoad() {
         this.imageLoaded = true
       },
+      
 
       openQuickBuy(product) {
         this.showQuickBuy = true;
-
          axios.get(product.link)
           .then(response => {
             let res = response.data
@@ -231,10 +270,16 @@ export default {
             addProductToWishList: 'addProductToWishList'
         }),
         addToWishList: function(product_variation_id){
+
+            if (this.is_wishlist) {
+                this.is_wishlist = false
+            }
+
             this.addProductToWishList({
                 product_variation_id:product_variation_id,
             }).then((response)=>{
-                if(this.wishlist.some(wishlist => wishlist.product_variation.id === product_variation_id)){
+                if( this.wishlist.some(wishlist => wishlist.product_variation.id === product_variation_id) ){
+                  this.is_wishlist = true
                   $("#addCartModal").modal('show') 
                 }
             })
@@ -284,8 +329,6 @@ export default {
 .fade-leave-to {
   opacity: 0;
 }
-
-
 
 .quick-buy-overlay {
   bottom: 0;

@@ -17,7 +17,7 @@
                                         top: -28px;
                                         left: 0;
                                         font-size: 11px;
-                                        line-height: 1.0714285718;" class="control-label">{{ $product_attribute->name }} {{ optional($variant)->id }} </label>
+                                        line-height: 1.0714285718;" class="control-label is-focused">{{ $product_attribute->name }}  </label>
                         <select name="{{ optional($variantion_value)->attribute_id  ? "edit_product_attributes[$variant->id][$variantion_value->id][$product_attribute->id]" : "add_to_product_attributes[$variant->id][$product_attribute->id]" }}" class="form-control">
                             @if ( optional($variantion_value)->name !== null)
                             <option value="">
@@ -48,7 +48,7 @@
         <div id="variation-panel" class="hide v-panel">
             <div class="clearfix"></div>
             <div class="col-md-12">
-                <div class="form-group label-floating is-empty">
+                <div class="form-group label-floating is-empty is-focused">
                     <label class="control-label">Name</label>
                     <input name="edit_variation_name[{{ $variant->id }}]" type="text" value="{{ $variant->name }}" class="form-control">
                     <span class="material-input"></span>

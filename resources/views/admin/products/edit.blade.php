@@ -388,9 +388,9 @@
                         <div class="col-sm-9">
                            @foreach($product_attributes as $product_attribute)
                            <div class="col-md-3 col-sm-6 col-xs-6">
-                              <div class="form-group label-floating">
+                              <div class="form-group label-floating is-focused">
                                  <label class="control-label">{{ $product_attribute->name }}</label>
-                                 <select name="#" class="form-control product-attributes" title="Choose {{ $product_attribute->name }}" data-style="select-with-transition" data-size="7">
+                                 <select name="#" class="form-control product-attributes is-focused" title="Choose {{ $product_attribute->name }}" data-style="select-with-transition" data-size="7">
                                     <option value="" selected>Select</option>
                                     <option value="{{ $product_attribute->id }}">&nbsp;&nbsp;&nbsp;{{ $product_attribute->name }} </option>
                                  </select>

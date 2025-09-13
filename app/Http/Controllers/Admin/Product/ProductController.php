@@ -164,26 +164,26 @@ class ProductController extends Controller
         $sale_price = $request->has('sale_price') ? $request->sale_price : null;
         $product->product_name = $request->product_name;
         $product->price = $request->price;
-        $product->sale_price   = $sale_price;
-        $product->slug         = str_slug($request->product_name);
-        $product->weight       = $request->weight;
-        $product->height       = $request->height;
-        $product->image        = $request->image;
-        $product->width        = $request->width;
+        $product->sale_price = $sale_price;
+        $product->slug  = str_slug($request->product_name);
+        $product->weight = $request->weight;
+        $product->height = $request->height;
+        $product->image  = $request->image;
+        $product->width  = $request->width;
         $product->meta_description = $request->meta_description;
         $product->meta_keywords = $request->meta_keywords;
         $product->meta_title = $request->meta_title;
         $product->description  = $request->description;
         $product->sale_price_expires = Helper::getFormatedDate($request->sale_price_expires);
-        $product->sale_price_starts  = Helper::getFormatedDate($request->sale_price_starts);
-        $product->allow       = $request->allow ? $request->allow : 0;
-        $product->brand_id    = $request->brand_id;
+        $product->sale_price_starts = Helper::getFormatedDate($request->sale_price_starts);
+        $product->allow = $request->allow ? $request->allow : 0;
+        $product->brand_id = $request->brand_id;
         $product->total = 2;
-        $product->featured =  $request->featured_product ? 1 : 0;
+        $product->featured = $request->featured_product ? 1 : 0;
         $product->pending = 0;
         $product->product_type = $request->type;
-        $product->attributes  = $this->attributes($request);
-        $product->quantity  = $request->quantity;
+        $product->attributes = $this->attributes($request);
+        $product->quantity = $request->quantity;
         $product->sku = str_random(6);
         if ($request->filled('has_more_variation')) {
             $product->has_variants  = 1;
@@ -249,12 +249,12 @@ class ProductController extends Controller
         $product_variation->slug = $request->type == 'simple' ? str_slug($request->product_name) : null;
         $product_variation->width = $request->width;
         $product_variation->sale_price_expires = Helper::getFormatedDate($request->sale_price_expires);
-        $product_variation->sale_price_starts  = Helper::getFormatedDate($request->sale_price_starts);
-        $product_variation->is_gift_card       = $request->is_gift_card ? 1 : 0;
+        $product_variation->sale_price_starts = Helper::getFormatedDate($request->sale_price_starts);
+        $product_variation->is_gift_card = $request->is_gift_card ? 1 : 0;
         $product_variation->length = $request->length;
-        $product_variation->weight      = $request->weight;
-        $product_variation->quantity    = $request->quantity;
-        $product_variation->allow       = $request->allow ? $request->allow : 0;
+        $product_variation->weight = $request->weight;
+        $product_variation->quantity = $request->quantity;
+        $product_variation->allow = $request->allow ? $request->allow : 0;
         $product_variation->sku = str_random(6);
         $product_variation->product_id = $product->id;
         $product_variation->default = 1;
@@ -320,7 +320,6 @@ class ProductController extends Controller
                         $data[$attribute_id] = ['parent_id' => $parent_id];
                         $name = Attribute::find($attribute_id)->name;
 
-
                         /**
                          * 
                          * Sync the the attributes and categories
@@ -339,25 +338,22 @@ class ProductController extends Controller
                     //$category->attributes()->syncWithoutDetaching($cA);
 
                     $product_variation = new  ProductVariation();
-                    // $images  = $request->images;
-                    // $image1  = array_shift($images);
+                    //$images = $request->images;
+                    //$image1 = array_shift($images);
+                    $name = isset($request->variation_name[$key]) ? $request->variation_name[$key] : $request->product_name;
                     $variation_images = !empty($request->variation_images[$key]) ? $request->variation_images[$key] : [];
-                    $product_variation->name = $request->variation_name[$key];
-                    $product_variation->slug   = str_slug($request->variation_name[$key]);
-
+                    $product_variation->name = $name;
+                    $product_variation->slug = str_slug($name);
                     $product_variation->price = null !== $request->variation_price[$key] ? $request->variation_price[$key] : $request->price;
                     $product_variation->sale_price =  null !== $request->variation_sale_price[$key] ? $request->variation_sale_price[$key] : $request->sale_price;
                     $product_variation->image = isset($request->variation_image[$key]) ? $request->variation_image[$key] : null;
                     $product_variation->width = $request->variation_width[$key];
                     $product_variation->sale_price_expires = Helper::getFormatedDate($request->variation_sale_price_expires[$key]);
                     $product_variation->sale_price_starts = Helper::getFormatedDate($request->variation_sale_price_starts[$key]);
-
                     $product_variation->length = $request->variation_length[$key];
                     $product_variation->weight = $request->variation_weight[$key];
                     $product_variation->allow  = $request->allow ? $request->allow : 0;
-
-                    // $product_variation->extra_percent_off  = $request->extra_percent_off[$key];
-
+                    //$product_variation->extra_percent_off  = $request->extra_percent_off[$key];
                     $product_variation->quantity  = $request->variation_quantity[$key];
                     $product_variation->sku = str_random(6);
                     $product_variation->product_id = $product->id;
@@ -770,9 +766,11 @@ class ProductController extends Controller
                         }
 
 
-                        $sale_price_expires = !empty($request->edit_variation_sale_price_expires[$variant_id]) ?   Helper::getFormatedDate($request->edit_variation_sale_price_expires[$variant_id])->toDateString()  : Helper::getFormatedDate($request->sale_price_expires);
-                        $sale_price_starts = !empty($request->edit_variation_sale_price_starts[$variant_id]) ?   Helper::getFormatedDate($request->edit_variation_sale_price_starts[$variant_id])->toDateString()  : Helper::getFormatedDate($request->sale_price_starts);
-                        //// dd($sale_price_expires,   $sale_price_starts, $sale_price_expires);
+                        $sale_price_expires = !empty($request->edit_variation_sale_price_expires[$variant_id]) ? Helper::getFormatedDate($request->edit_variation_sale_price_expires[$variant_id])->toDateString()  : Helper::getFormatedDate($request->sale_price_expires);
+                        $sale_price_starts = !empty($request->edit_variation_sale_price_starts[$variant_id]) ? Helper::getFormatedDate($request->edit_variation_sale_price_starts[$variant_id])->toDateString()  : Helper::getFormatedDate($request->sale_price_starts);
+                        $name = isset($request->edit_variation_name[$variant_id]) ? $request->edit_variation_name[$variant_id] : $request->product_name;
+                        $variation_images = !empty($request->variation_images[$variant_id]) ? $request->variation_images[$variant_id] : [];
+                        ////dd($sale_price_expires,   $sale_price_starts, $sale_price_expires);
 
                         $product_variation = ProductVariation::updateOrCreate(
                             ['id' => $variant_id],
@@ -781,18 +779,16 @@ class ProductController extends Controller
                                 'sale_price' => $request->edit_variation_sale_price[$variant_id] ? $request->edit_variation_sale_price[$variant_id]  : $sale_price,
                                 'width' => $request->edit_variation_width[$variant_id]  ? $request->edit_variation_width[$variant_id] : $request->width,
                                 'length' => $request->edit_variation_length[$variant_id],
-                                'image' =>  isset($request->edit_variation_image[$variant_id])  ? $request->edit_variation_image[$variant_id] : null ,
+                                'image' => isset($request->edit_variation_image[$variant_id])  ? $request->edit_variation_image[$variant_id] : null ,
                                 'sale_price_expires' => $sale_price_expires,
                                 'sale_price_starts' => $sale_price_starts,
                                 'weight' => $request->edit_variation_weight[$variant_id],
                                 'quantity' => $request->edit_variation_quantity[$variant_id],
                                 'product_id' => $product->id,
                                 //'extra_percent_off'  => $request->extra_percent_off[$variant_id],
-                                'name' => $request->edit_variation_name[$variant_id],
-                                'slug' => str_slug($request->edit_variation_name[$variant_id]),
+                                'name' => $name,
+                                'slug' => str_slug($name),
                                 'allow' => $request->allow ? $request->allow : 0,
-
-
                             ]
                         );
 

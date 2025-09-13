@@ -182,7 +182,9 @@
 
 										<div class="col-lg-3">
 											<div class="col-lg-12 p-0">
-												<a title="{{ $category->title }}" href="{{ $category->image_custom_link }}"><img alt="{{ $category->image }}" class="product-promo"></a>
+												<a title="{{ $category->title }}" href="{{ $category->image_custom_link }}">
+													<img alt="{{ $category->image }}" src="{{ $category->image }}" class="product-promo">
+												</a>
 											</div><!-- End .col-lg-4 -->
 										</div>
 
@@ -261,7 +263,23 @@
 								<h4 class="widget-title">Subscribe to our newsletter.</h4>
 								<p>Get all the latest information on events, sales and offers. Sign up for newsletter today.</p>
 								<news-letter />
+								
 							</div>
+							<div class="text-white">
+								By signing up for email, you agree to our Terms of Service and Privacy Policy.
+								By submitting your email, you agree to receive recurring automated promotional and personalized marketing text messages (e.g. cart reminders) from Theaurabydora at the cell number used when signing up. Consent is not a condition of any purchase. Reply HELP for help and STOP to cancel. Msg frequency varies. Msg & data rates may apply. View Terms & Privacy
+							</div>
+
+							<div class="text-white">
+								By signing up for email, you agree to our Terms of Service and Privacy Policy.
+								By submitting your email, you agree to receive recurring automated promotional and personalized marketing text messages (e.g. cart reminders) from Theaurabydora at the cell number used when signing up. Consent is not a condition of any purchase. Reply HELP for help and STOP to cancel. Msg frequency varies. Msg & data rates may apply. View Terms & Privacy
+							</div>
+
+							<div class="social-icons">
+								<a href="{{ $system_settings->facebook_link }}" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+								<a href="{{ $system_settings->facebook_link }}" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+								<a href="https://wa.me/{{ optional($system_settings)->store_phone }}" class="social-icon" target="_blank"><i class="fab fa-whatsapp"></i></a>
+							</div><!-- End .social-icons -->
 							<p>
 						
 							</p>
@@ -271,12 +289,8 @@
 			</div><!-- End .footer-middle -->
 
 			<div class="footer-bottom">
-					<div class="contact-widget  d-flex justify-content-center ">
-								<div class="social-icons">
-									<a href="{{ $system_settings->facebook_link }}" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
-									<a href="{{ $system_settings->facebook_link }}" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
-									<a href="https://wa.me/{{ optional($system_settings)->store_phone }}" class="social-icon" target="_blank"><i class="fab fa-whatsapp"></i></a>
-								</div><!-- End .social-icons -->
+				<div class="contact-widget  d-flex justify-content-center ">
+								
 				</div>
 				<div class="container d-flex justify-content-center align-items-center flex-wrap">
 					

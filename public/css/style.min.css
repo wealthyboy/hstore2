@@ -12194,3 +12194,29 @@ section {
 }
 
 
+.quick-view  {
+    display: block;
+    margin: 3px -3px 0;
+    height: 450px !important;
+    overflow: scroll !important;
+}
+
+.cursor-pointer {
+   cursor: pointer !important;
+}
+
+.carousel-custom-dots-mobile  {
+    flex-direction:row !important;
+    scroll-behavior: smooth;
+}
+
+.toggle-desc {
+  color: #000;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+
+

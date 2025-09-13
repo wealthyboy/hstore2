@@ -2,8 +2,9 @@
   <div class="">
     <div class="product-single-container product-single-default">
       <div class="row">
-        <div class="col-md-1 product-single-gallery d-none d-lg-block">
-          <div class="prod-thumbnail carousel-custom-dots owl-dots" id="carousel-custom-dots">
+        <div class="col-md-1 product-single-gallery quick-view d-none d-lg-block ">
+          
+          <div class="prod-thumbnail carousel-custom-dots owl-dots quick-view" id="carousel-custom-dots">
             <div class="owl-dot">
               <img class="animated" @click.prevent="currentSlide(product.image_to_show)" :src="image_tn" />
             </div>
@@ -20,10 +21,7 @@
               <div class="product-item">
                 <img class="product-single-image" :data-zoom-image="image" :src="image" />
               </div>
-              <!-- <div v-for="image in images" :key="image.id" class="product-item">
-                <img class="product-single-image" :data-zoom-image="image.image" :src="image.image"
-                  v-if="image.image !== ''" :alt="image.image_tn" />
-              </div> -->
+             
             </div>
           </div>
         </div>
@@ -47,7 +45,6 @@
               :product="product" 
               :name="name"
               :discounted_price="discounted_price" 
-             
           />
 
           <div class="clearfix"></div>
@@ -66,7 +63,7 @@
               </div>
             
 
-              <div v-if="!product.is_gift_card" class="col-11 ml-3">
+              <div v-if="!product.is_gift_card" class="col-10 ml-3">
                 <cart-button :loading="loading" :canAddToCart="canAddToCart" :cartText="cartText" @add="addToCart" />
               </div>
 

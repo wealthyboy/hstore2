@@ -1078,3 +1078,11 @@ button {
   cursor: pointer !important;
 }
 
+
+.quick-view  {
+    display: block;
+    margin: 3px -3px 0;
+    height: 450px;
+    overflow: scroll !important;
+}
+

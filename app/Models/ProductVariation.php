@@ -50,8 +50,8 @@ class ProductVariation extends Model
     ];
 
     protected $casts = [
-    'sale_price_expires' => 'datetime',
-    'sale_price_starts' => 'datetime',
+        'sale_price_expires' => 'datetime',
+        'sale_price_starts' => 'datetime',
     ];
 
     public $appends = [
@@ -72,6 +72,7 @@ class ProductVariation extends Model
         'active_color',
         'average_rating',
         'average_rating_count',
+        'item_is_wishlist'
     ];
 
 
@@ -112,7 +113,7 @@ class ProductVariation extends Model
 
 
     public function meta_fields()
-    {
+    {  
         return  $this->belongsToMany(Attribute::class, 'attribute_product_variation', 'product_variation_id', 'attribute_id')
             ->groupBy('attribute_id')
             ->withPivot([
@@ -235,4 +236,13 @@ class ProductVariation extends Model
     {
         return $this->link();
     }
+
+    public function getItemIsWishlistAttribute()
+	{
+		if (auth()->check()) {
+			return auth()->user()->favorites()->where("product_variation_id", $this->id)->count();
+		}
+
+		return null;
+	}
 }

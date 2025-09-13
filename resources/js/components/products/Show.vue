@@ -2,8 +2,16 @@
   <div class="">
     <div class="product-single-container product-single-default">
       <div class="row">
-        <div class="col-md-1 product-single-gallery d-none d-lg-block">
-          <div class="prod-thumbnail carousel-custom-dots owl-dots" id="carousel-custom-dots">
+           
+        <div class="col-md-1 product-single-gallery d-none d-lg-block ">
+
+          <div class="arrow-btn text-center arrow-up" @click="scrollUp">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 8l6 6H6z"/>
+            </svg>
+          </div>
+             
+          <div     ref="thumbContainer"  class="prod-thumbnail carousel-custom-dots owl-dots   quick-view" id="carousel-custom-dots">
             <div class="owl-dot">
               <img class="animated" @click.prevent="currentSlide(product.image_to_show)" :src="image_tn" />
             </div>
@@ -11,7 +19,16 @@
               <img :src="image.image_tn" :alt="image.image_tn" />
             </div>
           </div>
+
+            <div class="text-center cursor-pointer" @click="scrollDown">
+              <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black" viewBox="0 0 24 24">
+                <path d="M12 16l-6-6h12z"/>
+              </svg>
+              
+            </div>
+           
         </div>
+       
 
         <!-- <images :images="images" :image="image" /> -->
         <div class="col-md-6 product-single-gallery">
@@ -30,7 +47,7 @@
 
         <!-- End .product-single-gallery -->
         <div class="d-none d-xs-block d-block d-lg-none d-sm-block d-md-none">
-          <div class="prod-thumbnail d-flex carousel-custom-dots owl-dots" id="carousel-custom-dots">
+          <div class="prod-thumbnail d-flex carousel-custom-dots carousel-custom-dots-mobile owl-dots" id="carousel-custom-dots">
             <div class="owl-dot">
               <img class="animated" @click.prevent="currentSlide(product.image_to_show)" :src="image_tn" />
             </div>
@@ -97,6 +114,7 @@
           </div>
           <!-- End .product-filters-container -->
           <description :product="product" />
+
           <!-- End .product-single-tabs -->
         </div>
         <!-- End .product-single-details -->
@@ -404,6 +422,21 @@ export default {
         this.is_wishlist = false;
       });
     },
+    scrollUp() {
+      this.$refs.thumbContainer.scrollBy({
+        top: -100,
+        behavior: "smooth"
+      });
+    },
+    scrollDown() {
+      this.$refs.thumbContainer.scrollBy({
+        top: 150,
+        behavior: "smooth"
+      });
+    },
+    currentSlide(image) {
+      this.currentImage = image;
+    },
     submitReview() {
       let input = document.querySelectorAll(".rating_required");
       this.validateForm({ context: this, input: input });
@@ -434,5 +467,37 @@ export default {
  .mt-4 {
    margin-left: 1.8rem !important;
  }
+
+ .quick-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 450px;
+  position: relative;
+}
+
+#carousel-custom-dots {
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: smooth;
+}
+
+.owl-dot {
+  margin: 5px 0;
+}
+
+.arrow-btn {
+  cursor: pointer;
+  padding: 6px;
+  color: #666;
+  transition: color 0.2s ease;
+}
+
+.arrow-btn:hover {
+  color: #000;
+}
+
 </style>
 

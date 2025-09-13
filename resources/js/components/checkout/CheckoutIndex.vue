@@ -75,7 +75,7 @@
                       <div class="product--price--amount">
                         <span class="retail--title text-gold">SALE PRICE</span>
                         <span class="product--price text-danger">{{ meta.currency }}{{
-                          cart.product_variation.discounted_price | priceFormat }}</span>
+                          cart.product_variation.discounted_price | priceFormat }}llll</span>
                         <span class="retail--title">{{ cart.product_variation.percentage_off }}% off</span>
                       </div>
 
@@ -102,7 +102,6 @@
                     </p>
                     <p v-if="cart.variations.length"> {{ cart.variations.toString() }}</p>
                     <p class="text-danger bold" v-if="cart.quantity < 1"> This item is no longer available</p>
-
                   </div>
 
                 </div>
@@ -359,16 +358,20 @@
                     <!--Product Ratting-->
                     <div class="product-item-prices d-flex" v-if="cart.product_variation.discounted_price">
                       <div class="product--price--amount mr-5">
-                        <span class="retail--title text-gold">SALE PRICE</span>
-                        <span class="product--price text-danger">{{ meta.currency }}{{
-                          cart.product_variation.discounted_price | priceFormat }}</span>
-                        <span class="retail--title">{{ cart.product_variation.percentage_off }}% off</span>
+                        <span class="retail--title text-gold">SALE PRICEss</span>
+                        <span class="product--price text-danger">
+                          {{ cart.product_variation.discounted_price | priceFormat }}
+                        </span>
+                        <span class="retail--title">
+                          {{ cart.product_variation.percentage_off }}% off
+                        </span>
                       </div>
 
                       <div class="product--price--amount retail ml-5">
                         <span class="retail--title text-gold">PRICE</span>
-                        <span class="product--price retail--price ">{{ meta.currency }}{{ cart.product_variation.price |
-                          priceFormat }}</span>
+                        <span class="product--price retail--price ">
+                          {{ meta.currency }}
+                          {{ cart.product_variation.price | priceFormat }}</span>
                         <span class="retail--title"></span>
                       </div>
                     </div>

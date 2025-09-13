@@ -3,7 +3,10 @@
     <!-- Header with Add Review button -->
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h4 class="mb-0 font-weight-bold">
-        Reviews <span class="text-warning">5.0 ★★★★☆</span> (3)
+        Reviews <span class="text-warning">5.0 
+          ★★★★☆
+
+        </span>({{ product.average_rating_count }})
       </h4>
       <button
         class="btn btn-sm btn-dark"

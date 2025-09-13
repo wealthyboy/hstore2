@@ -18,9 +18,16 @@
                         </div>
                     </nav>
                     <h1 class="breadcrumb-title">{{ $breadcrumb }}</h1>
-                    <div class="category-description">
-                        <p class="text-left"> {{ isset($category) ? $category->description : '' }} </p>
+                    @if( isset($category) )
+                    <div class="category-description product-description">
+                        <p class="text-left description-text mb-0"> {{ isset($category) ? $category->description : '' }} 
+                            
+                        </p>
+                        <a href="#" class="toggle-desc">Show More</a>
                     </div>
+
+                    @endif
+
                 </div>
             </div>
         </div>
@@ -38,5 +45,37 @@
 @section('page-scripts')
 @stop
 @section('inline-scripts')
-   $(document).ready(function() {});
+   $(document).ready(function () {
+  const charLimit = 150; // limit before truncating
+
+  $(".product-description").each(function () {
+    const fullText = $(this).find(".description-text").text();
+    if (fullText.length <= charLimit) {
+      $(this).find(".toggle-desc").hide(); // no need for toggle
+      return;
+    }
+
+    const truncated = fullText.substring(0, charLimit) + "...";
+
+    $(this).find(".description-text").data("full", fullText);
+    $(this).find(".description-text").data("truncated", truncated);
+
+    // show truncated by default
+    $(this).find(".description-text").text(truncated);
+  });
+
+  $(".toggle-desc").on("click", function (e) {
+    e.preventDefault();
+    const desc = $(this).siblings(".description-text");
+
+    if ($(this).text() === "Show More") {
+      desc.text(desc.data("full"));
+      $(this).text("Show Less");
+    } else {
+      desc.text(desc.data("truncated"));
+      $(this).text("Show More");
+    }
+  });
+});
+
 @stop

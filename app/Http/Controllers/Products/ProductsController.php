@@ -57,6 +57,8 @@ class ProductsController extends Controller
                             }])
                             ->get();
 
+                            
+
 
         $products = ProductVariation::whereNotNull('name')
             ->where('allow', true)->paginate(4);

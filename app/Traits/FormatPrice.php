@@ -64,6 +64,7 @@ trait FormatPrice
     return $this->calPercentageOff($this->price, $this->sale_price);
   }
 
+
   public function percentageOff()
   { 
     if ($this->salePrice())
@@ -81,7 +82,7 @@ trait FormatPrice
 
   public function getPercentageOffAttribute()
   {
-    return $this->salePrice() ?: $this->percentageOff();
+    return $this->salePrice() ? $this->percentageOff() : '';
   }
 
   public function getDiscountedPriceAttribute()

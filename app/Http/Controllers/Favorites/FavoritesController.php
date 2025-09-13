@@ -2,9 +2,9 @@
 
 use Illuminate\Http\Request;
 
-use App\Favorite;
+use App\Models\Favorite;
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Models\User;
 use Auth;
 use App\Http\Resources\FavoritesResource;
 

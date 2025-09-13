@@ -1,7 +1,6 @@
 <template>
   <div class="row">
     <!-- Filter column -->
-    <div class="col-md-3 d-none d-md-block">
 
         <div v-if="loading && !items.length" >
             <div class="mb-3" v-for="n in 5" :key="n">
@@ -16,7 +15,7 @@
         <div class="sidebar-toggle"><i class="fas fa-sliders-h"></i></div>
         <aside  
             v-if="!loading" 
-            class="sidebar-shop  order-lg-first mobile-sidebar"
+            class="sidebar-shop  order-lg-first mobile-sidebar col-md-3 "
         >
             <div class="pin-wrapper" style="">
                 <div class="sidebar-wrapper" style="">
@@ -27,12 +26,11 @@
                 </div>
             </div>
         </aside><!-- End .col-lg-3 -->
-   </div>
 
     <!-- Products column -->
     <div class="col-md-9">
         
-        <nav class="toolbox horizontal-filter filter-sorts mb-1">
+        <nav class="toolbox horizontal-filter filter-sorts mb-1  sticky-header " data-sticky-options="{'mobile': true}">
             <div class="toolbox-left">
                 <div class="pr-1">
                     Showing <strong>{{ meta.from }}</strong> to <strong>{{ meta.to }}</strong> of <strong>{{ meta.total }}</strong> results
@@ -41,22 +39,32 @@
 
 
                 <div class="toolbox-right">
-                       <div class="select-custom">
-                            <select  
-                                  v-model="sortBy" 
-                                  name="sort_by" 
-                                  id="sort_by" 
-                                  class="form-control"
-                                  @change="updateSort"
-                                  
-                                >
-                                <option value="" selected="selected">Sort By</option>
-                                <option value="created_at,asc">Oldest</option>
-                                <option value="created_at,desc">Newest</option>
-                                <option value="price,asc">Lowest Price</option>
-                                <option value="price,desc">Highest Price</option>
-                            </select>
-                        </div>
+                    <a @click.prevent="toggleSideBar" href="#" class="sidebar-toggle">
+                        <svg data-name="Layer 3" id="Layer_3" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="15" x2="26" y1="9" y2="9" class="cls-1"></line>
+                            <line x1="6" x2="9" y1="9" y2="9" class="cls-1"></line>
+                            <line x1="23" x2="26" y1="16" y2="16" class="cls-1"></line>
+                            <line x1="6" x2="17" y1="16" y2="16" class="cls-1"></line>
+                            <line x1="17" x2="26" y1="23" y2="23" class="cls-1"></line>
+                            <line x1="6" x2="11" y1="23" y2="23" class="cls-1"></line>
+                            <path d="M14.5,8.92A2.6,2.6,0,0,1,12,11.5,2.6,2.6,0,0,1,9.5,8.92a2.5,2.5,0,0,1,5,0Z" class="cls-2">
+                            </path>
+                            <path d="M22.5,15.92a2.5,2.5,0,1,1-5,0,2.5,2.5,0,0,1,5,0Z" class="cls-2"></path>
+                            <path d="M21,16a1,1,0,1,1-2,0,1,1,0,0,1,2,0Z" class="cls-3"></path>
+                            <path d="M16.5,22.92A2.6,2.6,0,0,1,14,25.5a2.6,2.6,0,0,1-2.5-2.58,2.5,2.5,0,0,1,5,0Z" class="cls-2">
+                            </path>
+                        </svg>
+                        <span>Filter</span>
+                    </a>
+                    <div class="select-custom">
+                        <select  name="sort_by" v-model="sortBy"   @change="updateSort" id="sort_by" class="form-control">
+                            <option value="" selected="selected">Sort By</option>
+                            <option value="created_at,asc">Oldest</option>
+                            <option value="created_at,desc">Newest</option>
+                            <option value="price,asc">Lowest Price</option>
+                            <option value="price,desc">Highest Price</option>
+                        </select>
+                    </div>
                     <div class="toolbox-item layout-modes">
                         <a  @click.prevent="setLayout('col-6 col-md-4')" href="#" type="button" value="large" class=" bg-transparent mr-3 border-0 cursor-pointer" aria-label="Switch to larger product images"><svg role="presentation" width="18" viewBox="0 0 18 18" fill="none">
                             <path fill="currentColor" d="M0 0h8v8H0zM0 10h8v8H0zM10 0h8v8h-8zM10 10h8v8h-8z"></path>
@@ -206,6 +214,9 @@ export default {
         setLayout(mode) {
             this.layout = mode;
         },
+        toggleSideBar() {
+            $("body").toggleClass("sidebar-opened");
+        },
         updateSort() {
             const url = new URL(window.location.href);
             if (this.sortBy) {
@@ -228,6 +239,9 @@ export default {
                     this.meta = response.data.products;
                     this.loading = false
                     this.has_filters = response.data.has_filters;
+                    let productId = ''
+
+
                 }).catch(() => {
                     this.loading = true
                 });
