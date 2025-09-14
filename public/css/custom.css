@@ -307,6 +307,7 @@ select.form-control:not([size]):not([multiple]) {
   height: 5.3rem;
   padding: 1rem;
   padding-right: 4rem;
+  border-radius: 99999px;
 }
 
 
@@ -805,7 +806,7 @@ svg#iconLoaded-ruler{ width: 30px; height: 30px;}
   display: block;
   width: 200px;
   height: 50px;
-  background-color: #000;
+  background-color: #3F4E4F   !important;
   position: fixed;
   bottom: 50px;
   right: 0;

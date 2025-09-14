@@ -58,7 +58,7 @@
                                     Already have account?<a  class="bold color--primary" href="/login"> Login</a>
                                 </p>
                                 <p class="form-group text-right col-6 mt-2">
-                                    <button type="submit" class="btn btn--lg btn--primary ml-1 bold" name="register" value="Log in">Submit</button>
+                                    <button type="submit" class="btn btn--lg btn--primary ml-1 border-raduis-btn bold" name="register" >Submit</button>
                                 </p>
                             
                             </div>

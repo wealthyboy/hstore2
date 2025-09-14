@@ -2,7 +2,7 @@
         @csrf
         
         <div class="text-center"> 
-            <h2>Login</h2>
+            <h2 class="m-0">Login</h2>
             <p class="">Welcome Back!</p>
             <!-- <a href="/login/facebook" class="btn btn-facebook btn-round">
                 <i class="fab fa-facebook-f"></i> Sign in with Facebook 
@@ -42,11 +42,11 @@
         <div class="clearfix"></div>
 
         <p class="form-group ">
-            <button type="submit" id="login_form_button" data-loading="Loading" class=" ml-1 btn btn--primary btn-round btn-lg btn-block" name="login" value="Log in">Log In</button>
+            <button type="submit" id="login_form_button" data-loading="Loading" class=" ml-1 btn btn--primary btn-round btn-lg btn-block border-raduis-btn bold"  >Log In</button>
         </p>
         
 
-        <div class="mt-4 pt-4 text-center border-top">
+        <div class=" pt-4 text-center border-top d-flex align-items-center">
             <p class="form-group col-12">
                 Dont have an account yet?  <a class="color--primary bold" href="/register">Create One</a></p>
             </p>

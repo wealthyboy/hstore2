@@ -8,16 +8,13 @@
         <button type="button" class="close" @click="closeCart()">&times;</button>
     </div>
     
-    <!-- Free shipping notice -->
-    <div class="px-3 py-2 border-bottom text-muted small">
-        You are eligible for free shipping.
-    </div>
+  
     
     <!-- Scrollable items -->
     <div class="cart-items flex-grow-1 overflow-auto p-3" style="max-height: calc(100vh - 180px);">
         
         <!-- Cart Item -->
-<div v-for="cart in carts" :key="cart.id" class="d-flex mb-4">
+    <div v-for="cart in carts" :key="cart.id" class="d-flex mb-4">
     <img :src="cart.image"
          :alt="cart.product_name"
          class="img-fluid rounded mr-3"
@@ -64,11 +61,11 @@
     <!-- Footer -->
     <div  v-if="carts.length" class="border-top p-3">
         <div class="text-muted small mb-2">Taxes and shipping calculated at checkout</div>
-        <a  href="/cart" class="btn btn-dark btn-block">
+        <a  href="/cart" class="btn btn--primary btn-block border-raduis-btn py-3">
             View Cart
         </a>
-        <a href="/checkout" class="btn btn-dark btn-block">
-            CHECKOUT • {{  meta.currency }}{{ meta.sub_total | priceFormat}}
+        <a href="/checkout" class="btn btn--primary btn-block border-raduis-btn py-3">
+            CHECKOUT • <span class="bold text-white">  {{  meta.currency }}{{ meta.sub_total | priceFormat}}</span>
         </a>
     </div>
 </div>

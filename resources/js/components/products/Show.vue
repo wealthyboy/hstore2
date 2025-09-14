@@ -24,7 +24,6 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black" viewBox="0 0 24 24">
                 <path d="M12 16l-6-6h12z"/>
               </svg>
-              
             </div>
            
         </div>
@@ -114,7 +113,6 @@
           </div>
           <!-- End .product-filters-container -->
           <description :product="product" />
-
           <!-- End .product-single-tabs -->
         </div>
         <!-- End .product-single-details -->

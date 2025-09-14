@@ -95,17 +95,17 @@
 /* Button color */
 /*------------------------------------------------------------*/
 .btn--primary {
-    background:#222  !important;
+    background:#3F4E4F   !important;
     color: #fff !important;
 }
 
 .btn--primary:hover {
-    background: #333 !important;
+    background: #3F4E4F !important;
     color: #fff !important;
 }
 
 .btn--secondary {
-    background: #333 !important;
+    background:#3F4E4F  !important;
     color: #fff !important;
 }
 
@@ -151,6 +151,7 @@
 /*------------------------------------------------------------*/
 input, input[type="text"], input[type="search"], input[type="email"], input[type="tel"], input[type="number"], input[type="password"], input[type="radio"], input[type="checkbox"], textarea, select {
     color: #333;
+    border-radius: 99999px;
 }
 
     /*input[type="text"]:hover, input[type="search"]:hover, input[type="email"]:hover, input[type="tel"]:hover, input[type="number"]:hover, input[type="radio"]:hover, input[type="checkbox"]:hover, input[type="password"]:hover, textarea:hover, select:hover,*/
