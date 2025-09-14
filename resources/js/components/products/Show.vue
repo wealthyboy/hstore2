@@ -11,7 +11,7 @@
             </svg>
           </div>
              
-          <div     ref="thumbContainer"  class="prod-thumbnail carousel-custom-dots owl-dots   quick-view" id="carousel-custom-dots">
+          <div ref="thumbContainer"  class="prod-thumbnail carousel-custom-dots owl-dots   quick-view" id="carousel-custom-dots">
             <div class="owl-dot">
               <img class="animated" @click.prevent="currentSlide(product.image_to_show)" :src="image_tn" />
             </div>
@@ -81,7 +81,7 @@
                 {{ cartError }}
               </div>
                <div v-if="!product.is_gift_card" class="col-2 ml-3">
-                     <div class="d-flex align-items-center border rounded-md">
+                <div class="d-flex align-items-center border rounded-md">
                 <a
                   href="#"
                   role="button"

@@ -10,7 +10,7 @@
 
 <section class="breadcrumb no-banner cart-page justify-content-center">
     <div class="breadcrumb-content">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 <div class="col-12  text-center border-bottom">
                     <h1 class="breadcrumb-title">Your Cart</h1>
@@ -23,7 +23,7 @@
    <!--Content-->
    
 <section class="bg--gray">          
-    <div class="container-fluid">
+    <div class="container">
         <div id="js-loading"  class="full-bg">
             <div class="signup--middle">
                 <div class="loading">

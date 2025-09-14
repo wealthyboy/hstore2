@@ -5,7 +5,10 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6  bg--light p-4">
-                    <div class=" mt-4 mb-4">
+                      <a href="/" class="d-flex  mt-3 justify-content-center">
+                      <img width="200" src="{{ $system_settings->logo_path() }}" alt="{{ Config('app.name') }} Logo">
+                    </a>
+                    <div class="mt-1 mb-4">
                         <form method="POST" class="pl-4 pr-4" action="/register">
                             @if ($errors->any() )
                                 <div class="alert alert-danger">
@@ -17,11 +20,8 @@
                                 </div>
                             @endif
                             <div class="text-center">
-                                <h1>Register</h1>
-                                <p class=""> Have access to your order history ,track your orders .e.t.c</p>
-                                    <!-- <a href="/login/facebook" class="btn btn-facebook btn-round">
-                                        <i class="fab fa-facebook-f"></i> Sign up with Facebook 
-                                    </a>  -->
+                                <h2 class="mb-0 mt-0">Sign Up</h2>
+                                   <p class=""> Have access to your order history ,track your orders .e.t.c</p>
                                 </div>
                             <div class="row ">
                                 @csrf

@@ -161,10 +161,8 @@
                         v-model="delivery_option" class="custom-control-input" id="pick_up_surulere"
                         name="delivery_option" required>
                       <label class="custom-control-label" for="pick_up_surulere"> PICK UP OPTION 1 <span
-                          class="ml-3 text-info">No 1, Bassie Ogamba Street off Adeniran Ogunsanya street,
-                          SURULERE.</span>
+                          class="ml-3 text-info"> </span>
                         <span class="mr-3 bold text-danger">
-                          Closed on weekends and public holidays.
                         </span>
                       </label>
                     </div>
@@ -199,26 +197,14 @@
                     <div class="custom-control  custom-radio mt-1 mb-1">
                       <input type="radio" value="shipping" v-model="delivery_option" class="custom-control-input"
                         id="shipping" name="delivery_option" required>
-                      <label class="custom-control-label" for="shipping">Shipping <span class="ml-3  text-info">(Based on
-                          your location. If in Lagos, please check our shipping & return policy <a target="_blank"
-                            href="/pages/delivery-and-returns">link</a> to see where your
-                          location falls in order for you select the correct shipping option.)</span></label>
+                      <label class="custom-control-label" for="shipping">Shipping <span class="ml-3  text-info"></span></label>
                     </div>
                   </div>
                 </template>
 
                 <template v-if="!meta.cart_is_only_gift_card">
 
-                  <div class="col-12 text-info bold">
-                    <div v-if="meta.sub_total >= 30000" class="alert alert-info alert-dismissible fade show" role="alert">
-                      <strong>
-                        <a data-toggle="modal" data-target="#out-of-stock-modal" class="" href="#"> STANDARD DELIVERY IS
-                          FREE ON ALL ORDERS ABOVE 30k </a></strong>
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                  </div>
+                 
                 </template>
 
                 <div class="col-12  text-info bold">
@@ -314,7 +300,7 @@
 
                 <template v-if="!meta.isAdmin">
                   <button @click="payWithPaystack" type="button" :class="{ 'disabled': payment_is_processing }"
-                    class="btn   bold  btn--primary btn-round btn-lg btn-block" name="checkout_place_order"
+                    class="btn   bold  btn--primary btn-round btn-lg btn-block  border-raduis-btn" name="checkout_place_order"
                     id="p lace_order" value="Place order" data-value="Place Order">
                     <span v-if="checkingout" class='spinner-border spinner-border-sm' role='status'
                       aria-hidden='true'></span>
@@ -324,7 +310,7 @@
 
                 <template v-if="meta.isAdmin">
                   <button @click="payAsAdmin" type="button" :class="{ 'disabled': payment_is_processing }"
-                    class="btn   bold  btn--primary btn-round btn-lg btn-block" name="checkout_place_order"
+                    class="btn   bold  btn--primary btn-round btn-lg btn-block  border-raduis-btn" name="checkout_place_order"
                     id="p lace_order" value="Place order" data-value="Place Order">
                     <span v-if="checkingout" class='spinner-border spinner-border-sm' role='status'
                       aria-hidden='true'></span>

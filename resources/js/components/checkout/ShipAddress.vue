@@ -36,8 +36,7 @@
 
                         <p class="form-group reduce-gutters col-lg-6">
                             <label for="email">Email</label>
-                            <input    id="email" 
-                            v-model="form.email" 
+                            <input id="email"  v-model="form.email" 
         
                             type="text" class="form-control" 
                             name="email"
@@ -127,12 +126,12 @@
                                 Save & Continue
                             </button>
                             <p v-if="addresses.length" class="form-group col-6 col-md-6 text-left">
-                                <button type="submit" class="btn btn--lg btn--white bold color--primary"  value="Submit">
+                                <button type="submit" class="btn btn--primary  border-raduis-btn py-3"  value="Submit">
                                     <span  v-if="submiting" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                     Save 
                                 </button>
                             </p>
-                            <p v-if="addresses.length" class="form-group col-6  col-md-6 text-right">
+                            <p v-if="addresses.length" class="form-group col-6 col-md-6 text-right align-items-center d-flex justify-content-end">
                                 <a @click.prevent="cancelForm"  class="cancel-form bold color--primary pull-right" href="#">Cancel</a>
                             </p>
 
@@ -142,7 +141,7 @@
             </div>
 
             <div v-if="addresses.length && !showForm"  class="address_details mt-2">
-                <a href="#" class="btn btn--primary btn-round btn-lg btn-block mb-3 bold"  @click.prevent="addNewAddress" id="enter-new-address"> + Add Address  </a>
+                <a href="#" class="btn btn--primary btn-round btn-lg btn-block mb-3 bold  border-raduis-btn"  @click.prevent="addNewAddress" id="enter-new-address"> + Add Address  </a>
                 <ul class="">
                     <li class="mb-3" v-for="(location, index) in addresses" :key="location.id">
                         <div class="shipping-info border border-gray pr-3 pt-3 pl-3">
@@ -154,7 +153,7 @@
                                 <p> {{ location.city }} ,{{ location.state}}  {{ location.zip }}</p>
                                 <p> {{ location.country }} </p>
                                 <p class="">
-                                    <a  @click.prevent="editAddress(index)" data-placement="left"  href="#" class="ml-0 mr-4 color--primary bold"> 
+                                    <a  @click.prevent="editAddress(index)" data-placement="left"  href="#" class="ml-0 mr-4 btn color--primary bold"> 
                                         <i class="fa fa-edit"></i> Edit
                                     </a>
                                     <a  @click.prevent="makeDefault($event,location.id)"  :id="location.id"  data-placement="left"  href="#" class="mr-4  color--primary ml-4 bold make-default"> 

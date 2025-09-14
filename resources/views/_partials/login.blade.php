@@ -1,12 +1,10 @@
 <form method="POST" class="login_form pl-4 pr-4" action="/login">
         @csrf
         
-        <div class="text-center"> 
-            <h2 class="m-0">Login</h2>
-            <p class="">Welcome Back!</p>
-            <!-- <a href="/login/facebook" class="btn btn-facebook btn-round">
-                <i class="fab fa-facebook-f"></i> Sign in with Facebook 
-            </a> -->
+        <div class="text-center">
+            <h2 class="m-0 d-flex align-items-center justify-content-center gap-2">
+                Sign In
+            </h2>
         </div>
         
 
