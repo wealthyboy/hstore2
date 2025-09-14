@@ -4,7 +4,7 @@
 <section class="sec-padding bg--gray">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-7  bg--light p-4">
+                <div class="col-md-6  bg--light p-4">
                     <div class=" mt-4 mb-4">
                         <form method="POST" class="pl-4 pr-4" action="/register">
                             @if ($errors->any() )
