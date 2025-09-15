@@ -19,12 +19,11 @@
                     </nav>
                     <h3 class="breadcrumb-title">{{ $breadcrumb }}</h3>
                     @if( isset($category) )
-                    <div class="category-description product-description  ">
-                        <p class="text-left description-text mb-0"> {{ isset($category) ? $category->description : '' }} 
-                        </p>
-                        <div class="text-center w-100">
-                            <a href="#" class="toggle-desc">Show More</a>
-                        </div>
+                    <div class="category-description product-description ">
+                        <span class="text-left description-text mb-0"> {{ isset($category) ? $category->description : '' }} </span>
+                        <span class="text-right w-100">
+                            <a href="#" class="toggle-desc bold">Show More</a>
+                        </span>
                     </div>
 
                     @endif
@@ -38,16 +37,15 @@
 
 
 <div class="container-fluid mb-3">
-    <products-index 
-        :filters="{{$category_attributes}}" 
-    />
+    <products-index  :filters="{{$category_attributes}}" 
+ />
 </div>
 @endsection
 @section('page-scripts')
 @stop
 @section('inline-scripts')
    $(document).ready(function () {
-  const charLimit = 150; // limit before truncating
+    const charLimit = 150; // limit before truncating
 
   $(".product-description").each(function () {
     const fullText = $(this).find(".description-text").text();
@@ -67,7 +65,9 @@
 
   $(".toggle-desc").on("click", function (e) {
     e.preventDefault();
-    const desc = $(this).siblings(".description-text");
+    const desc = $(".description-text");
+
+    console.log(desc)
 
     if ($(this).text() === "Show More") {
       desc.text(desc.data("full"));

@@ -180,6 +180,7 @@
 
 
 
+@if ($reviews->count())
 
 
 <section class="section-6 appear-animate">
@@ -247,6 +248,8 @@
         </div>
     </div>
 </section>
+
+@endif
 
 
 

@@ -157,6 +157,9 @@
       <QuickBuySkelenton v-if="quickBuyIsLoading" />
       <QuickBuy @product-added="showQuickBuy = false" v-if="!quickBuyIsLoading"  :attributes="attributes" :stock="stock" :inventory="inventory"  :product="product_variation" />
   </QuickBuyModal>
+
+  <LoginModal :show="showLogin" @update:show="close"  />
+
 </div>
  
 
@@ -200,6 +203,7 @@ export default {
             color: '#ffffff'
         },
         imageLoaded: false,
+        showLogin: false,
         
       }
     },
@@ -241,11 +245,14 @@ export default {
     },
    
     methods: {
-       onImageLoad() {
+      onImageLoad() {
         this.imageLoaded = true
       },
-      
 
+      close(){
+        this.showLogin = false
+      },
+    
       openQuickBuy(product) {
         this.showQuickBuy = true;
          axios.get(product.link)
@@ -270,7 +277,7 @@ export default {
             addProductToWishList: 'addProductToWishList'
         }),
         addToWishList: function(product_variation_id){
-
+            this.showLogin = true
             if (this.is_wishlist) {
                 this.is_wishlist = false
             }
