@@ -1,8 +1,6 @@
 <template>
     <div class="position-relative wishlist-box d-flex align-items-center ml-3 justify-content-center border">
          <div
-          @click="addToWishList(product.id)"
-
 
         class="wishlist-icon "
         style="top: 10px; right: 10px; cursor: pointer;"
@@ -45,12 +43,11 @@
 </template>
 <script>
 export default {
-  props: ["attributes", "wishlistText", "product"],
+  props: ["attributes", "wishlistText"],
   data() {
     return {
       user: Window.auth,
       isActive: false,
-      is_wishlist: this.product.item_is_wishlist,
     };
   },
   computed: {

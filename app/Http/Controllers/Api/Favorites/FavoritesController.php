@@ -36,6 +36,7 @@ class FavoritesController  extends Controller
 		$user = $request->user();
 		$favorite = Favorite::CreateOrDelete($user->id,$request->product_variation_id);
 		return FavoritesResource::collection($user->favorites);
+	}
 
 	public function destroy(Request $request,$id) 
 	{ 

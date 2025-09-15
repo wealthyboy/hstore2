@@ -17,7 +17,7 @@
                             </ol>
                         </div>
                     </nav>
-                    <h3 class="breadcrumb-title">{{ $breadcrumb }}</h3>
+                    <h3 class="breadcrumb-title mb-0">{{ $breadcrumb }}</h3>
                     @if( isset($category) )
                     <div class="category-description product-description ">
                         <span class="text-left description-text mb-0"> {{ isset($category) ? $category->description : '' }} </span>

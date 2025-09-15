@@ -32,43 +32,78 @@ class ProductsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function  index(Request $request,Category $category)  {
-
-        if ( $request->filter ){
-            $products = Product::whereHas('categories',function(Builder  $builder) use ($category){
-                $builder->where('categories.name',$category->name);
-            })->whereHas('attributes',function($query) use ($request)  {
-                foreach($request->except('filter') as $key => $value){
-                    $values = explode('-',$value);
-                    foreach($values as $key => $value){
-                        /**
-                         * Get the first index
-                        */
-                        if ($key == 0){
-                            $query->where('attributes.name',$value);
-                            continue;
-                        }
-                        $query->where('attributes.name',$value);
-                    }
-                }
-            })->paginate($this->settings->products_items_per_page);  
-            
-            return  ProductIndexResourceCollection::collection(
-                $products
-            )->additional(['has_filters' => $category->parent_attributes->count()]);
-
-        }
+      public function  index(Request $request, Category $category)
+    {
         
-        if($request->has('sort_by')){
-            $sort = explode(',',$request->sort_by);
-            $products =  $category->products()->orderBy($sort[0],$sort[1])->paginate($this->settings->products_items_per_page);
-        } else {
-            $products =  $category->products()->orderBy('created_at','DESC')->paginate($this->settings->products_items_per_page);
+        //Get color image
+        if ($request->color && $request->product_id) {
+            return $this->getColorImage($request);
         }
 
-        return  ProductIndexResourceCollection::collection(
-                    $products
-                )->additional(['has_filters' => $category->parent_attributes->count()]);
+        $page_title = $category->title;
+        $meta_tag_keywords = $category->keywords;
+        $page_meta_description = $category->meta_description;
+        $category_attributes = $category->attribute_parents()
+                            ->has('children')
+                            ->with(['children' => function ($q) {
+                                $q->whereHas('attribute', function ($q2) {
+                                    $q2->whereNotNull('name')->where('name', '!=', '');
+                                })->with(['attribute' => function ($q2) {
+                                    $q2->whereNotNull('name')->where('name', '!=', '');
+                                }]);
+                            }])
+                            ->get();
+
+                            
+
+
+        $products = ProductVariation::whereNotNull('name')
+            ->where('allow', true)->paginate(4);
+
+        $products = ProductVariation::whereNotNull('name')
+            ->where('allow', true)
+            ->where('quantity', '>=', 1)
+            ->whereHas('categories', function (Builder $builder) use ($category) {
+                $builder->where('categories.name', $category->name);
+            })
+            ->filter($request, $this->getFilters($category_attributes))
+            ->latest()
+            ->with(['product:id']) // 👈 only these fields
+            ->paginate($this->settings->products_items_per_page);
+
+        $all = false;
+        $colors = [];
+
+        if ($request->ajax()) {
+            return response()->json([
+                'products' => $products,
+                'category_attributes' => $category_attributes->load('attribute'),
+                'd' => true,
+            ]);
+        }
+
+        $breadcrumb = $category->name;
+        //$products =  $category->product_variants()->orderBy('created_at','desc')->paginate($this->settings->products_items_per_page);
+        return  view('products.index', compact(
+            'category',
+            'page_title',
+            'category_attributes',
+            'breadcrumb',
+            'products',
+            'meta_tag_keywords',
+            'meta_tag_keywords',
+            'all'
+        ));
+    }
+
+
+      public function getFilters($category_attributes)
+    {
+        $filters = [];
+        foreach ($category_attributes as $category_attribute) {
+            $filters[$category_attribute->attribute->slug] = AttributesFilter::class;
+        }
+        return $filters;
     }
 
 

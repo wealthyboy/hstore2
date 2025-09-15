@@ -2,8 +2,8 @@
   <div class="row">
     <!-- Filter column -->
 
-        <div v-if="loading && !items.length" >
-            <div class="mb-3" v-for="n in 5" :key="n">
+        <div class="col-md-3" v-if="loading && !items.length" >
+            <div class="mb-3 " v-for="n in 5" :key="n">
                 <div class="d-flex align-items-center">
                 <div class="skeleton-box rounded" style="width: 100%; height: 20px;"></div>
                 <div class="skeleton-box rounded ms-auto" style="width: 20px; height: 20px;"></div>
@@ -232,8 +232,13 @@ export default {
         getProducts(page = this.$route.query.page, filters = this.$route.query) {
             let category = this.$route.params.category;
 
-            let url = this.$route.path  
-                return axios.get(window.location).then((response) => {
+            console.log(this.$route)
+
+
+
+            let url = `/api${this.$route.fullPath}`;
+
+                return axios.get(url).then((response) => {
                     this.items = response.data.products.data;
                     this.meta = response.data.products;
                     this.loading = false

@@ -131,8 +131,9 @@ export default {
     mounted(){
         let path = this.$route.path
         this.selected = { ...this.initialFilters };
+        let url = `/api${this.$route.fullPath}`;
 
-        axios.get(window.location).then((response) => {
+        axios.get(url).then((response) => {
           this.categories  = response.data.category_attributes;
         })
          
@@ -168,17 +169,7 @@ export default {
             this.$emit("filters-updated", this.selectedFilters);
         },
 
-        // updateQueryString() {
-        //     const params = new URLSearchParams();
-        //     Object.keys(this.selectedFilters).forEach(key => {
-        //         this.selectedFilters[key].forEach(val => {
-        //             params.append(`${key}`, val);
-        //         });
-        //     });
-
-        //     const newUrl = `${window.location.pathname}?${params.toString()}`;
-        //     window.history.replaceState({}, "", newUrl);
-        // },
+      
        
         updateQueryString () {
             this.$router.replace({

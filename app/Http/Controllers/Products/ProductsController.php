@@ -77,13 +77,7 @@ class ProductsController extends Controller
         $all = false;
         $colors = [];
 
-        if ($request->ajax()) {
-            return response()->json([
-                'products' => $products,
-                'category_attributes' => $category_attributes->load('attribute'),
-                'd' => true,
-            ]);
-        }
+     
 
         $breadcrumb = $category->name;
         //$products =  $category->product_variants()->orderBy('created_at','desc')->paginate($this->settings->products_items_per_page);

@@ -155,11 +155,9 @@
 
   <QuickBuyModal :show="showQuickBuy" @close="showQuickBuy = false">
       <QuickBuySkelenton v-if="quickBuyIsLoading" />
-      <QuickBuy @product-added="showQuickBuy = false" v-if="!quickBuyIsLoading"  :attributes="attributes" :stock="stock" :inventory="inventory"  :product="product_variation" />
+      <QuickBuy @show-login="closeModalQuick"  @product-added="showQuickBuy = false" v-if="!quickBuyIsLoading"  :attributes="attributes" :stock="stock" :inventory="inventory"  :product="product_variation" />
   </QuickBuyModal>
-
   <LoginModal :show="showLogin" @update:show="close"  />
-
 </div>
  
 
@@ -252,6 +250,11 @@ export default {
       close(){
         this.showLogin = false
       },
+
+      closeModalQuick(){
+        this.showLogin = true
+        this.showQuickBuy = false
+      },
     
       openQuickBuy(product) {
         this.showQuickBuy = true;
@@ -277,14 +280,18 @@ export default {
             addProductToWishList: 'addProductToWishList'
         }),
         addToWishList: function(product_variation_id){
-            this.showLogin = true
+            if (!this.$root.user) {
+              this.showLogin = true
+              return;
+            }
+
             if (this.is_wishlist) {
                 this.is_wishlist = false
             }
 
             this.addProductToWishList({
                 product_variation_id:product_variation_id,
-            }).then((response)=>{
+            }).then(( response )=>{
                 if( this.wishlist.some(wishlist => wishlist.product_variation.id === product_variation_id) ){
                   this.is_wishlist = true
                   $("#addCartModal").modal('show') 

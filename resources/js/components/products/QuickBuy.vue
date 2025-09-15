@@ -62,12 +62,11 @@
                 {{ cartError }}
               </div>
             
-
               <div v-if="!product.is_gift_card" class="col-10 ml-3 ">
                 <cart-button :loading="loading" :canAddToCart="canAddToCart" :cartText="cartText" @add="addToCart" />
               </div>
 
-              <wishlist v-if="!product.is_gift_card" @wishlistChange="addToWishList" :wishlistText="wishlistText" />
+              <wishlist  v-if="!product.is_gift_card" :product="product" @wishlistChange="addToWishList" :wishlistText="wishlistText" />
 
             </div>
           </div>
@@ -103,7 +102,7 @@ export default {
   name: "Show",
   props: {
     product: Object,
-    attributes: Object,
+    attributes: Array,
     inventory: Array,
     stock: Array,
   },
@@ -357,7 +356,15 @@ export default {
         });
     },
     addToWishList: function () {
+
       this.wishlistText = true;
+
+      if (!this.$root.user) {
+        this.$emit('show-login')
+        return;
+      }
+
+
       this.addProductToWishList({
         product_variation_id: this.product_variation_id,
       }).then((response) => {
