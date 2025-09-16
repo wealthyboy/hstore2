@@ -278,9 +278,9 @@
                 </div>
               </div>
 
-              <p class="form-field-wrapper   col-sm-12 mb-3">
-
-
+              <p class="form-field-wrapper col-sm-12 ">
+              
+                
                 <template v-if="!meta.isAdmin">
                   <button @click="payWithPaystack" type="button" :class="{ 'disabled': payment_is_processing }"
                     class="btn   bold  btn--primary btn-round btn-lg btn-block  border-raduis-btn" name="checkout_place_order"
@@ -303,22 +303,9 @@
 
               </p>
 
+            
               <div>
-                <span class="float-right">
-                  <div class="payment-icons mt-1 d-flex">
-                    <div class="payment-image ms mr-3">
-                      <img src="/img/business.png" alt="make payment with mastercard">
-                    </div>
-                    <div class="payment-image mr-3">
-                      <img src="/img/visa-card-ohram.png" alt="make payment with mastercard">
-                    </div>
 
-                    <div class="payment-image">
-                      <img src="/img/Verve.png" alt="make payment with mastercard">
-                    </div>
-                  </div>
-
-              </span>
               </div>
             </div>
           </div>
