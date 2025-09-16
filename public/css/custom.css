@@ -189,7 +189,7 @@ input:-webkit-autofill, input:-webkit-autofill:focus {
 }
 
 
-.header{  background-color: #fff;}
+.header{  background-color: #FFFFE8;}
 
 
 .header-top {
@@ -266,6 +266,8 @@ input:-webkit-autofill, input:-webkit-autofill:focus {
 
 .main.main-page {
     margin-top: 78px;
+
+    background-color: #FFFFE8;
 }
 
 

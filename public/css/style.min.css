@@ -1938,6 +1938,8 @@ a:focus {
     border: 1px solid #ddd;
     border-radius: 0;
     font-size: 1.4rem;
+        background: #FFFFE8 !important;
+
 }
 
 .card-header {
@@ -6823,7 +6825,7 @@ img.slide-bg {
 }
 
 .sticky-header {
-    background: #fff;
+    background: #FFFFE8 !important;
 }
 
 .sticky-header.fixed {
