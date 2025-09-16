@@ -1,7 +1,7 @@
 <template>
     <div class="">
             <div v-if="showForm"  id="stored_address"  class="billing-fields__field-wrapper ">
-                <form  @submit.prevent="submit" method="POST" class=""> 
+                <form  @submit.prevent="submit" method="POST" class="mt-2"> 
                     <div class="row reduce-gutters" id="add-new-address-form" data-action="/address/create">
                         <p class="form-group reduce-gutters col-lg-6">
                             <label for="first_name">First Name &nbsp;<abbr class="required " title="required">*</abbr></label>
@@ -121,7 +121,7 @@
                         </p>
 
                         <p class="form-group reduce-gutters text-right col-lg-12 ">
-                            <button v-if="!addresses.length" type="submit" class="btn bold  btn--lg btn--primary btn--full" name="checkout_place_order" id="place_order" value="Place order" data-value="Place Order">
+                            <button v-if="!addresses.length" type="submit" class="btn bold  border-raduis-btn btn--lg btn--primary btn--full" name="checkout_place_order" id="place_order" value="Place order" data-value="Place Order">
                                 <span  v-if="submiting" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                 Save & Continue
                             </button>
@@ -134,7 +134,6 @@
                             <p v-if="addresses.length" class="form-group col-6 col-md-6 text-right align-items-center d-flex justify-content-end">
                                 <a @click.prevent="cancelForm"  class="cancel-form bold color--primary pull-right" href="#">Cancel</a>
                             </p>
-
                         </p>
                     </div>
                 </form>
@@ -148,7 +147,6 @@
                             <div class="shipping-address-info">
                                 <div  class="bold" id="">{{ location.first_name }} {{ location.last_name }}  </div>
                                 <div class="text-muted" v-if="meta.isAdmin"> {{ location.email }} {{ location.phone_number }} </div>
-
                                 <div class="text-muted"> {{ location.address }} {{ location.address2}} </div>
                                 <div class="text-muted"> {{ location.city }} ,{{ location.state}}  {{ location.zip }}</div>
                                 <div class="text-muted"> {{ location.country }} </div>
@@ -212,7 +210,7 @@ export default {
         customer_last_name: "",
         address: "",
         address_2: "",
-        city: "",
+        city: "", 
         postal_code: "",
         country_id: "",
         state_id: "",
@@ -247,17 +245,24 @@ export default {
       checkInput: "checkInput",
     }),
     getState: function (evt, edit = false) {
-      console.log(evt)
-      let value = evt || evt.target.value;
+      //console.log(evt)
+      let value = evt.target.value;
+       console.log( evt.target.value)
+
       let input = document.querySelectorAll(".required");
       this.clearErrors({ context: this, input: input });
       let state = [];
+
+     // console.log( this.locations)
       //loop through all countries and pluck out their states
       this.locations.forEach((element) => {
+        console.log(element.id, value)
         if (value == element.id) {
           state.push(element.states);
         }
       });
+
+      console.log(state)
       this.states = state[0];
     },
     getShipping: function (e) {
@@ -319,7 +324,6 @@ export default {
     },
     editAddress: function (index) {
       let address = this.addresses[index];
-       
       this.form.first_name = address.first_name;
       this.form.last_name = address.last_name;
       this.form.email = address.email;
