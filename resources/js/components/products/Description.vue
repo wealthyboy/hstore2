@@ -1,5 +1,6 @@
 <template>
   <div class="container my-4">
+     
     <div id="productDetails" class="accordion">
 
       <!-- Size + Fit -->

@@ -16,6 +16,8 @@ use App\Http\Resources\ProductIndexResource;
 use App\Http\Resources\ProductResource;
 use App\Http\Resources\ProductFilterResource;
 use Illuminate\Database\Eloquent\Builder;
+use App\Filters\ProductsFilter\AttributesFilter;
+
 
 
 

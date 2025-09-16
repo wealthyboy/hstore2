@@ -23,8 +23,8 @@
               <div class="text-center">
                 <h2>Register</h2>
                 <!-- <a href="/login/facebook" class="btn btn-facebook btn-round">
-                                <i class="fab fa-facebook-f"></i> Sign in with Facebook 
-                            </a> -->
+                    <i class="fab fa-facebook-f"></i> Sign in with Facebook 
+                </a> -->
               </div>
               <form
                 method="POST"
@@ -208,6 +208,7 @@
 import { mapGetters, mapActions } from "vuex";
 
 export default {
+
   data() {
     return {
       loading: false,

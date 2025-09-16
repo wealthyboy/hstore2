@@ -343,7 +343,7 @@ class ProductController extends Controller
                     $name = isset($request->variation_name[$key]) ? $request->variation_name[$key] : null;
                     $variation_images = !empty($request->variation_images[$key]) ? $request->variation_images[$key] : [];
                     $product_variation->name = $name;
-                    $product_variation->slug = null ! == $name ?  str_slug($name) : null;
+                    $product_variation->slug = null !== $name ?  str_slug($name) : null;
                     $product_variation->price = null !== $request->variation_price[$key] ? $request->variation_price[$key] : $request->price;
                     $product_variation->sale_price =  null !== $request->variation_sale_price[$key] ? $request->variation_sale_price[$key] : $request->sale_price;
                     $product_variation->image = isset($request->variation_image[$key]) ? $request->variation_image[$key] : null;
@@ -1092,7 +1092,7 @@ class ProductController extends Controller
         $count = count($request->selected);
         (new Activity)->Log("Deleted  {$count} Products");
 
-        $products = Product::all();
+        $products = Product::find($request->selected );
 
         foreach ($products as $product) {
             $product->variants()->delete();

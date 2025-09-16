@@ -15,7 +15,7 @@
         <div class="sidebar-toggle"><i class="fas fa-sliders-h"></i></div>
         <aside  
             v-if="!loading" 
-            class="sidebar-shop  order-lg-first mobile-sidebar col-md-3 "
+            class="sidebar-shop  order-lg-first mobile-sidebar col-md-2 "
         >
             <div class="pin-wrapper" style="">
                 <div class="sidebar-wrapper" style="">
@@ -28,7 +28,7 @@
         </aside><!-- End .col-lg-3 -->
 
     <!-- Products column -->
-    <div class="col-md-9">
+    <div class="col-md-10">
         
         <nav class="toolbox horizontal-filter filter-sorts mb-1  sticky-header " data-sticky-options="{'mobile': true}">
             <div class="toolbox-left">
@@ -233,10 +233,9 @@ export default {
             let category = this.$route.params.category;
 
             console.log(this.$route)
-
-
-
             let url = `/api${this.$route.fullPath}`;
+
+            console.log(url)
 
                 return axios.get(url).then((response) => {
                     this.items = response.data.products.data;

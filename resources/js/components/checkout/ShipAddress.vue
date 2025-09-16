@@ -4,7 +4,7 @@
                 <form  @submit.prevent="submit" method="POST" class=""> 
                     <div class="row reduce-gutters" id="add-new-address-form" data-action="/address/create">
                         <p class="form-group reduce-gutters col-lg-6">
-                            <label for="first_name">First Name</label>
+                            <label for="first_name">First Name &nbsp;<abbr class="required " title="required">*</abbr></label>
                             <input  :class="{'has-danger': errors.first_name}"  id="firstname" 
                             v-model="form.first_name" 
                             @input="removeError($event)"  
@@ -17,7 +17,7 @@
                             </span>
                         </p>
                         <p class="form-group reduce-gutters col-lg-6">
-                            <label for="last_name">Last Name</label>
+                            <label for="last_name">Last Name &nbsp;<abbr class="required " title="required">*</abbr></label>
                             <input id="lastname"
                                 v-model="form.last_name"  
                                 :class="{'has-danger': errors.first_name}"   
@@ -44,7 +44,7 @@
                             
                         </p>
                         <p   class="form-group reduce-gutters col-lg-6">
-                            <label for="phone_number">Phone Number</label>
+                            <label for="phone_number">Phone Number &nbsp;<abbr class="required " title="required">*</abbr></label>
                             <input id="phone_number"
                                 v-model="form.phone_number"  
                                 :class="{'has-danger': errors.phone_number}"   
@@ -59,7 +59,7 @@
                             </span>
                         </p>
                         <p class="form-group reduce-gutters col-md-12">
-                            <label for="address">Address</label>
+                            <label for="address">Address &nbsp;<abbr class="required " title="required">*</abbr></label>
                             <input id="address" 
                                 v-model="form.address"
                                 @input="removeError($event)"  
@@ -77,7 +77,7 @@
                             <input id="address_2"  v-model="form.address_2"  type="text" class="form-control" name="address_2"  autofocus autocomplete="off">
                         </p>
                         <p class="form-group  reduce-gutters col-lg-6">
-                            <label for="locality">City</label>
+                            <label for="locality">City &nbsp;<abbr class="required " title="required">*</abbr></label>
                             <input id="locality" 
                                 v-model="form.city" 
                                 @input="removeError($event)"  
@@ -146,17 +146,17 @@
                     <li class="mb-3" v-for="(location, index) in addresses" :key="location.id">
                         <div class="shipping-info border border-gray pr-3 pt-3 pl-3">
                             <div class="shipping-address-info">
-                                <p  id="">{{ location.first_name }} {{ location.last_name }}  </p>
-                                <p v-if="meta.isAdmin"> {{ location.email }} {{ location.phone_number }} </p>
+                                <div  class="bold" id="">{{ location.first_name }} {{ location.last_name }}  </div>
+                                <div class="text-muted" v-if="meta.isAdmin"> {{ location.email }} {{ location.phone_number }} </div>
 
-                                <p> {{ location.address }} {{ location.address2}} </p>
-                                <p> {{ location.city }} ,{{ location.state}}  {{ location.zip }}</p>
-                                <p> {{ location.country }} </p>
-                                <p class="">
-                                    <a  @click.prevent="editAddress(index)" data-placement="left"  href="#" class="ml-0 mr-4 btn color--primary bold"> 
+                                <div class="text-muted"> {{ location.address }} {{ location.address2}} </div>
+                                <div class="text-muted"> {{ location.city }} ,{{ location.state}}  {{ location.zip }}</div>
+                                <div class="text-muted"> {{ location.country }} </div>
+                                <p class="mt-2">
+                                    <a  @click.prevent="editAddress(index)" data-placement="left"  href="#" class="ml-0 mr-4 btn  border btn-round  bold border-raduis-btn"> 
                                         <i class="fa fa-edit"></i> Edit
                                     </a>
-                                    <a  @click.prevent="makeDefault($event,location.id)"  :id="location.id"  data-placement="left"  href="#" class="mr-4  color--primary ml-4 bold make-default"> 
+                                    <a  @click.prevent="makeDefault($event,location.id)"  :id="location.id"  data-placement="left"  href="#" class="mr-4  btn  border btn-round  bold border-raduis-btn make-default"> 
                                         <i  class="fa fa-plus"></i> 
                                         <span  v-if="location.is_active >= 1"> 
                                         Default 
@@ -166,7 +166,7 @@
                                             Use this address
                                         </span> 
                                     </a>
-                                    <a  @click.prevent="removeAddress($event,location.id)"  :id="location.id" data-placement="left"  href="#" class="color--primary bold ml-4"> <i class="fa fa-trash"></i>
+                                    <a  @click.prevent="removeAddress($event,location.id)"  :id="location.id" data-placement="left"  href="#" class="btn  border btn-round  bold border-raduis-btn "> <i class="fa fa-trash"></i>
                                         <span v-if="delete_id == location.id" class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span>
                                         Delete
                                     </a>
@@ -246,8 +246,9 @@ export default {
       clearErrors: "clearErrors",
       checkInput: "checkInput",
     }),
-    getState: function (evt) {
-      let value = typeof evt.target !== "undefined" ? evt.target.value : evt;
+    getState: function (evt, edit = false) {
+      console.log(evt)
+      let value = evt || evt.target.value;
       let input = document.querySelectorAll(".required");
       this.clearErrors({ context: this, input: input });
       let state = [];
@@ -318,6 +319,7 @@ export default {
     },
     editAddress: function (index) {
       let address = this.addresses[index];
+       
       this.form.first_name = address.first_name;
       this.form.last_name = address.last_name;
       this.form.email = address.email;
@@ -329,10 +331,12 @@ export default {
       this.form.country_id = address.country_id;
       let state = [];
       let ship_prices = [];
-      this.getState(address.country_id);
+      this.getState(address.country_id, true);
       this.form.state_id = address.state_id;
       this.edit = true;
       this.address_id = address.id;
+      console.log(address)
+      
       this.$store.commit("setShowForm", true);
     },
     removeAddress: function (e, id) {

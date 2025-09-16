@@ -163,10 +163,9 @@ export default {
               filters.push(input.name + "=" + input.value);
             });
 
-            this.selectedFilters = filters;
-            window.history.pushState({}, "", "?" + filters.join("&"));
-
-            this.$emit("filters-updated", this.selectedFilters);
+          this.selectedFilters = filters;
+          window.history.pushState({}, "", "?" + filters.join("&"));
+          this.$emit("filters-updated", this.selectedFilters);
         },
 
       

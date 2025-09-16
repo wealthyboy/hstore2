@@ -33,30 +33,16 @@
       <div class="row   align-items-start">
         <div class="col-12 col-md-7">
           <div class="col-md-12 m7 bg--light border border-gray mb-2">
-            <div class="head  border-bottom  pt-3 mb-3">
-              <h3>1. SHIPPING ADDRESS</h3>
+            <div class="head  border-bottom  py-3">
+              <h4 class="m-0"> SHIPPING ADDRESS</h4>
             </div>
             <ship-address />
           </div>
 
           <div class="col-md-12 bg--light">
-            <div class="pt-3 pb-2 ">
-              <span class="float-right">
-                <div class="payment-icons mt-1 d-flex">
-                  <div class="payment-image ms mr-3">
-                    <img src="/img/business.png" alt="make payment with mastercard">
-                  </div>
-                  <div class="payment-image mr-3">
-                    <img src="/img/visa-card-ohram.png" alt="make payment with mastercard">
-                  </div>
-
-                  <div class="payment-image">
-                    <img src="/img/Verve.png" alt="make payment with mastercard">
-                  </div>
-                </div>
-
-              </span>
-              <h3>2. PAYMENT</h3>
+            <div class="py-3 ">
+              
+              <h4 class="mb-0"> PAYMENT</h4>
             </div>
             <div class="row" v-if="addresses.length" id="add-new-address-form">
               <div class="form-field-wrapper  col-sm-12 ">
@@ -130,7 +116,7 @@
                   <div class="input-group">
                     <input type="text" v-model="coupon" class="form-control" placeholder="Enter  code" required="">
                     <div class="input-group-append">
-                      <button @click.prevent="applyCoupon" class="btn btn-sm btn-primary" type="submit">
+                      <button @click.prevent="applyCoupon" class="btn btn-sm btn-primary border-raduis-btn" type="submit">
                         <span v-if="submiting" class='spinner-border spinner-border-sm' role='status'
                           aria-hidden='true'></span>
                         Apply
@@ -138,9 +124,7 @@
                     </div>
 
                   </div><!-- End .input-group -->
-                  <div v-if="coupon_error" class="text- text-danger">{{ coupon_error }}</div>
-
-                </div>
+                  <div v-if="coupon_error" class="text- text-danger">{{ coupon_error }}</div></div>
 
                 <template v-if="gift_card">
 
@@ -157,13 +141,12 @@
 
                   <div :class="{ 'border-danger': delivery_error }" class="border pl-3 mb-1 ">
                     <div class="custom-control custom-radio">
-                      <input type="radio" value="1 Bassie Ogamba Street, off Adeniran Ogunsanya , SURULERE."
-                        v-model="delivery_option" class="custom-control-input" id="pick_up_surulere"
+                      <input type="radio" value="No 44b Fola Osibo lekki phase 1."
+                        v-model="delivery_option" class="custom-control-input" id="pick_up_lekki"
                         name="delivery_option" required>
-                      <label class="custom-control-label" for="pick_up_surulere"> PICK UP OPTION 1 <span
-                          class="ml-3 text-info"> </span>
-                        <span class="mr-3 bold text-danger">
-                        </span>
+                      <label class="custom-control-label" for="pick_up_lekki"> PICK UP  <span
+                          class="ml-3 text-info"> No 44b Fola Osibo lekki phase one </span>
+                       
                       </label>
                     </div>
                     <!-- <div class="custom-control custom-radio ">
@@ -319,16 +302,35 @@
                 </template>
 
               </p>
+
+              <div>
+                <span class="float-right">
+                  <div class="payment-icons mt-1 d-flex">
+                    <div class="payment-image ms mr-3">
+                      <img src="/img/business.png" alt="make payment with mastercard">
+                    </div>
+                    <div class="payment-image mr-3">
+                      <img src="/img/visa-card-ohram.png" alt="make payment with mastercard">
+                    </div>
+
+                    <div class="payment-image">
+                      <img src="/img/Verve.png" alt="make payment with mastercard">
+                    </div>
+                  </div>
+
+              </span>
+              </div>
             </div>
           </div>
 
         </div>
         <div class="col-5">
           <div class="col-md-12 d-none d-lg-block  mb-3">
-            <div class="cart-collateralse bg--light  border pb-3 pt-3 pl-3 pt-3 pr-3">
+            <div class="cart-collateralse bg--light  border px-3">
               <div class="cart_totalse">
-                <div class="head  border-bottom">
-                  <h3>SUMMARY</h3>
+              
+                <div class="head  border-bottom  py-3">
+                  <h4 class="m-0"> SUMMARY</h4>
                 </div>
 
                 <div v-for="cart in carts" :key="cart.id" class="row cart-rows  mb-2 pt-4 pb-2 border-top border-gray">
