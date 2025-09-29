@@ -1,10 +1,5 @@
 <template>
-  <button
-    @click.prevent="addToCart"
-    :class="canAddToCart"
-    type="button"
-    name="add-to-cart"
-    value="add_to_cart"
+  <button @click.prevent="addToCart" :class="canAddToCart" type="button" name="add-to-cart" value="add_to_cart"
     class="btn btn-sm btn-dark w-100 py-4"
   >
 

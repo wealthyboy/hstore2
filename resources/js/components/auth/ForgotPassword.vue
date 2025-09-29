@@ -13,7 +13,7 @@
                 <label for="reg_username">Email&nbsp;<span class="required">*</span></label>
                 <input id="email" v-model="form.email" @input="removeError($event)" @blur="vInput($event)"
                     :class="{ 'has-danger': errors.email }" type="email"
-                    class="input--lg form-full required custom-control-input" name="email">
+                    class="input--lg form-full required  form-control required" name="email">
                 <span class="text-danger" role="" v-if="errors.email">
                     <strong class="text-danger">{{ formatError(errors.email) }}</strong>
                 </span>
@@ -26,7 +26,7 @@
                 </button>
             </template>
             <template v-else>
-                <button type="submit" class="btn btn--primary btn-round btn-lg btn-block">
+                <button type="submit" class="btn btn--primary btn-round btn-lg btn-block border-raduis-btn">
                     Send Link
                 </button>
             </template>

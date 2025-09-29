@@ -302,7 +302,7 @@ input:-webkit-autofill, input:-webkit-autofill:focus {
   padding: 2rem;
   background-color: #fff;
   color: #777;
-  font-family: Polaris-Book,sans-serif;
+  font-family: Polaris-Book sans-serif;
 }
 
 select.form-control:not([size]):not([multiple]) {

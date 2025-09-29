@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\Cache;
 
 use App\Models\Live;
 use App\Models\Banner;
@@ -18,39 +19,60 @@ use App\Models\Image;
 use App\Models\ProductVariation;
 use Illuminate\Support\Facades\Cookie;
 
+
+
 class HomeController extends Controller
 {
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
+    
+
     public function index(Request $request)
     {
-        $site_status = Live::first();
-        $banners = Banner::banners()->get();
-        $sliders = Banner::sliders()->get();
+        $site_status = Cache::remember('site_status', 60*30, function () {
+            return Live::first();
+        });
 
-        $products = ProductVariation::whereNotNull('price')
-            ->where('price', '>', 0) // optional: only positive prices
-            ->whereNotNull('name')
-            ->where('name', '!=', '') // makes sure name is not empty string
-            ->orderBy('updated_at', 'DESC')
-            ->take(8)
-            ->get();
+        $banners = Cache::remember('banners', 60*30, function () {
+            return Banner::banners()->get();
+        });
 
-        $reviews = Review::where('is_verified', 1)->inRandomOrder()->orderBy('created_at', 'DESC')->take(20)->get();
-        $posts = Information::orderBy('created_at', 'DESC')->where(['blog' => true, 'is_active' => true])->take(6)->get();
-        return view('index', compact('sliders','banners', 'reviews', 'products', 'posts'));
+        $sliders = Cache::remember('sliders', 60*30, function () {
+            return Banner::sliders()->get();
+        });
 
+        $products = Cache::remember('latest_products', 60*30, function () {
+            return ProductVariation::whereNotNull('price')
+                ->where('price', '>', 0)
+                ->whereNotNull('name')
+                ->where('name', '!=', '')
+                ->orderBy('updated_at', 'DESC')
+                ->take(8)
+                ->get();
+        });
+
+        $reviews = Cache::remember('recent_reviews', 60*30, function () {
+            return Review::where('is_verified', 1)
+                ->inRandomOrder()
+                ->orderBy('created_at', 'DESC')
+                ->take(20)
+                ->get();
+        });
+
+        $posts = Cache::remember('recent_posts', 60*30, function () {
+            return Information::orderBy('created_at', 'DESC')
+                ->where(['blog' => true, 'is_active' => true])
+                ->take(6)
+                ->get();
+        });
+
+        // under construction logic
         if (!$site_status->make_live) {
-            return view('index', compact('sliders','banners', 'reviews', 'products', 'posts'));
+            return view('index', compact('sliders', 'banners', 'reviews', 'products', 'posts'));
         } else {
-            //Show site if admin is logged in
-            if (auth()->check()  && auth()->user()->isAdmin()) {
-                return view('index', compact('sliders','banners', 'reviews', 'products', 'posts'));
+            if (auth()->check() && auth()->user()->isAdmin()) {
+                return view('index', compact('sliders', 'banners', 'reviews', 'products', 'posts'));
             }
             return view('underconstruction.index');
         }
     }
+
 }

@@ -14,8 +14,10 @@ mix.styles([
 
 mix.styles([
   'public/css/bootstrap.css',
-  'public/css/theme.css',
+  'public/css/style.min.css',
+  'public/vendor/fontawesome-free/css/all.min.css',
   'public/css/skins/skin-default.css',
+  'public/css/banner.css',
   'public/css/custom.css',
 ], 'public/css/all.css');
 

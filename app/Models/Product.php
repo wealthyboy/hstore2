@@ -47,8 +47,9 @@ class Product extends Model
 		'image_tn',
 		'image_to_show_m',
 		'image_to_show_tn',
+		'average_rating',
+        'average_rating_count',
 		'colours',
-
 	];
 
 	protected $cascadeDeletes = ['meta_fields', 'attributes', 'variants', 'categories'];
@@ -98,7 +99,6 @@ class Product extends Model
 		return $this->hasOne(ProductVariation::class)->whereDefault(true);
 	}
 
-
 	public function colors()
 	{
 		return $this->belongsToMany(Attribute::class)
@@ -131,8 +131,20 @@ class Product extends Model
 
 	public function favorites()
 	{
-		return $this->hasOne('App\Favorite');
+		return $this->hasOne(Favorite::class);
 	}
+
+
+	 public function getAverageRatingAttribute()
+    {
+        return (new Review())->highest_rating($this->id);
+    }
+
+
+    public function getAverageRatingCountAttribute()
+    {
+        return (new Review())->number_of_occurencies($this->id);
+    }
 
 	public function link()
 	{
@@ -237,7 +249,7 @@ class Product extends Model
 
 	public function reviews()
 	{
-		return $this->hasMany(Review::class);
+		return $this->hasMany(Review::class)->where('is_verified', true);
 	}
 
 

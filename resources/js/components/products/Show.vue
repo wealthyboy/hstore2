@@ -5,7 +5,7 @@
            
         <div class="col-md-1 product-single-gallery d-none d-lg-block ">
 
-          <div class="arrow-btn text-center arrow-up" @click="scrollUp">
+          <div  v-if="images.length > 5"  class="arrow-btn text-center arrow-up" @click="scrollUp">
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 8l6 6H6z"/>
             </svg>
@@ -13,14 +13,14 @@
              
           <div ref="thumbContainer"  class="prod-thumbnail carousel-custom-dots owl-dots   quick-view" id="carousel-custom-dots">
             <div class="owl-dot">
-              <img class="animated" @click.prevent="currentSlide(product.image_to_show)" :src="image_tn" />
+              <img class="animated" @click.prevent="currentSlide(product.image_to_show)" :src="image_m" />
             </div>
             <div @click.prevent="currentSlide(image.image)" v-for="image in images" :key="image.id" class="owl-dot">
-              <img :src="image.image_tn" :alt="image.image_tn" />
+              <img :src="image.image_m" :alt="image.image_m" />
             </div>
           </div>
 
-            <div class="text-center cursor-pointer" @click="scrollDown">
+            <div v-if="images.length > 5" class="text-center cursor-pointer" @click="scrollDown">
               <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="black" viewBox="0 0 24 24">
                 <path d="M12 16l-6-6h12z"/>
               </svg>
@@ -38,7 +38,7 @@
               </div>
               <div v-for="image in images" :key="image.id" class="product-item">
                 <img class="product-single-image" :data-zoom-image="image.image" :src="image.image"
-                  v-if="image.image !== ''" :alt="image.image_tn" />
+                  v-if="image.image !== ''" :alt="image.image_m" />
               </div>
             </div>
           </div>
@@ -48,10 +48,10 @@
         <div class="d-none d-xs-block d-block d-lg-none d-sm-block d-md-none">
           <div class="prod-thumbnail d-flex carousel-custom-dots carousel-custom-dots-mobile owl-dots" id="carousel-custom-dots">
             <div class="owl-dot">
-              <img class="animated" @click.prevent="currentSlide(product.image_to_show)" :src="image_tn" />
+              <img class="animated" @click.prevent="currentSlide(product.image_to_show)" :src="image_m" />
             </div>
             <div @click.prevent="currentSlide(image.image)" v-for="image in images" :key="image.id" class="owl-dot">
-              <img :src="image.image_tn" :alt="image.image_tn" />
+              <img :src="image.image_m" :alt="image.image_m" />
             </div>
           </div>
         </div>
@@ -108,7 +108,11 @@
                 <cart-button :loading="loading" :canAddToCart="canAddToCart" :cartText="cartText" @add="addToCart" />
               </div>
 
-              <wishlist v-if="!product.is_gift_card" @wishlistChange="addToWishList" :wishlistText="wishlistText" />
+              <wishlist 
+                v-if="!product.is_gift_card" 
+                @wishlistChange="addToWishList" 
+                :wishlistText="wishlistText" 
+              />
             </div>
           </div>
           <!-- End .product-filters-container -->
@@ -121,7 +125,7 @@
     </div>
     <!-- End .product-single-container -->
     <reviews :product="product" :meta="meta" :reviews="reviews" />
-    <login-modal />
+
     <register-modal />
     <out-of-stock :product_variation="product_variation" />
   </div>
@@ -195,6 +199,7 @@ export default {
       loading: false,
       is_loggeIn: false,
       is_wishlist: null,
+      quantity: 0,
       testn: "x",
       image_m: "",
       image_tn: null,
@@ -256,6 +261,8 @@ export default {
     this.product_variation = this.product;
     this.image = this.product.image_to_show;
     this.image_tn = this.product.image_to_show_tn;
+    this.image_m = this.product.image_m;
+
     this.images = this.product.images;
     this.product_variation_id = this.product.id;
     this.percentage_off = this.product.default_percentage_off;
@@ -308,7 +315,7 @@ export default {
     },
     productReviews() {
       return axios
-        .get("/reviews/" + this.product.id)
+        .get("/reviews/" + this.product.product.id)
         .then((response) => {
           this.loading = false;
           this.$store.commit("setReviews", response.data.data);

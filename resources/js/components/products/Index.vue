@@ -2,8 +2,8 @@
   <div class="row">
     <!-- Filter column -->
 
-        <div class="col-md-3" v-if="loading && !items.length" >
-            <div class="mb-3 " v-for="n in 5" :key="n">
+        <div class="col-md-2" v-if="loading ">
+            <div class="mb-3" v-for="n in 5" :key="n">
                 <div class="d-flex align-items-center">
                 <div class="skeleton-box rounded" style="width: 100%; height: 20px;"></div>
                 <div class="skeleton-box rounded ms-auto" style="width: 20px; height: 20px;"></div>
@@ -14,13 +14,13 @@
         <div @click="toggleSideBar" class="sidebar-overlay"></div>
         <div class="sidebar-toggle"><i class="fas fa-sliders-h"></i></div>
         <aside  
-            v-if="!loading" 
+             
             class="sidebar-shop  order-lg-first mobile-sidebar col-md-2 "
         >
             <div class="pin-wrapper" style="">
                 <div class="sidebar-wrapper" style="">
                     <side-bar 
-                       @filters-updated="getProducts" 
+                       @filters-updated="updateProducts" 
                        :categoryFilters="filters" 
                     />
                 </div>
@@ -200,7 +200,7 @@ export default {
     watch: {
         '$route.query':{
             handler(query){
-            //  this.getProducts(this.$route.query.page,query)
+              // this.getProducts(this.$route.query.page,query)
             },
             deep:true
         },
@@ -212,6 +212,27 @@ export default {
     methods: {
         setLayout(mode) {
             this.layout = mode;
+        },
+        updateProducts(filters) {
+            let path = window.location.pathname + window.location.search;
+
+            // Prepend "/api"
+            let apiUrl = "/api" + path;
+
+            this.loading = true
+
+
+            return axios.get(apiUrl).then((response) => {
+                    this.items = response.data.products.data;
+                    this.meta = response.data.products;
+                    this.loading = false
+                    this.has_filters = response.data.has_filters;
+                    let productId = ''
+
+
+                }).catch(() => {
+                    this.loading = false
+                });
         },
         toggleSideBar() {
             $("body").toggleClass("sidebar-opened");
@@ -232,7 +253,7 @@ export default {
         getProducts(page = this.$route.query.page, filters = this.$route.query) {
             let category = this.$route.params.category;
 
-            console.log(this.$route)
+            console.log(this.$route. filters)
             let url = `/api${this.$route.fullPath}`;
 
             console.log(url)
@@ -250,6 +271,10 @@ export default {
                 });
             }
         },
+        filterP(filter) {
+            console.log(filter)    
+        }
+        
     
 }
 

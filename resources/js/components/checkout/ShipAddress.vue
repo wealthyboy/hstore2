@@ -145,9 +145,15 @@
                     <li class="mb-3" v-for="(location, index) in addresses" :key="location.id">
                         <div class="shipping-info border border-gray pr-3 pt-3 pl-3">
                             <div class="shipping-address-info">
-                                <div  class="bold" id="">{{ location.first_name }} {{ location.last_name }}  </div>
-                                <div class="text-muted" v-if="meta.isAdmin"> {{ location.email }} {{ location.phone_number }} </div>
-                                <div class="text-muted"> {{ location.address }} {{ location.address2}} </div>
+                                <div class="bold" id="">
+                                  {{ location.first_name }} {{ location.last_name }}  
+                                </div>
+                                <div class="text-muted" v-if="meta.isAdmin"> 
+                                  {{ location.email }} {{ location.phone_number }} 
+                                </div>
+                                <div class="text-muted"> 
+                                  {{ location.address }} {{ location.address2}}
+                                 </div>
                                 <div class="text-muted"> {{ location.city }} ,{{ location.state}}  {{ location.zip }}</div>
                                 <div class="text-muted"> {{ location.country }} </div>
                                 <p class="mt-2">
@@ -244,19 +250,30 @@ export default {
       clearErrors: "clearErrors",
       checkInput: "checkInput",
     }),
+
+    handleEvt: function (evt) {
+      if (evt && typeof evt === 'object') {
+        // Case 1: DOM event (has target + value)
+        if ('target' in evt && evt.target?.value !== undefined) {
+          return evt.target.value;
+        }
+
+        
+      }
+
+      return evt; // default if neither
+    },
     getState: function (evt, edit = false) {
-      //console.log(evt)
-      let value = evt.target.value;
-       console.log( evt.target.value)
+      
+      let value = this.handleEvt(evt);
+
+      console.log(value)
 
       let input = document.querySelectorAll(".required");
       this.clearErrors({ context: this, input: input });
       let state = [];
 
-     // console.log( this.locations)
-      //loop through all countries and pluck out their states
       this.locations.forEach((element) => {
-        console.log(element.id, value)
         if (value == element.id) {
           state.push(element.states);
         }

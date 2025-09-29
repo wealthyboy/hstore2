@@ -7,6 +7,10 @@
   >
     <!-- LOGIN FORM -->
     <div v-if="mode === 'login'">
+      <div class="text-center">
+      <h5 >Login to perform that operation</h5>
+
+      </div>
       <form method="POST" class="login-form" @submit.prevent="authenticate">
         <p>
           <label for="email">Email address</label>

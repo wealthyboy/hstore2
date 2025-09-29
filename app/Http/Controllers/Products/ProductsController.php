@@ -18,10 +18,6 @@ use App\Filters\ProductsFilter\AttributesFilter;
 
 
 
-
-
-
-
 class ProductsController extends Controller
 {
 
@@ -227,12 +223,11 @@ class ProductsController extends Controller
         }
         $inventory = $this->product_inventory($product_variation);
         $stock = $this->product_stock($product_variation);
-        $attributes =  collect($data);
+        $attributes = collect($data);
         $attributes = $attributes->count() && $product->product_type == 'variable' ? $attributes : '{}';
         $product_variation->load(["images"]);
 
         if ($request->ajax()) {
-
               return response()->json([
                 'attributes' => trim($attributes) !== "{}" ? $attributes : [],
                 'inventory' => json_decode($inventory, true),
@@ -243,7 +238,7 @@ class ProductsController extends Controller
        
 
 
-        return view('products.show', compact('meta_tag_keywords', 'page_meta_description', 'inventory', 'stock', 'category', 'attributes', 'product_variation', 'page_title'));
+        return view('products.show', compact('product','meta_tag_keywords', 'page_meta_description', 'inventory', 'stock', 'category', 'attributes', 'product_variation', 'page_title'));
     }
 
 

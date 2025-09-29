@@ -6,7 +6,7 @@
       <!-- Size + Fit -->
       <div class="card mb-0 border-0 border-bottom">
         <div
-          class="card-heade cursor-pointer border-bottom bg-white d-flex justify-content-between align-items-center p-3"
+          class="card-heade  bg--main cursor-pointer border-bottom bg-white d-flex justify-content-between align-items-center p-3"
           data-toggle="collapse"
           data-target="#collapseSizeFit"
         >
@@ -26,11 +26,11 @@
       <!-- Material -->
       <div class="card mb-0 border-0 border-bottom">
         <div
-          class="card-heade  cursor-pointer border-bottom bg-white d-flex justify-content-between align-items-center p-3"
+          class="card-heade  cursor-pointer border-bottom bg--main  d-flex justify-content-between align-items-center p-3"
           data-toggle="collapse"
           data-target="#collapseMaterial"
         >
-          <div class="d-flex align-items-center">
+          <div class="d-flex  bg--main  align-items-center">
             <i class="fas fa-globe mr-2"></i>
             <span class="font-weight-bold text-uppercase small">Material</span>
           </div>
@@ -46,7 +46,7 @@
       <!-- Packaging -->
       <div class="card  mb-0 border-0 border-bottom">
         <div
-          class="card-heade cursor-pointer border-bottom bg-white d-flex justify-content-between align-items-center p-3"
+          class="card-heade  bg--main  cursor-pointer border-bottom d-flex justify-content-between align-items-center p-3"
           data-toggle="collapse"
           data-target="#collapsePackaging"
         >
@@ -66,7 +66,7 @@
       <!-- Shipping -->
       <div class="card mb-0 border-0 border-bottom">
         <div
-          class="card-heade cursor-pointer border-bottom bg-white d-flex justify-content-between align-items-center p-3"
+          class="card-heade cursor-pointer bg--main  border-bottom bg-white d-flex justify-content-between align-items-center p-3"
           data-toggle="collapse"
           data-target="#collapseShipping"
         >
@@ -87,7 +87,7 @@
       <div class="card mb-0 mb-0 border-0 cursor-pointer border-bottom">
         <div
           role="button"
-          class="card-heade cursor-pointer border-bottom bg-white d-flex justify-content-between align-items-center p-3"
+          class="card-heade cursor-pointer border-bottom bg--main  d-flex justify-content-between align-items-center p-3"
           data-toggle="collapse"
           data-target="#collapseReturns"
         >

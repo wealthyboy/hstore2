@@ -31,7 +31,7 @@ class Review extends Model
         $result = \DB::table('reviews')->select(\DB::raw('COUNT(rating) AS occurrences'))
             ->groupBy('rating')
             ->orderBy('occurrences', 'DESC')
-            ->where(['reviews.product_variation_id' => $id, 'is_verified' => true])
+            ->where(['reviews.product_id' => $id, 'is_verified' => true])
             ->first();
         return $result  !== null ? $result->occurrences : 0;
     }
@@ -46,7 +46,7 @@ class Review extends Model
         $result = static::select('rating')
             ->groupBy('rating')
             ->orderByRaw('COUNT(*) DESC')
-            ->where(['reviews.product_variation_id' => $id, 'is_verified' => true])
+            ->where(['reviews.product_id' => $id, 'is_verified' => true])
             ->first();
         return $result !== null ?  $result->rating : 0;
     }

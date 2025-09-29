@@ -1,5 +1,5 @@
 <template>
-    <div class="cart-panel position-fixed top-0 right-0 bg-light shadow-lg h-100 d-flex flex-column" 
+    <div class="cart-panel position-fixed top-0 right-0 bg--main  shadow-lg h-100 d-flex flex-column" 
      style="width: 400px; z-index: 1050; display: none;">
     
     <!-- Header -->
@@ -11,7 +11,7 @@
   
     
     <!-- Scrollable items -->
-    <div class="cart-items flex-grow-1 overflow-auto p-3" style="max-height: calc(100vh - 180px);">
+    <div class="cart-items flex-grow-1 overflow-auto p-3 bg--main" style="overflow: scroll;max-height: calc(100vh - 180px);">
         
         <!-- Cart Item -->
     <div v-for="cart in carts" :key="cart.id" class="d-flex mb-4">

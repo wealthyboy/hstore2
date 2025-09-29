@@ -39,7 +39,7 @@
           />
       </svg>
   </div>
-    </div>
+</div>
    
  
 </template>
@@ -50,7 +50,7 @@ export default {
     return {
       user: Window.auth,
       isActive: false,
-      is_wishlist: this.product.item_is_wishlist,
+      is_wishlist: this.product?.item_is_wishlist,
     };
   },
   computed: {

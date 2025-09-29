@@ -26,18 +26,16 @@ class ReviewsController extends Controller
 
     public function __construct()
     {
-        $this->settings =  SystemSetting::first();
+        $this->settings = SystemSetting::first();
     }
 
 
     public function index(Request $request, $id)
     {
-        $product_variation =  ProductVariation::find($id);
-        $reviews =  $product_variation->reviews()->orderBy('created_at', 'DESC')->paginate(10);
+        $product = Product::find($id);
+        $reviews = $product->reviews()->orderBy('created_at', 'DESC')->paginate(10);
         return ReviewResourceCollection::collection($reviews);
     }
-
-
 
     /**
      * Store a newly created resource in storage.
@@ -57,18 +55,18 @@ class ReviewsController extends Controller
             }
         }
 
-        if (empty($pv)) {
+        if ( empty($pv) ) {
             // return response()->json([
             //    'msg' => 'You are not elgible.'
             // ],422);
         }
 
-        $new_review =  $review->create([
+        $new_review = $review->create([
             'user_id' => $user->id,
             'product_id' => $request->product_id,
             'product_variation_id' => $request->product_variation_id,
             'title' => $request->title,
-            'rating' => $request->rating,
+            'rating' => $request->rating *20,
             'description' => $request->description,
         ]);
 
@@ -81,7 +79,7 @@ class ReviewsController extends Controller
         $new_review['rating'] = $request->rating;
         $new_review['email'] = $user->email;
         try {
-            \Notification::route('mail', 'haute.signatures@gmail.com')
+            \Notification::route('mail', 'theodorawilfred@yahoo.com')
                 ->notify(new ReviewNotification($new_review));
         } catch (\Throwable $th) {
             //throw $th;

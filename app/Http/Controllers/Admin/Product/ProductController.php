@@ -1022,8 +1022,6 @@ class ProductController extends Controller
         return $cA;
     }
 
-
-
     public function syncProductVariationValues($filtered_attributes, $product_variation, $product)
     {
         $names = [];
@@ -1046,8 +1044,6 @@ class ProductController extends Controller
         }
     }
 
-
-
     public function destroyVariation(Request $request, $product_variation_id)
     {
         $product_variation_values = ProductVariationValue::whereIn('product_variation_id', [$product_variation_id])->get();
@@ -1069,8 +1065,6 @@ class ProductController extends Controller
         RelatedProduct::destroy($id);
         return response('done', 200);
     }
-
-
 
     /**
      * Remove the specified resource from storage.

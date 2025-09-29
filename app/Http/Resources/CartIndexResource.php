@@ -19,7 +19,7 @@ class CartIndexResource extends JsonResource
             'id' => $this->id,
             'product_variation_id' => $this->product_variation_id,
             'product_variation' => $this->product_variation,
-            'image' => optional($this->product_variation)->image_tn,
+            'image' => optional($this->product_variation)->image_m,
             'quantity' => $this->quantity,
             'is_gift_card' => $this->is_gift_card,
             'name'     => optional($this->product_variation)->name,

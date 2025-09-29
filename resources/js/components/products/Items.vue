@@ -101,7 +101,7 @@
               ></span>
             </div>
           </div>
-        </div>
+        </div> 
 
           <div class="d-flex mb-1">
             <div
@@ -154,8 +154,8 @@
   </div>
 
   <QuickBuyModal :show="showQuickBuy" @close="showQuickBuy = false">
-      <QuickBuySkelenton v-if="quickBuyIsLoading" />
-      <QuickBuy @show-login="closeModalQuick"  @product-added="showQuickBuy = false" v-if="!quickBuyIsLoading"  :attributes="attributes" :stock="stock" :inventory="inventory"  :product="product_variation" />
+    <QuickBuySkelenton v-if="quickBuyIsLoading" />
+    <QuickBuy @show-login="closeModalQuick"  @product-added="showQuickBuy = false" v-if="!quickBuyIsLoading"  :attributes="attributes" :stock="stock" :inventory="inventory"  :product="product_variation" />
   </QuickBuyModal>
   <LoginModal :show="showLogin" @update:show="close"  />
 </div>

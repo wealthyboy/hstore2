@@ -19,11 +19,10 @@ class ReviewResourceCollection extends JsonResource
             'title' => $this->title,
             'full_name' => optional($this->user)->name .' '.optional($this->user)->last_name,
             'description' => $this->description,
-            'date' => $this->created_at->diffForHumans(),
+            'date' => optional($this->created_at)->diffForHumans(),
             'rating' => $this->rating,
             'product_name' => $this->product->product_name,
             'image' => $this->image
-
         ];
     }
 }

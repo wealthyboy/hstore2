@@ -3,26 +3,39 @@
     <!-- Header with Add Review button -->
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h4 class="mb-0 font-weight-bold">
-        Reviews <span class="text-warning">5.0 
-          ★★★★☆
-
-        </span>({{ product.average_rating_count }})
+        Reviews {{ product.product.average_rating / 20 }}
+        <span class="text-warning">
+           <span v-for="n in 5" :key="n">
+              <span v-if="n <= product.product.average_rating / 20">★</span>
+              <span v-else>☆</span>
+            </span>
+        </span>
+      
       </h4>
       <button
-        class="btn btn-sm btn-dark"
-        @click="showReviewModal = true"
+        class="btn btn-sm btn-dark border-raduis-btn "
+        @click="openShowReviewModal"
       >
         <i class="fas fa-plus mr-1"></i> Add a Review
       </button>
     </div>
+
+    <ReviewModal :show="showReviewModal" @update:show="close"  />
+
+
+
 
     <!-- Reviews -->
     <div v-for="(review, index) in reviews" :key="index" class="review-item py-3 border-top">
       <div class="row">
         <!-- Left Column -->
         <div class="col-md-3">
-          <div class="text-warning">
-            <i v-for="n in 5" :key="n" class="fas fa-star"></i>
+         
+           <div class="text-warning">
+           <span v-for="n in 5" :key="n">
+              <span v-if="n <= (review.rating / 20)">★</span>
+              <span v-else>☆</span>
+            </span>
           </div>
           <p class="mb-1 font-weight-bold">{{ review.author }}</p>
           <small class="text-muted">{{ review.date }}</small>
@@ -47,79 +60,41 @@
         </div>
       </div>
     </div>
+    <LoginModal :show="showLogin" @update:show="close"  />
+</div>
 
-    <!-- Review Modal -->
-    <div v-if="showReviewModal" class="modal fade show d-block" tabindex="-1" role="dialog">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content rounded-lg shadow">
-          <div class="modal-header">
-            <h5 class="modal-title">Add a Review</h5>
-            <button type="button" class="close" @click="showReviewModal = false">
-              <span>&times;</span>
-            </button>
-          </div>
-
-          <div class="modal-body">
-            <form @submit.prevent="submitReview">
-              <!-- Title -->
-              <div class="form-group">
-                <label>Review Title</label>
-                <input v-model="newReview.title" type="text" class="form-control" required />
-              </div>
-
-              <!-- Text -->
-              <div class="form-group">
-                <label>Review</label>
-                <textarea v-model="newReview.text" rows="3" class="form-control" required></textarea>
-              </div>
-
-              <!-- Fit -->
-              <div class="form-group">
-                <label>Fit</label>
-                <select v-model="newReview.fit" class="form-control">
-                  <option>Small</option>
-                  <option>True to size</option>
-                  <option>Large</option>
-                </select>
-              </div>
-
-              <!-- Size -->
-              <div class="form-group">
-                <label>Size Ordered</label>
-                <input v-model="newReview.size" type="text" class="form-control" />
-              </div>
-
-              <button type="submit" class="btn btn-dark">Submit Review</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal backdrop -->
-    <div v-if="showReviewModal" class="modal-backdrop fade show"></div>
-  </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from "vuex";
 import Pagination from "../pagination/Pagination.vue";
+import LoginModal from "../auth/LoginModal.vue";
+import ReviewModal from "./ReviewModal.vue";
+
+
+
 export default {
   props: ["reviews", "meta", "product"],
    components: {
     Pagination,
+    ReviewModal,
+    LoginModal
   },
   data() {
     return {
       showReviewModal: false,
-     
+      submiting: false,
+      reviewText: "Submit Review",
+      reviewSubmitted: false, // ✅ track submission state
       newReview: {
         title: "",
-        text: "",
-        fit: "True to size",
+        description: "",
+        rating: "",
         size: ""
-      }
-    };
+      },
+      showLogin: false,
+
+    }
   },
    computed: {
     ...mapGetters({
@@ -132,41 +107,59 @@ export default {
     },
   },
   methods: {
-    submitReview() {
-      this.reviews.unshift({
-        ...this.newReview,
-        author: "You",
-        date: new Date().toLocaleDateString(),
-        helpful: 0
-      });
-      this.newReview = { title: "", text: "", fit: "True to size", size: "" };
+     ...mapActions({
+       createReviews: "createReviews",
+    }),
+    close(){
+
       this.showReviewModal = false;
+      this.showLogin = false
+    },
+    openShowReviewModal(){
+      
+
+      if (!this.$root.user) {
+        this.showLogin = true;
+        return;
+      }
+
+      this.showReviewModal = true;
     },
     submitReview() {
-      let input = document.querySelectorAll(".rating_required");
-      this.validateForm({ context: this, input: input });
-      if (!this.form.rating) {
-        this.noRating = true;
-        return false;
-      }
+      
+      if (this.submiting) return;
 
-      if (Object.keys(this.errors).length !== 0) {
-        return false;
-      }
-
+      this.reviewText = "...";
       this.submiting = true;
+
       let form = new FormData();
-      form.append("description", this.form.description);
-      form.append("title", this.form.title);
-      form.append("rating", this.form.rating);
+      form.append("description", this.newReview.description);
+      form.append("title", this.newReview.title);
+      form.append("rating", this.newReview.rating);
       form.append("product_id", this.product.product_id);
       form.append("product_variation_id", this.product.id);
-      this.createReviews({ context: this, form });
+
+      this.createReviews({ context: this, form }).then(() => {
+        this.submiting = false;
+        this.reviewText = "Submit Review";
+
+        // ✅ show success check
+        this.reviewSubmitted = true;
+
+        // Auto-close modal after 2 seconds
+        setTimeout(() => {
+          this.reviewSubmitted = false;
+          this.showReviewModal = false;
+
+          // reset form
+          this.newReview = { title: "", description: "", rating: "", size: "" };
+        }, 2000);
+      });
     },
 
     productReviews() {
       return axios
-        .get("/reviews/" + this.product.id)
+        .get("/reviews/" + this.product.product.id)
         .then((response) => {
           this.loading = false;
           this.$store.commit("setReviews", response.data.data);
@@ -185,6 +178,43 @@ export default {
 }
 .modal {
   display: block; /* Override Bootstrap hide */
+}
+
+
+.wave-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+}
+
+.wave-loader span {
+  display: block;
+  width: 6px;
+  height: 6px;
+  margin: 0 2px;
+  background: white;
+  border-radius: 50%;
+  animation: wave 1.2s linear infinite;
+}
+
+.wave-loader span:nth-child(1) {
+  animation-delay: 0s;
+}
+.wave-loader span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.wave-loader span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes wave {
+  0%, 60%, 100% {
+    transform: initial;
+  }
+  30% {
+    transform: translateY(-6px);
+  }
 }
 </style>
 
