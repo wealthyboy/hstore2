@@ -2,13 +2,13 @@
  
 @section('content')
    
-<section class="sec-padding--account bg--gray">
+<section class="sec-padding--account bg--main">
     <div class="container">
         <div class="row">
             <div class="col-md-3">
                 @include('account.nav')
             </div>
-            <div class="col-md-7">
+            <div class="col-md-7 bg---gray">
                 <h2 class="page-title ">Account</h2>
 
                 <div class="card card-plain">

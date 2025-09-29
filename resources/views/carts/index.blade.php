@@ -22,7 +22,7 @@
   
    <!--Content-->
    
-<section class="bg--gray">          
+<section class="bg--main">          
     <div class="container">
         <div id="js-loading"  class="full-bg">
             <div class="signup--middle">

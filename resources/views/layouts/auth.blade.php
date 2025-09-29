@@ -60,11 +60,11 @@
 
 
 		</header><!-- End .header -->
-		<main class="main">
+		<main class="main bg-main">
 			@yield('content')
 		</main>
 		<footer>
-			<div class="footer-bottom">
+			<div class="footer-bottom bg-main">
 				<div class="container d-flex justify-content-center align-items-center flex-wrap">
 					<p class="footer-copyright py-3 pr-4 mb-0">© {{ config('app.name') }}. {{ date('Y')}}. All Rights Reserved</p>
 				</div><!-- End .container -->

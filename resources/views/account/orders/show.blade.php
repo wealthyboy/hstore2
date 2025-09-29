@@ -1,7 +1,7 @@
 @extends('layouts.app')
  
 @section('content')
-<section class="sec-padding--account bg--gray">
+<section class="sec-padding--account bg--main">
     <div class="container">
         <div class="row ">
             <div class="col-md-3">

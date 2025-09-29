@@ -1,7 +1,7 @@
 @extends('layouts.auth')
  
 @section('content')
-<section class="sec-padding bg--gray">
+<section class="sec-padding bg--main">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6  bg--light p-4">

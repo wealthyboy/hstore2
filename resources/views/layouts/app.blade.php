@@ -6,10 +6,6 @@
 	<meta charset="utf-8" />
 	<title>{{ isset( $page_title) ?  $page_title .' |  '.config('app.name') :  $system_settings->meta_title  }}</title>
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-	<meta name="google-site-verification" content="WQGOl-v7IztNDZtgNC1ZEBkG8nyRsHJ1oLsnsLeiuIQ" />
-
-
-
 	<meta name="description" content="{{ isset($page_meta_description) ? $page_meta_description : $system_settings->meta_description }}">
 	<meta name="keywords" content="{{ isset($meta_tag_keywords) ? $meta_tag_keywords : $system_settings->meta_tag_keywords }}" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,14 +18,11 @@
 	<link rel="apple-touch-icon" href="/img/favicon-96x96.png">
 
 	<!-- CSS -->
-	<link rel="stylesheet" href="/css/bootstrap.min.css">
 	<!-- Main CSS File -->
-	<link rel="stylesheet" href="/css/style.min.css?version={{ str_random(6) }}">
-	<link rel="stylesheet" type="text/css" href="/vendor/fontawesome-free/css/all.min.css">
-	<link rel="stylesheet" href="/css/skins/skin-default.css?version={{ str_random(6) }}">
-	<link rel="stylesheet" href="/css/banner.css?version={{ str_random(6) }}">
 	@yield('page-css')
-	<link href="/css/custom.css?version={{ str_random(6) }}" rel="stylesheet" type="text/css" />
+	<link href="/vendor/fontawesome-free/css/all.min.css?version={{ str_random(6) }}" rel="stylesheet" type="text/css" />
+
+	<link href="/css/all.css?version={{ str_random(6) }}" rel="stylesheet" type="text/css" />
 	<meta property="og:site_name" content="theaurabydora Co">
 	<meta property="og:url" content="https://theaurabydora.com/">
 	<meta property="og:title" content="theaurabydora">
@@ -161,15 +154,15 @@
 								</a>
 								@if ($category->isCategoryHaveMultipleChildren())
 
-								<div class="megamenu megamenu-fixed-width">
+								<div class="megamenu megamenu-fixed-width bg--main">
 									<div class="row">
 										<div class="col-lg-9">
-											<div class="row">
+											<div class="row  bg--main">
 												@foreach ( $category->children as $children)
-												<div class="col-lg-3">
+												<div class="col-lg-3  bg--main">
 													<a href="/products/{{ $children->slug }}" title="{{ $children->title }}" class="category-heading"><b>{{ $children->name !== 'No Heading' ? $children->name : '' }} </b></a>
 													@if ($children->children->count())
-													<ul class="submenu">
+													<ul class="submenu  bg--main">
 														@foreach ( $children->children as $children)
 														<li><a title="{{ $children->title }}" href="/products/{{ $children->slug }}">{{ ucfirst($children->name) }}</a></li>
 														@endforeach
@@ -271,8 +264,7 @@
 
 							<div class="social-icons mt-3">
 								<a href="{{ $system_settings->facebook_link }}" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
-								<a href="{{ $system_settings->facebook_link }}" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
-								<a href="https://wa.me/{{ optional($system_settings)->store_phone }}" class="social-icon" target="_blank"><i class="fab fa-whatsapp"></i></a>
+								<a href="{{ $system_settings->instagram_link }}" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
 							</div><!-- End .social-icons -->
 							<p>
 						
@@ -347,11 +339,7 @@
 	</div><!-- End .mobile-menu-container -->
 
 
-	<div class="watsapp pt-3">
-		<a class="chat-on-watsapp" target="_blank" href="https://wa.me/{{ $system_settings->store_phone }}">
-			Need help? Chat with us <i class="fab fa-whatsapp fa-2x float-right mr-2"></i></a>
-	</div>
-	<a id="scroll-top" href="#top" title="Top" role="button"><i class="icon-angle-up"></i></a>
+
 
 	<!-- Plugins JS File -->
 	<script src="/js/app.js?version={{ str_random(6) }}" type="text/javascript"></script>

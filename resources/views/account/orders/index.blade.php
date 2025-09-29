@@ -1,13 +1,13 @@
 @extends('layouts.app')
  
 @section('content')
-<section class="sec-padding--account bg--gray">
+<section class="sec-padding--account bg--main">
     <div class="container">
         <div class="row">
                 <div class="col-md-3">
                     @include('account.nav')
                 </div>
-                <div class="col-md-9 bg--light p-5">
+                <div class="col-md-9 bg--main p-5">
                 <h2 class="page-title">Orders </h2>
 
                 @if ($orders->count() )
@@ -27,7 +27,7 @@
                                     <td class="text-left">#{{ $order->id }}</td>
                                     <td class="text-left">{{ Auth::user()->fullname() }}</td>
                                     <td class="text-left">{{ $order->created_at->format('d/m/y') }}</td>
-                                    <td class="text-right"><a href="/order/{{ $order->id}}"  class=" p-5"><i class="fa fa-eye"></i> view</a></td>
+                                    <td class="text-right"><a href="/order/{{ $order->id}}"  class=" p-5">view >> </a></td>
                                 </tr>
                                 @endforeach
                                     

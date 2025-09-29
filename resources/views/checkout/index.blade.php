@@ -1,7 +1,7 @@
 @extends('layouts.checkout')
 
 @section('content')
-<section class="bg--gray">
+<section class="bg--main">
     <div id="full-bg" class="full-bg position-relative">
         <div class="signup--middle">
             <div class="loading">
