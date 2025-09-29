@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Live;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Live;
+use App\Models\Live;
 
 class LiveController extends Controller  { 
 
