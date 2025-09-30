@@ -1,6 +1,8 @@
 @extends('layouts.app')
         
 @section('content')
+@include('_partials.s')
+
 
 <section class="breadcrumb no-banner  justify-content-center">
     <div class="breadcrumb-content">

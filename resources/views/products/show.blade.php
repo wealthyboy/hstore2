@@ -2,6 +2,8 @@
 @section('content')
 
 @include('_partials.top_banner')
+@include('_partials.s')
+
 
 <nav aria-label="breadcrumb" class="breadcrumb-nav">
     <div class="container">

@@ -1,9 +1,6 @@
 <template>
   <div class="row">
     <!-- Filter column -->
-
-      
-
         <div @click="toggleSideBar" class="sidebar-overlay"></div>
         <div class="sidebar-toggle"><i class="fas fa-sliders-h"></i></div>
         <aside  
@@ -246,22 +243,19 @@ export default {
         getProducts(page = this.$route.query.page, filters = this.$route.query) {
             let category = this.$route.params.category;
 
-            console.log(this.$route. filters)
             let url = `/api${this.$route.fullPath}`;
+            return axios.get(url).then((response) => {
+                console.log(true)
 
-            console.log(url)
+                this.items = response.data.products.data;
+                this.meta = response.data.products;
+                this.loading = false
+                this.has_filters = response.data.has_filters;
+                let productId = ''
 
-                return axios.get(url).then((response) => {
-                    this.items = response.data.products.data;
-                    this.meta = response.data.products;
-                    this.loading = false
-                    this.has_filters = response.data.has_filters;
-                    let productId = ''
-
-
-                }).catch(() => {
-                    this.loading = true
-                });
+            }).catch(() => {
+                this.loading = false
+            });
             }
         },
         filterP(filter) {

@@ -12384,8 +12384,10 @@ section {
     color: #fff;
 }
 
+
+
 .top-notice.text-white {
-    margin-top: 80px;
+    margin-top: 62px;
 }
 
 
@@ -12395,6 +12397,10 @@ section {
 
 .bg--main {
     background-color: #FFFFE8 !important;
+}
+
+.form-control {
+    font-family: PolarisBook, sans-serif !important;
 }
 
 

@@ -6,6 +6,8 @@
  
 @section('content')
 @include('_partials.top_banner')
+@include('_partials.s')
+
 
 
 <section class="breadcrumb no-banner cart-page justify-content-center">

@@ -347,6 +347,42 @@
 	@yield('page-scripts')
 	<script type="text/javascript">
 		@yield('inline-scripts')
+
+		window.addEventListener("load", function() {
+			const toggleBtn = document.getElementById("toggleSearch");
+			const overlay = document.getElementById("searchOverlay");
+			const closeBtn = document.querySelector(".btn-close-search");
+			const input = overlay.querySelector("input[type='search']");
+
+			function openSearch() {
+			overlay.classList.add("show");
+			setTimeout(() => input.focus(), 300);
+			}
+
+			function closeSearch() {
+			overlay.classList.remove("show");
+			}
+
+			// Toggle with search icon
+			toggleBtn.addEventListener("click", function() {
+				console.log(true)
+			    overlay.classList.contains("show") ? closeSearch() : openSearch();
+			});
+
+			// Close with overlay background
+			overlay.addEventListener("click", function(e) {
+			if (e.target === overlay) closeSearch();
+			});
+
+			// Close with "X" button
+			closeBtn.addEventListener("click", closeSearch);
+
+			document.addEventListener("keydown", function(e) {
+			if (e.key === "Escape" && overlay.classList.contains("show")) {
+				closeSearch();
+			}
+		});
+	   }); 
 	</script>
 </body>
 

@@ -1,11 +1,11 @@
 <template>
     <div class="">
         <template v-if="message">
-            <p>
+        <p>
             <div class="text-center">
                 <h3>{{ message }} </h3>
             </div>
-            </p>
+        </p>
         </template>
         <form v-if="!message" @submit.prevent="submit" class="form" method="POST" action="#">
             <h2>Enter your email</h2>

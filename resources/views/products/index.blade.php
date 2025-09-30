@@ -2,6 +2,8 @@
  
 @section('content')
 @include('_partials.top_banner')
+@include('_partials.s')
+
 
 
 <section class="breadcrumb no-banner  justify-content-start">

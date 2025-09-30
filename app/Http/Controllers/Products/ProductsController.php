@@ -287,8 +287,9 @@ class ProductsController extends Controller
                 'products' => $products->toArray(),
             ]);
         }
+        $category_attributes = collect([]);
 
-        return view('products.index', compact('products', 'breadcrumb'));
+        return view('products.index', compact('products', 'breadcrumb','category_attributes'));
     }
 
 
