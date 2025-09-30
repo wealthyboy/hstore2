@@ -24,9 +24,7 @@
                         {{ $slider->title }}
                     </h1>
 
-                    <h1 class="position-absolute top-banner-title p-3 bottom-0 start-50 translate-middle-x text-white   top-shop-now bg-opacity-50 px-2 py-1 rounded">
-                        Shop Now
-                    </h1>
+                   
                 </a>
             </div>
         </div>
