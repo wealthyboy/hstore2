@@ -2,14 +2,7 @@
   <div class="row">
     <!-- Filter column -->
 
-        <div class="col-md-2" v-if="loading ">
-            <div class="mb-3" v-for="n in 5" :key="n">
-                <div class="d-flex align-items-center">
-                <div class="skeleton-box rounded" style="width: 100%; height: 20px;"></div>
-                <div class="skeleton-box rounded ms-auto" style="width: 20px; height: 20px;"></div>
-                </div>
-            </div>
-        </div>
+      
 
         <div @click="toggleSideBar" class="sidebar-overlay"></div>
         <div class="sidebar-toggle"><i class="fas fa-sliders-h"></i></div>
