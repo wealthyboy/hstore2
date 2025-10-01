@@ -671,7 +671,7 @@
                                    
                                     <tr>
                                                                                  			
-                                       <td class="moptd" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="MailingOptionsLink" data-color="MailingOptionsTXT" style="color: rgb(13, 14, 12); font-family: sans-serif; font-size: 12px; text-align: center; line-height: 170%;">All rights Reserved Hautesignatures</td>
+                                       <td class="moptd" data-link-style="text-decoration:none; color:#ffffff;" data-link-color="MailingOptionsLink" data-color="MailingOptionsTXT" style="color: rgb(13, 14, 12); font-family: sans-serif; font-size: 12px; text-align: center; line-height: 170%;">All rights Reserved </td>
                                     </tr>
                                     
                                  </table>
