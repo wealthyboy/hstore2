@@ -1090,5 +1090,7 @@ button {
 }
 
 
-
+.mobile .owl-dot img {
+    width: 81px;
+}
 
