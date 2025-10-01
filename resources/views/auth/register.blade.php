@@ -4,7 +4,7 @@
 <section class="sec-padding bg--main">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-6  bg--light p-4">
+                <div class="col-md-6  bg--main p-4">
                       <a href="/" class="d-flex  mt-3 justify-content-center">
                       <img width="200" src="{{ $system_settings->logo_path() }}" alt="{{ Config('app.name') }} Logo">
                     </a>

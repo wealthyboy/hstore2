@@ -29,7 +29,7 @@
 
 
                 <div class="toolbox-right">
-                    <a @click.prevent="toggleSideBar" href="#" class="sidebar-toggle ">
+                    <a @click.prevent="toggleSideBar" href="#" class="sidebar-toggle d-flex align-items-center justify-content-center ">
                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <!-- Top line -->
                                 <line x1="4" y1="6" x2="20" y2="6"></line>

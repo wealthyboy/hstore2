@@ -78,14 +78,15 @@
       </div>
 
       <!-- Quick Buy Button (overlay, bottom) -->
-      <div class="quick-buy-overlay position-absolute w-100 text-center">
-        <button
-          class="btn btn-sm btn--primary w-100 py-4"
-          @click.prevent="openQuickBuy(product)"
-        >
-          <i class="fas fa-bolt mr-1"></i> Quick Buy
-        </button>
-      </div>
+      <div class="quick-buy-overlay position-absolute w-100 text-center d-none d-md-block">
+  <button
+    class="btn btn-sm btn--primary w-100 py-4"
+    @click.prevent="openQuickBuy(product)"
+  >
+    <i class="fas fa-bolt mr-1"></i> Quick Buy
+  </button>
+</div>
+
     </figure>
 
     <!-- Product Details -->
