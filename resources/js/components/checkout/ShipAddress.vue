@@ -109,7 +109,7 @@
                                 <strong  class="text-capitalize text-danger"> Please select your country</strong>
                             </span>
                         </p>
-                        <p class="form-group reduce-gutters col-sm-6  select-custom">
+                        <p class="form-group reduce-gutters col-sm-6 bg--main  select-custom">
                             <label for="state_id" class="">State/Region &nbsp;<abbr class="required " title="required">*</abbr></label>
                             <select @change="getShipping"  v-model="form.state_id"  name="state_id" id="state_id" class="form-control required">
                                 <option value="" >Select a state</option>

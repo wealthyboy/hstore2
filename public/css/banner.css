@@ -172,3 +172,8 @@
   z-index: 2;
   font-family: PolarisHeavy;
 }
+
+
+span.shop-now-btn.top-shop-now.position-absolute.start-50.translate-middle-x.text-white.border.border-white.px-3.py-2.mt-2.rounded {
+    padding-bottom: 12px !important;
+}
