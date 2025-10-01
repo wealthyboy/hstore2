@@ -123,13 +123,13 @@
 
 <div class="container-fliud">
     <div class="row align-items-start">
-         @foreach( $sliders as $slider )
-        <div data-title="{{ $slider->title }}" class="{{ $slider->col }} {{ $slider->col == 'col-lg-3' ?  'col-6    p-0' : '' }}  {{ $slider->title }} p-0 text-center    top-banner-mb-1  cusor-pointer     {{ $slider->device }}">
+       @foreach( $banners as $banner )
+        <div data-title="{{ $banner->title }}" class="{{ $banner->col }} {{ $banner->col == 'col-lg-3' ?  'col-6    p-0' : '' }}  {{ $banner->title }} p-0 text-center    top-banner-mb-1  cusor-pointer     {{ $banner->device }}">
              <div class="banner-box">
-                <a class="portfolio-thumb d-block position-relative" href="{{ $slider->link }}">
-                    <img src="{{ $slider->image }}" title="{{ $slider->title }}" alt="{{ $slider->img_alt }}" class="w-100" />
+                <a class="portfolio-thumb d-block position-relative" href="{{ $banner->link }}">
+                    <img src="{{ $banner->image }}" title="{{ $banner->title }}" alt="{{ $banner->img_alt }}" class="w-100" />
                     <h1 class="position-absolute top-banner-title bottom-0 start-50 translate-middle-x text-white  bg-opacity-50 px-2 py-1 rounded">
-                        {{ $slider->title }}
+                        {{ $banner->title }}
                     </h1>
 
                     <span class="shop-now-btn top-shop-now  position-absolute start-50 translate-middle-x text-white border border-white px-3 py-2 mt-2 rounded">
