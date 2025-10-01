@@ -221,7 +221,7 @@
 			@yield('content')
 		</main>
 
-		<footer class="footer">
+		<footer class="footer ">
 			<div class="footer-middle">
 				<div class="container-fluid">
 					<div class="row">

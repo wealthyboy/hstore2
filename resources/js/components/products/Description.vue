@@ -12,14 +12,13 @@
         >
           <div class="d-flex align-items-center">
             <i class="fas fa-clipboard-list mr-2"></i>
-            <span class="font-weight-bold text-uppercase small">Size + Fit</span>
+            <span class="font-weight-bold text-uppercase small">Description</span>
           </div>
           <span class="toggle-icon">+</span>
         </div>
         <div id="collapseSizeFit" class="collapse" data-parent="#productDetails">
-          <div class="card-body">
-            Size and fit details go here.
-          </div>
+          <div v-html="product.product.description" class="card-body"> </div>
+
         </div>
       </div>
 
@@ -38,30 +37,11 @@
         </div>
         <div id="collapseMaterial" class="collapse" data-parent="#productDetails">
           <div class="card-body">
-             Our pieces are made from brass and plated in 18K gold, finished with our signature antique gold or silver polish and accented with acrylic.
+             Our pieces are made from good materials, finished with our signature antique gold or silver polish and accented with acrylic.
           </div>
         </div>
       </div>
 
-      <!-- Packaging -->
-      <div class="card  mb-0 border-0 border-bottom">
-        <div
-          class="card-heade  bg--main  cursor-pointer border-bottom d-flex justify-content-between align-items-center p-3"
-          data-toggle="collapse"
-          data-target="#collapsePackaging"
-        >
-          <div class="d-flex align-items-center">
-            <i class="fas fa-box mr-2"></i>
-            <span class="font-weight-bold text-uppercase small">Packaging</span>
-          </div>
-          <span class="toggle-icon">+</span>
-        </div>
-        <div id="collapsePackaging" class="collapse" data-parent="#productDetails">
-          <div class="card-body">
-             Our pieces are made from brass and plated in 18K gold, finished with our signature antique gold or silver polish and accented with acrylic.
-          </div>
-        </div>
-      </div>
 
       <!-- Shipping -->
       <div class="card mb-0 border-0 border-bottom">
@@ -78,31 +58,14 @@
         </div>
         <div id="collapseShipping" class="collapse" data-parent="#productDetails">
           <div class="card-body">
-            Our pieces are made from brass and plated in 18K gold, finished with our signature antique gold or silver polish and accented with acrylic.
+            Within Lagos: We offer same-day delivery for all confirmed orders placed before our daily cut-off time.
+
+            Other States in Nigeria: Delivery typically takes 1–3 business working days, depending on location and courier service availability.
           </div>
         </div>
       </div>
 
-      <!-- Returns -->
-      <div class="card mb-0 mb-0 border-0 cursor-pointer border-bottom">
-        <div
-          role="button"
-          class="card-heade cursor-pointer border-bottom bg--main  d-flex justify-content-between align-items-center p-3"
-          data-toggle="collapse"
-          data-target="#collapseReturns"
-        >
-          <div class="d-flex align-items-center">
-            <i class="fas fa-undo mr-2"></i>
-            <span class="font-weight-bold text-uppercase small">Returns</span>
-          </div>
-          <span class="toggle-icon">+</span>
-        </div>
-        <div id="collapseReturns" class="collapse" data-parent="#productDetails">
-          <div class="card-body">
-            Returns details go here.
-          </div>
-        </div>
-      </div>
+     
 
     </div>
   </div>
@@ -112,6 +75,10 @@
 
 <script>
 export default {
+
+  props: ["product"],
+
+
   mounted() {
     // Toggle plus/minus dynamically
     const headers = document.querySelectorAll("#productDetails .card-header");

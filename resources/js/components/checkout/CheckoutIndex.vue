@@ -32,14 +32,14 @@
 
       <div class="row   align-items-start">
         <div class="col-12 col-md-7">
-          <div class="col-md-12 m7 bg--light border border-gray mb-2">
+          <div class="col-md-12 m7 bg--main border border-gray mb-2">
             <div class="head  border-bottom  py-3">
               <h4 class="m-0"> SHIPPING ADDRESS</h4>
             </div>
             <ship-address />
           </div>
 
-          <div class="col-md-12 bg--light">
+          <div class="col-md-12 bg--main border">
             <div class="py-3 ">
               
               <h4 class="mb-0"> PAYMENT</h4>
@@ -313,7 +313,7 @@
         </div>
         <div class="col-5">
           <div class="col-md-12 d-none d-lg-block  mb-3">
-            <div class="cart-collateralse bg--light  border px-3">
+            <div class="cart-collateralse bg--main  border px-3">
               <div class="cart_totalse">
               
                 <div class="head  border-bottom  py-3">

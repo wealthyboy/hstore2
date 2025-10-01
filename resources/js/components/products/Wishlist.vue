@@ -4,7 +4,7 @@
           @click="addToWishList(product.id)"
 
 
-        class="wishlist-icon "
+        class="wishlist-icon d-flex"
         style="top: 10px; right: 10px; cursor: pointer;"
       >
         <!-- Outlined heart -->

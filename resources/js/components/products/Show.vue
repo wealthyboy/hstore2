@@ -30,7 +30,7 @@
        
 
         <!-- <images :images="images" :image="image" /> -->
-        <div class="col-md-6 product-single-gallery">
+        <div class="col-md-6 product-single-gallery m-0">
           <div class="product-slider-container">
             <div class="product-single-carousel owl-carousel owl-theme">
               <div class="product-item">
@@ -45,9 +45,9 @@
         </div>
 
         <!-- End .product-single-gallery -->
-        <div class="d-none d-xs-block d-block d-lg-none d-sm-block d-md-none">
+        <div class="d-none d-xs-block d-block d-lg-none d-sm-block d-md-none mx-4 mb-2 mobile">
           <div class="prod-thumbnail d-flex carousel-custom-dots carousel-custom-dots-mobile owl-dots" id="carousel-custom-dots">
-            <div class="owl-dot">
+            <div class="owl-dot mr-1">
               <img class="animated" @click.prevent="currentSlide(product.image_to_show)" :src="image_m" />
             </div>
             <div @click.prevent="currentSlide(image.image)" v-for="image in images" :key="image.id" class="owl-dot">
@@ -81,7 +81,7 @@
                 {{ cartError }}
               </div>
                <div v-if="!product.is_gift_card" class="col-2 ml-3">
-                <div class="d-flex align-items-center border rounded-md">
+                <div class="d-flex align-items-center  rounded-md">
                 <a
                   href="#"
                   role="button"
@@ -122,9 +122,12 @@
         <!-- End .product-single-details -->
       </div>
       <!-- End .row -->
+
+
     </div>
     <!-- End .product-single-container -->
-    <reviews :product="product" :meta="meta" :reviews="reviews" />
+           <reviews :product="product" :meta="meta" :reviews="reviews" />
+
 
     <register-modal />
     <out-of-stock :product_variation="product_variation" />

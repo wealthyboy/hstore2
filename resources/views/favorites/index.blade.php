@@ -11,7 +11,7 @@
             </ol>
         </div>
     </nav> 
-    <section class="bg--gray">          
+    <section class="bg--main">          
         <div class="container-fluid">
             <div id="js-loading"  class="full-bg">
                 <div class="signup--middle">

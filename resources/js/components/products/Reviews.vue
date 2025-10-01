@@ -1,7 +1,7 @@
 <template>
-  <div class="reviews-section mt-4">
+  <div class="reviews-section">
     <!-- Header with Add Review button -->
-    <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="d-flex justify-content-between align-items-center">
       <h4 class="mb-0 font-weight-bold">
         Reviews {{ product.product.average_rating / 20 }}
         <span class="text-warning">
@@ -13,7 +13,7 @@
       
       </h4>
       <button
-        class="btn btn-sm btn-dark border-raduis-btn "
+        class="btn btn-sm btn-dark border-raduis-btn mb-3"
         @click="openShowReviewModal"
       >
         <i class="fas fa-plus mr-1"></i> Add a Review
