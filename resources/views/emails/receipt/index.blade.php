@@ -16,13 +16,13 @@
   
    </head>
    <body style="margin-top: 0; margin-bottom: 0; padding-top: 0; padding-bottom: 0; width: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;" offset="0" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0">
-      <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: rgb(234, 235, 235);" data-module="TopLogoModule" data-thumb="" class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#3b485b" align="center">
+      <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: #FFFFE8; " data-module="TopLogoModule" data-thumb="" class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#3b485b" align="center">
          <tr>
             <td align="center">
-               <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: rgb(234, 235, 235);" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
+               <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: #FFFFE8; " width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
                   <tr>
                      <td align="center">
-                        <table data-bgcolor="tbc" class="table600Min" style="table-layout: fixed; margin: 0px auto; min-width: 668px; background-color: rgb(234, 235, 235);" width="668" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
+                        <table data-bgcolor="tbc" class="table600Min" style="table-layout: fixed; margin: 0px auto; min-width: 668px; background-color: #FFFFE8; " width="668" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
                            <tr>
                               <td class="table600st" style="min-width:668px;" height="30" align="center"></td>
                            </tr>
@@ -31,10 +31,10 @@
                   </tr>
                </table>
                
-               <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: rgb(234, 235, 235);" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
+               <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: #FFFFE8; " width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
                   <tr>
                      <td align="center">
-                        <table class="table600Min" data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; min-width: 668px; background-color: rgb(234, 235, 235);" width="668" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
+                        <table class="table600Min" data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; min-width: 668px; background-color: #FFFFE8; " width="668" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
                            <tr>
                               <td class="table600st" style="min-width:668px;" align="center">
                                  <table data-bgcolor="cbc" class="table600" data-border-bottom-color="borderColor" style="border-bottom: 1px solid rgb(200, 198, 198); border-radius: 6px 6px 0px 0px;" width="629" cellspacing="0" cellpadding="0" border="0" bgcolor="#ffffff" align="center">
@@ -82,10 +82,10 @@
       </table>
       
         <!--= MAILING BODY =-->    
-      <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: rgb(234, 235, 235);" data-module="WelcomeTextModule"  class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
+      <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: #FFFFE8; " data-module="WelcomeTextModule"  class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
          <tr>
             <td align="center">
-               <table data-bgcolor="tbc" class="table600Min" style="table-layout: fixed; margin: 0px auto; min-width: 668px; background-color: rgb(234, 235, 235);" width="668" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
+               <table data-bgcolor="tbc" class="table600Min" style="table-layout: fixed; margin: 0px auto; min-width: 668px; background-color: #FFFFE8; " width="668" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
                   <tr>
                      <td class="table600st" style="min-width:668px;" align="center">
                         <table data-bgcolor="cbc" class="table600Min" style="min-width:629px;" width="629" cellspacing="0" cellpadding="0" border="0" bgcolor="#ffffff" align="center">
@@ -128,10 +128,10 @@
       
       
          <!--= MAILING BODY =-->  
-      <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: rgb(234, 235, 235);" data-module="InvoiceCredentialsModule-2COL" class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
+      <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: #FFFFE8; " data-module="InvoiceCredentialsModule-2COL" class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
          <tr>
             <td align="center">
-               <table data-bgcolor="tbc" class="table600Min" style="table-layout: fixed; margin: 0px auto; min-width: 668px; background-color: rgb(234, 235, 235);" width="668" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
+               <table data-bgcolor="tbc" class="table600Min" style="table-layout: fixed; margin: 0px auto; min-width: 668px; background-color: #FFFFE8; " width="668" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
                   <tr>
                      <td class="table600st" style="min-width:668px;" align="center">
                         <table class="table600Min" style="min-width:628px;" width="629" cellspacing="0" cellpadding="0" border="0" align="center">
@@ -183,10 +183,10 @@
             </td>
          </tr>
       </table>
-      <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: rgb(234, 235, 235);" data-module="InvoiceCredentialsModule-3COL"  class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
+      <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: #FFFFE8; " data-module="InvoiceCredentialsModule-3COL"  class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
          <tr>
             <td align="center">
-               <table data-bgcolor="tbc" class="table600Min" style="table-layout: fixed; margin: 0px auto; min-width: 668px; background-color: rgb(234, 235, 235);" width="668" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
+               <table data-bgcolor="tbc" class="table600Min" style="table-layout: fixed; margin: 0px auto; min-width: 668px; background-color: #FFFFE8; " width="668" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
                   <tr>
                      <td class="table600st" style="min-width:668px;" align="center">
                         <table class="table600Min" style="min-width:629px;" width="629" cellspacing="0" cellpadding="0" border="0" align="center">
@@ -295,10 +295,10 @@
             </td>
          </tr>
       </table>
-      <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; position: relative; opacity: 1; top: 0px; left: 0px; background-color: rgb(234, 235, 235);" data-module="MainInvoiceCaptionsModule"  class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
+      <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; position: relative; opacity: 1; top: 0px; left: 0px; background-color: #FFFFE8; " data-module="MainInvoiceCaptionsModule"  class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
          <tr>
             <td align="center">
-               <table data-bgcolor="tbc" class="table600Min" style="table-layout: fixed; margin: 0px auto; min-width: 668px; background-color: rgb(234, 235, 235);" width="668" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
+               <table data-bgcolor="tbc" class="table600Min" style="table-layout: fixed; margin: 0px auto; min-width: 668px; background-color: #FFFFE8; " width="668" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
                   <tr>
                      <td class="table600st" style="min-width:668px;" align="center">
                         <table class="table600Min" style="min-width:629px;" width="629" cellspacing="0" cellpadding="0" border="0" align="center">
@@ -369,10 +369,10 @@
       </table>
       <div class="pofbg"></div>
        <?php foreach($order->ordered_products as $ordered_product )  { ?>
-      <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: rgb(234, 235, 235);" data-module="InvoiceItemDetailsModule"  class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
+      <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: #FFFFE8; " data-module="InvoiceItemDetailsModule"  class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
          <tr>
             <td align="center">
-               <table data-bgcolor="tbc" class="table600Min" style="table-layout: fixed; margin: 0px auto; min-width: 668px; background-color: rgb(234, 235, 235);" width="668" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
+               <table data-bgcolor="tbc" class="table600Min" style="table-layout: fixed; margin: 0px auto; min-width: 668px; background-color: #FFFFE8; " width="668" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
                   <tr>
                      <td class="table600st" style="min-width:668px;" align="center">
                         <table class="table600Min" style="min-width:629px;" width="629" cellspacing="0" cellpadding="0" border="0" align="center">
@@ -484,10 +484,10 @@
       </table>
       
       <?php  } ?>
-      <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: rgb(234, 235, 235);" data-module="FinalCalculationsModule-4ROWS" data-thumb="http://www.emailtemplatebuilders.com/INVOICE-Generator/03_TBThumbnails/module-8.jpg" class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
+      <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: #FFFFE8; " data-module="FinalCalculationsModule-4ROWS" data-thumb="http://www.emailtemplatebuilders.com/INVOICE-Generator/03_TBThumbnails/module-8.jpg" class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
          <tr>
             <td align="center">
-               <table data-bgcolor="tbc" class="table600Min" style="table-layout: fixed; margin: 0px auto; min-width: 668px; background-color: rgb(234, 235, 235);" width="668" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
+               <table data-bgcolor="tbc" class="table600Min" style="table-layout: fixed; margin: 0px auto; min-width: 668px; background-color: #FFFFE8; " width="668" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
                   <tr>
                      <td class="table600st" style="min-width:668px;" align="center">
                         <table class="table600Min" style="min-width:629px;" width="629" cellspacing="0" cellpadding="0" border="0" align="center">
@@ -648,13 +648,13 @@
             </td>
          </tr>
       </table>
-      <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: rgb(234, 235, 235);" data-module="FooterModule" data-thumb="http://www.emailtemplatebuilders.com/INVOICE-Generator/03_TBThumbnails/module-10.jpg" class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
+      <table data-bgcolor="tbc" style="table-layout: fixed; margin: 0px auto; background-color: #FFFFE8; " data-module="FooterModule" data-thumb="http://www.emailtemplatebuilders.com/INVOICE-Generator/03_TBThumbnails/module-10.jpg" class="" width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
          <tr>
             <td align="center">
-               <table data-bgcolor="tbc" class="table600Min" style="table-layout: fixed; margin: 0px auto; min-width: 668px; background-color: rgb(234, 235, 235);" width="668" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
+               <table data-bgcolor="tbc" class="table600Min" style="table-layout: fixed; margin: 0px auto; min-width: 668px; background-color: #FFFFE8; " width="668" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
                   <tr>
                      <td class="table600st" style="min-width:668px;" align="center">
-                        <table data-bgcolor="tbc" class="table600Min" style="table-layout: fixed; margin: 0px auto; min-width: 629px; background-color: rgb(234, 235, 235);" width="629" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
+                        <table data-bgcolor="tbc" class="table600Min" style="table-layout: fixed; margin: 0px auto; min-width: 629px; background-color: #FFFFE8; " width="629" cellspacing="0" cellpadding="0" border="0" bgcolor="#384855" align="center">
                            <tr>
                               <td class="table600st" style="border:1px solid #f4f4f4; background-color: #f4f4f4;min-width:629px;" align="center">
                                  <table class="table600" width="610" cellspacing="0" cellpadding="0" border="0" align="center">
