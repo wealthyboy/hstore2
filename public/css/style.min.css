@@ -3098,6 +3098,10 @@ label {
     top: 65%;
 }
 
+.filter.select-custom:after {
+    top: 54%;
+}
+
 .cart-select-custom:after {
     padding-top: 30px;
 }

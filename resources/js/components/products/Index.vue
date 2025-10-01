@@ -49,7 +49,7 @@
 
                     </a>
                   
-                    <div class="select-custom">
+                    <div class="filter select-custom">
                         <select  name="sort_by" v-model="sortBy"   @change="updateSort" id="sort_by" class="form-control">
                             <option value="" selected="selected">Sort By</option>
                             <option value="created_at,asc">Oldest</option>
