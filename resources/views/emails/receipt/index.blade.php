@@ -48,7 +48,7 @@
                                                          <td class="esFrMb" width="30"></td>
                                                          <td style="line-height:1px;" align="center">
                                                             <a href="{{ Config('app.url') }}" target="_blank" style="text-decoration: none;">
-                                                            <img src="{{ $settings->logo_path() }}" style=" max-width:100px; height: 30px; margin-top: 37px;display: block;text-decoration: none;border: none;" alt="Logo Image" vspace="0" hspace="0" border="0" align="top"></a>
+                                                            <img src="https://theaurabydora.com/images/logo/17591618781751691052D__1-remove%20bg%20copy.png" style=" max-width:100px; height: 30px; margin-top: 37px;display: block;text-decoration: none;border: none;" alt="Logo Image" vspace="0" hspace="0" border="0" align="top"></a>
                                                          </td>
                                                          <td class="esFrMb" width="30"></td>
                                                       </tr>
