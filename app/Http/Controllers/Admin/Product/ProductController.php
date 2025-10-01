@@ -157,6 +157,8 @@ class ProductController extends Controller
 
 
 
+
+
         $image  = $request->image;
         $cA = [];
         $product_variation_id = [];
@@ -173,7 +175,7 @@ class ProductController extends Controller
         $product->meta_description = $request->meta_description;
         $product->meta_keywords = $request->meta_keywords;
         $product->meta_title = $request->meta_title;
-        $product->description  = $request->description;
+        $product->description = $request->description;
         $product->sale_price_expires = Helper::getFormatedDate($request->sale_price_expires);
         $product->sale_price_starts = Helper::getFormatedDate($request->sale_price_starts);
         $product->allow = $request->allow ? $request->allow : 0;
@@ -254,6 +256,7 @@ class ProductController extends Controller
         $product_variation->length = $request->length;
         $product_variation->weight = $request->weight;
         $product_variation->quantity = $request->quantity;
+        $product_variation->featured = $request->featured_product ? 1 : 0;
         $product_variation->allow = $request->allow ? $request->allow : 0;
         $product_variation->sku = str_random(6);
         $product_variation->product_id = $product->id;
@@ -338,6 +341,8 @@ class ProductController extends Controller
                     //$category->attributes()->syncWithoutDetaching($cA);
 
                     $product_variation = new  ProductVariation();
+
+
                     //$images = $request->images;
                     //$image1 = array_shift($images);
                     $name = isset($request->variation_name[$key]) ? $request->variation_name[$key] : null;
@@ -358,6 +363,7 @@ class ProductController extends Controller
                     $product_variation->sku = str_random(6);
                     $product_variation->product_id = $product->id;
                     $product_variation->save();
+
                     $product_variation_id[] = $product_variation->id;
                     $product_variation->categories()->syncWithoutDetaching($request->category_id);
 
@@ -666,6 +672,8 @@ class ProductController extends Controller
         $product_variation->product_id = $product->id;
         $product_variation->allow  = $request->allow ? $request->allow : 0;
         $product_variation->is_gift_card = $request->is_gift_card ? 1 : 0;
+        $product_variation->featured =  $request->featured_product ? 1 : 0;
+
         $product_variation->default = 1;
         $product_variation->save();
 

@@ -44,10 +44,12 @@ class HomeController extends Controller
                 ->where('price', '>', 0)
                 ->whereNotNull('name')
                 ->where('name', '!=', '')
+                 ->where('featured',  true)
                 ->orderBy('updated_at', 'DESC')
                 ->take(8)
                 ->get();
         });
+
 
         $reviews = Cache::remember('recent_reviews', 60*30, function () {
             return Review::where('is_verified', 1)
