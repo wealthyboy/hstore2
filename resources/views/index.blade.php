@@ -16,14 +16,14 @@
     <div class="row align-items-start">
         @foreach( $sliders as $slider )
         <div data-title="{{ $slider->title }}" class="{{ $slider->col }} {{ $slider->col == 'col-lg-3' ?  'col-6    p-0' : '' }}  {{ $slider->title }} p-0 text-center    top-banner-mb-1      {{ $slider->device }}">
-            <div class="banner-box">
+            <a  href="{{ $slider->link }}" class="banner-box d-flex">
                 <a class="portfolio-thumb d-block position-relative" href="{{ $slider->link }}">
                     <img src="{{ $slider->image }}" title="{{ $slider->title }}" alt="{{ $slider->img_alt }}" class="w-100" />
                     <h1 class="position-absolute top-banner-title bottom-0 start-50 translate-middle-x text-white  bg-opacity-50 px-2 py-1 rounded">
                         {{ $slider->title }}
                     </h1>
                 </a>
-            </div>
+</a>
         </div>
         @endforeach
     </div>
