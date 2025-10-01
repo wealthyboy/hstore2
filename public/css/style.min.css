@@ -3102,6 +3102,10 @@ label {
     top: 54%;
 }
 
+.shipping.cart-select-custom.select-custom:after{
+    top: 46%;
+}
+
 .cart-select-custom:after {
     padding-top: 30px;
 }
