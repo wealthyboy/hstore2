@@ -39,14 +39,17 @@ export default {
 
 /* Content */
 .modal-content {
-  background: #fff;
+  background: #FFFFE8 !important;
   border-radius: 16px;
   max-width: 1000px;
   width: 90%;
+
+  height: 650px;
+
   padding: 20px;
   position: relative;
   animation: slideUp 0.35s ease;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  box-shadow: 0 10px 25px #f8f7f733;
 }
 
 .quickbuy-modal {

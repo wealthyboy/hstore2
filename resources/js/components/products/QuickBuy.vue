@@ -6,10 +6,10 @@
           
           <div class="prod-thumbnail carousel-custom-dots owl-dots quick-view" id="carousel-custom-dots">
             <div class="owl-dot">
-              <img class="animated" @click.prevent="currentSlide(product.image_to_show)" :src="image_tn" />
+              <img class="animated" @click.prevent="currentSlide(product.image_to_show)" :src="image_m" />
             </div>
             <div @click.prevent="currentSlide(image.image)" v-for="image in images" :key="image.id" class="owl-dot">
-              <img :src="image.image_tn" :alt="image.image_tn" />
+              <img :src="image.image_m" :alt="image.image_m" />
             </div>
           </div>
         </div>
@@ -30,10 +30,10 @@
         <div class="d-none d-xs-block d-block d-lg-none d-sm-block d-md-none">
           <div class="prod-thumbnail d-flex carousel-custom-dots owl-dots" id="carousel-custom-dots">
             <div class="owl-dot">
-              <img class="animated" @click.prevent="currentSlide(product.image_to_show)" :src="image_tn" />
+              <img class="animated" @click.prevent="currentSlide(product.image_to_show)" :src="image_m" />
             </div>
             <div @click.prevent="currentSlide(image.image)" v-for="image in images" :key="image.id" class="owl-dot">
-              <img :src="image.image_tn" :alt="image.image_tn" />
+              <img :src="image.image_m" :alt="image.image_m" />
             </div>
           </div>
         </div>
@@ -211,6 +211,8 @@ export default {
     this.product_variation = this.product;
     this.image = this.product.image_to_show;
     this.image_tn = this.product.image_to_show_tn;
+    this.image_m = this.product.image_to_show_m;
+
     this.images = this.product.images;
     this.product_variation_id = this.product.id;
     this.percentage_off = this.product.default_percentage_off;
@@ -407,3 +409,21 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.product-item {
+  width: 100%;        /* or a fixed width, e.g. 250px */
+  height: 608px;      /* set your desired height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;   /* prevent overflow */
+}
+
+.product-single-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* use 'cover' if you prefer filling without empty space */
+}
+</style>
+

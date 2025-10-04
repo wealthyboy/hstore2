@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <div class="bg--main">
     <div id="out-of-stock-modal" class="modal fade" role="dialog">
       <div class="modal-dialog" style="">
         <!-- Modal content-->
         <div class="modal-content ">
-          <div class="modal-header">
+          <div class="modal-header bg--main">
             <div class="modal-title text-center">
               <img
                 width="200"
@@ -22,7 +22,7 @@
                 <i class="fas fa-times"></i></button
             ></span>
           </div>
-          <div class="modal-body">
+          <div class="modal-body bg--main">
             <div class="row">
               <div class="col-md-6">
                 <img
@@ -63,19 +63,16 @@
                       <div class="form-field-wrapper mt-1">
                         <button
                           type="submit"
-                          class="newsletter-btn btn btn--primary btn-block"
+                          class="newsletter-btn btn btn--primary  btn-lg btn-block border-raduis-btn"
                           name="Sign_Up"
                           id="Sign_Up"
                           value="Sign Up"
                           data-value="Sign_Up"
                           :class="{ disabled: loading }"
                         >
-                          <span
-                            v-if="loading"
-                            class="spinner-border spinner-border-sm"
-                            role="status"
-                            aria-hidden="true"
-                          ></span>
+                            <span v-if="loading" class="wave-loader">
+                              <span></span><span></span><span></span>
+                            </span>
                           Get Notified
                         </button>
                       </div>

@@ -177,3 +177,40 @@
 span.shop-now-btn.top-shop-now.position-absolute.start-50.translate-middle-x.text-white.border.border-white.px-3.py-2.mt-2.rounded {
     padding-bottom: 12px !important;
 }
+
+
+.wave-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20px;
+}
+
+.wave-loader span {
+  display: block;
+  width: 6px;
+  height: 6px;
+  margin: 0 2px;
+  background: white;
+  border-radius: 50%;
+  animation: wave 1.2s linear infinite;
+}
+
+.wave-loader span:nth-child(1) {
+  animation-delay: 0s;
+}
+.wave-loader span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.wave-loader span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes wave {
+  0%, 60%, 100% {
+    transform: initial;
+  }
+  30% {
+    transform: translateY(-6px);
+  }
+}

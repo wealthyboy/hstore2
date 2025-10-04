@@ -4,7 +4,7 @@ namespace App\Http\Controllers\SignUp;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\MailForOutOfStock;
+use App\Models\MailForOutOfStock;
 
 class OutOfStockSignUpController extends Controller
 {

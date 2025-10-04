@@ -39,6 +39,7 @@
 
 
 <div class="container-fluid ">
+    
     <products-index  :filters="{{$category_attributes}}" 
  />
 </div>

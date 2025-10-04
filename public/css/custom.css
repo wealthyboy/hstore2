@@ -1094,3 +1094,74 @@ button {
     width: 81px;
 }
 
+
+.stagger-enter-active {
+  transition: all 0.6s ease;
+}
+
+.stagger-leave-active {
+  transition: all 0.4s ease;
+  position: absolute;
+}
+
+.stagger-enter-from {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.stagger-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger-leave-to {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+
+.product-skeleton {
+  border: 1px solid #eee;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 350px;
+  background: #f0f0f0;
+}
+
+.site-name {
+  font-weight: 600;
+  font-size: 18px;
+  color: #aaa;
+  text-transform: uppercase;
+}
+
+.skeleton-line {
+  height: 14px;
+  background: #e0e0e0;
+  border-radius: 4px;
+}
+
+.skeleton-line.short {
+  width: 60%;
+}
+
+.skeleton-box {
+  display: inline-block;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 37%, #e0e0e0 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
