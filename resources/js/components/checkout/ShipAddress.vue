@@ -99,7 +99,7 @@
                                 name="postal_code"
                             >
                         </p>
-                        <p class="form-group reduce-gutters  col-sm-6 select-custom">
+                        <p class="form-group reduce-gutters  col-sm-6  bg--main  select-custom">
                             <label for="shipping_country">Country &nbsp;<abbr class="required" title="required">*</abbr></label>
                             <select @change="getState"  v-model="form.country_id"  name="country_id" id="shipping_country"   class="form-control required" autocomplete="country" tabindex="-1" aria-hidden="true">
                                 <option value="" selected="selected">Select a country…</option>

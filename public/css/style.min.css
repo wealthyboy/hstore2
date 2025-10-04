@@ -12411,5 +12411,14 @@ section {
     font-family: PolarisBook, sans-serif !important;
 }
 
+select.form-control:not([size]):not([multiple]) {
+    background-color: #fff !important;
+    z-index: auto;
+}
+
+.custom-radio .custom-control-input:checked~.custom-control-label::before {
+    background-color: #333;
+}
+
 
 

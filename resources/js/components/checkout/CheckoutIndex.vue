@@ -101,7 +101,7 @@
 
                 <template v-if="!meta.cart_is_only_gift_card">
 
-                  <div class="border-bottom pb-3">
+                  <div class="border-bottom pb-4">
                     <span class="bold">Shipping</span>
                     <span class="float-right">
                       <span v-if="shipping_price" class="currencySymbol bold">{{ meta.currency }}{{ shipping_price
@@ -116,7 +116,7 @@
                   <div class="input-group">
                     <input type="text" v-model="coupon" class="form-control" placeholder="Enter  code" required="">
                     <div class="input-group-append">
-                      <button @click.prevent="applyCoupon" class="btn btn-sm btn-primary border-raduis-btn" type="submit">
+                      <button @click.prevent="applyCoupon" class="btn btn-sm btn-primary border-raduis-btn btn--primary" type="submit">
                         <span v-if="submiting" class='spinner-border spinner-border-sm' role='status'
                           aria-hidden='true'></span>
                         Apply
@@ -140,12 +140,12 @@
                   <h4>Choose Delivery Option</h4>
 
                   <div :class="{ 'border-danger': delivery_error }" class="border pl-3 mb-1 ">
-                    <div class="custom-control custom-radio">
+                    <div class="custom-control custom-radio mt-1 mb-1">
                       <input type="radio" value="No 44b Fola Osibo lekki phase 1."
                         v-model="delivery_option" class="custom-control-input" id="pick_up_lekki"
                         name="delivery_option" required>
-                      <label class="custom-control-label" for="pick_up_lekki"> PICK UP  <span
-                          class="ml-3 text-info"> No 44b Fola Osibo lekki phase one </span>
+                      <label class="custom-control-label cursor-pointer" for="pick_up_lekki"> PICK UP  <span
+                          class="ml-3 text-secondary"> No 44b Fola Osibo lekki phase one </span>
                        
                       </label>
                     </div>
@@ -177,10 +177,10 @@
                   </div> -->
 
                   <div :class="{ 'border-danger': delivery_error }" class="border pl-3 mb-1">
-                    <div class="custom-control  custom-radio mt-1 mb-1">
+                    <div class="custom-control  custom-radio mt-1 mb-1 cursor-pointer">
                       <input type="radio" value="shipping" v-model="delivery_option" class="custom-control-input"
                         id="shipping" name="delivery_option" required>
-                      <label class="custom-control-label" for="shipping">Shipping <span class="ml-3  text-info"></span></label>
+                      <label class=" custom-control-label cursor-pointer" for="shipping">SHIPPING <span class="ml-3  text-info"></span></label>
                     </div>
                   </div>
                 </template>
@@ -203,7 +203,7 @@
                 <p class="form-field-wrapper   col-sm-12">
                 <form method="POST" id="checkout-form-2" class="form-group" action="/checkout/confirm">
                   <div v-if="$root.settings.shipping_is_free == 0 && delivery_option == 'shipping'"
-                    class="shipping cart-select-custom  select-custom">
+                    class="shipping cart-select-custom select-custom bg--main">
                     <label for="shipping_country">SELECT SHIPPING &nbsp;<abbr class="required text-danger"
                         title="required">*</abbr></label>
                     <select @change="addShippingPrice" name="shipping_id" id="shipping_price"

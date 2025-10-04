@@ -24,7 +24,9 @@ class Voucher extends Model
         'from_price'
     ];
 
-    protected $dates = ['expires'];
+    protected $casts = [
+       'expires' => 'datetime',
+    ];
 
     public function expire()
     {
