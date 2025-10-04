@@ -81,7 +81,7 @@
          <tr>
             <td style="padding:8px; border:1px solid #ddd; vertical-align: top;">
                <!-- Product Image -->
-               <div style="width: 120px; max-height: 160px; overflow: hidden; display: block; margin-bottom:6px;">
+               <div style="width: 120px; max-height: 80px; overflow: hidden; display: block; margin-bottom:6px;">
                   <img style="outline:0; max-width:100%;" 
                        src="{{ $ordered_product->product_variation->image_to_show ?? '/images/default.png' }}" 
                        alt="Product Image"/>
