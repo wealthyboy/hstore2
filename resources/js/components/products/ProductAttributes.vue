@@ -39,7 +39,7 @@
             :key="children"
             class="mr-1 product-variation-box  d-flex align-items-center justify-content-center  position-relative border pr-3 pl-3 o-a bold pt-1 other-attribute"
           >
-            {{ children }}
+            {{ children }} 
           </div>
         </template>
         <template v-else>

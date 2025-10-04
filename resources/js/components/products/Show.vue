@@ -126,7 +126,7 @@
 
     </div>
     <!-- End .product-single-container -->
-           <reviews :product="product" :meta="meta" :reviews="reviews" />
+    <reviews :product="product" :meta="meta" :reviews="reviews" />
 
 
     <register-modal />
@@ -505,6 +505,10 @@ export default {
 
 .arrow-btn:hover {
   color: #000;
+}
+
+#carousel-custom-dots {
+  margin-top: -4.5px !important;
 }
 
 </style>
