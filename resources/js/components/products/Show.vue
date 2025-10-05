@@ -112,6 +112,7 @@
                 v-if="!product.is_gift_card" 
                 @wishlistChange="addToWishList" 
                 :wishlistText="wishlistText" 
+                :product="product" 
               />
             </div>
           </div>
@@ -127,6 +128,9 @@
     </div>
     <!-- End .product-single-container -->
     <reviews :product="product" :meta="meta" :reviews="reviews" />
+
+    <LoginModal :show="showLogin" @update:show="close"  />
+
 
 
     <register-modal />
@@ -225,6 +229,7 @@ export default {
       styleObject: {
         "background-color": "red",
       },
+      showLogin: null,
     };
   },
   computed: {
@@ -354,6 +359,9 @@ export default {
         this.quantity_count--;
       }
     },
+      close(){
+        this.showLogin = false
+      },
 
     getAttribute: function ({ vTs, key }) {
       try {
@@ -417,6 +425,10 @@ export default {
 
     },
     addToWishList: function () {
+       if (!this.$root.user) {
+          this.showLogin = true
+          return;
+        }
       this.wishlistText = true;
       this.addProductToWishList({
         product_variation_id: this.product_variation_id,
