@@ -20,7 +20,7 @@
 
         </div>
         <div id="collapseSizeFit" class="collapse show" data-parent="#productDetails">
-          <div v-html="product.product.description" class="card-body px-3"> </div>
+          <div v-html="product.product.description" class="card-body px-0"> </div>
         </div>
       </div>
 
@@ -41,7 +41,7 @@
 
         </div>
         <div id="collapseMaterial" class="collapse" data-parent="#productDetails">
-          <div class="card-body px-3">
+          <div class="card-body px-0">
              Our pieces are made from good materials, finished with our signature antique gold or silver polish and accented with acrylic.
           </div>
         </div>
@@ -65,7 +65,7 @@
 
         </div>
         <div id="collapseShipping" class="collapse" data-parent="#productDetails">
-          <div class="card-body px-3">
+          <div class="card-body px-0">
             Within Lagos: We offer same-day delivery for all confirmed orders placed before our daily cut-off time.
 
             Other States in Nigeria: Delivery typically takes 1–3 business working days, depending on location and courier service availability.
