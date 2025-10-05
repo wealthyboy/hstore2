@@ -1,5 +1,5 @@
 <template>
-    <div class="position-relative wishlist-box d-flex align-items-center ml-3 justify-content-center border">
+    <div class="position-relative wishlist-box d-flex align-items-center mr-2 justify-content-center border">
          <div
           @click="addToWishList(product.id)"
 

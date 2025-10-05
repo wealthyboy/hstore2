@@ -76,11 +76,11 @@
 
             <gift-card-form v-if="product.is_gift_card" :product="product" />
 
-            <div v-if="!product.is_gift_card" class="row no-gutters mb-2 d-flex align-items-center">
+            <div v-if="!product.is_gift_card" class="row no-gutters mb-2 d-fle align-items-center justify-content-between px-1">
               <div v-if="cartError" class="text-danger text-center bold col-12">
                 {{ cartError }}
               </div>
-               <div v-if="!product.is_gift_card" class="col-2 ml-3">
+               <div v-if="!product.is_gift_card" class="col-2">
                 <div class="d-flex align-items-center  rounded-md">
                 <a
                   href="#"
@@ -104,7 +104,7 @@
               </div>
               </div>
          
-              <div v-if="!product.is_gift_card" class="col-7 ml-4">
+              <div v-if="!product.is_gift_card" class="col-8 ml-1">
                 <cart-button :loading="loading" :canAddToCart="canAddToCart" :cartText="cartText" @add="addToCart" />
               </div>
 
@@ -394,6 +394,10 @@ export default {
     }),
     addToCart: function () {
       let qty = this.quantity_count;
+
+      if (this.cText === 'Item is sold out') {
+        return;
+      }
 
       this.cText = "Adding....";
       this.loading = true;
