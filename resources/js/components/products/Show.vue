@@ -68,7 +68,7 @@
 
           <div class="clearfix"></div>
 
-          <div class="mt-1">
+          <div class="">
             <!--Product Variations Form-->
             <product-attributes v-if="!product.is_gift_card" @productAttributeChange="getAttribute"
               :attributes="attributes" :attributesData="attributesData" :inventory="inventory" :stock="stock"

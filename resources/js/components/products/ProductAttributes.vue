@@ -6,10 +6,10 @@
       :key="key"
       class="col-12 mt-2 attrs"
     >
-      <label class="d-block">
-        Select {{ key }}: <span v-if="key == 'Colors'">{{ color }}</span></label
-      >
-      <div :id="'productV-' + key" class="d-flex flex-wrap mb-1 mt-1">
+      <div class="d-block">
+        Select {{ key }}: <span v-if="key == 'Colors'">{{ color }}</span>
+      </div>
+      <div :id="'productV-' + key" class="d-flex flex-wrap mb-1 mt-">
         <div
           @click="getAttribute($event, key)"
           :data-name="key"
@@ -50,12 +50,15 @@
             v-if="key != 'Colors'"
             :data-value="children"
             :data-amount="quantity"
-            v-for="(children, index) in map"
+            v-for="(children, key, index) in map"
             :key="children"
             :id="children"
             class="mr-1 product-variation-box  d-flex align-items-center justify-content-center pt-1 border bold other-attribute"
           >
-            {{ children }}
+            {{ children }} 
+
+
+
           </div>
         </template>
       </div>
