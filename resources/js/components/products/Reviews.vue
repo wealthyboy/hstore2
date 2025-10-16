@@ -1,5 +1,5 @@
 <template>
-  <div class="reviews-section">
+  <div id="rating-link" class="reviews-section">
     <!-- Header with Add Review button -->
     <div class="d-flex justify-content-between align-items-center">
       <h4 class="mb-0 font-weight-bold">
