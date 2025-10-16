@@ -8,7 +8,7 @@
       </div>
     </div>
 
-    <div v-if="paymentIsComplete" class="page-contaiter">
+    <div v-if="paymentIsComplete" style="" class="page-contaiter">
       <!--Content-->
       <section class="sec-padding--lg vh--100">
         <div class="container">

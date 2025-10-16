@@ -1166,7 +1166,3 @@ button {
   100% { background-position: 400px 0; }
 }
 
-select.form-control:not([size]):not([multiple]) {
-    background-color: #fff !important;
-    z-index: auto;
-}

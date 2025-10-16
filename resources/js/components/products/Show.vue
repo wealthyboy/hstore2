@@ -45,7 +45,7 @@
         </div>
 
         <!-- End .product-single-gallery -->
-        <div class="d-none d-xs-block d-block d-lg-none d-sm-block d-md-none mx-4 mb-2 mobile">
+        <div class="d-none d-xs-block d-block d-lg-none d-sm-block d-md-none mx-4 mb-2 mobile mt-1">
           <div class="prod-thumbnail d-flex carousel-custom-dots carousel-custom-dots-mobile owl-dots" id="carousel-custom-dots">
             <div class="owl-dot mr-1">
               <img class="animated" @click.prevent="currentSlide(product.image_to_show)" :src="image_m" />

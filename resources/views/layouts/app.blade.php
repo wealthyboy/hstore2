@@ -55,76 +55,86 @@
 </head>
 
 <style>
-    .review-card {
-      border: none;
-      background: #fff;
-      padding: 1.5rem;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-    }
-    .review-img {
-      max-width: 100px;
-      margin: 0 auto 1rem;
-      border-radius: 8px;
-    }
-    .stars {
-      color: #f5c518;
-      margin-bottom: 0.5rem;
-    }
-    .review-text {
-      font-style: italic;
-      color: #444;
-      margin: 1rem 0;
-    }
-    .review-author {
-      font-weight: 500;
-      margin-top: 0.5rem;
-      color: #666;
-    }
+	.review-card {
+		border: none;
+		background: #fff;
+		padding: 1.5rem;
+		border-radius: 12px;
+		text-align: center;
+		box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+	}
 
-   /* Overlay */
-.search-overlay {
-  position: fixed;
-  top: 60px; /* adjust to your navbar height */
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.5);
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  z-index: 9999;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-}
+	.review-img {
+		max-width: 100px;
+		margin: 0 auto 1rem;
+		border-radius: 8px;
+	}
 
-/* Search bar wrapper */
-.search-bar-wrapper {
-  width: 100%;
-  background: #fff;
-  padding: 15px 20px;
-  transform: translateY(-100%);
-  opacity: 0;
-  transition: transform 0.4s ease, opacity 0.4s ease;
-}
+	.stars {
+		color: #f5c518;
+		margin-bottom: 0.5rem;
+	}
 
-/* Active state */
-.search-overlay.show {
-  opacity: 1;
-  pointer-events: auto;
-}
+	.review-text {
+		font-style: italic;
+		color: #444;
+		margin: 1rem 0;
+	}
 
-.search-overlay.show .search-bar-wrapper {
-  transform: translateY(0);
-  opacity: 1;
-}
+	.review-author {
+		font-weight: 500;
+		margin-top: 0.5rem;
+		color: #666;
+	}
 
+	/* Overlay */
+	.search-overlay {
+		position: fixed;
+		top: 60px;
+		/* adjust to your navbar height */
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(0, 0, 0, 0.5);
+		display: flex;
+		justify-content: center;
+		align-items: flex-start;
+		z-index: 9999;
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 0.3s ease;
+	}
 
+	/* Search bar wrapper */
+	.search-bar-wrapper {
+		width: 100%;
+		background: #fff;
+		padding: 15px 20px;
+		transform: translateY(-100%);
+		opacity: 0;
+		transition: transform 0.4s ease, opacity 0.4s ease;
+	}
 
-	
-  </style>
+	/* Active state */
+	.search-overlay.show {
+		opacity: 1;
+		pointer-events: auto;
+		margin-top: 1.7rem;
+	}
+
+	.search-overlay.show .search-bar-wrapper {
+		transform: translateY(0);
+		opacity: 1;
+	}
+
+	@media (max-width: 768px) {
+		.search-overlay.show {
+			opacity: 1;
+			pointer-events: auto;
+			margin-top: 1.7rem;
+		}
+	}
+</style>
 
 
 
@@ -140,68 +150,67 @@
 				<div class="container-fluid">
 					<div class="header-left w-lg-max ml-auto ml-lg-0">
 						<div class="header-bottom sticky-header d-none d-lg-block">
-				  <div style="padding-left: 50px;" class="container-fluid ">
-					<nav class="main-nav d-flex w-lg-max justify-content-center">
-						<ul class="menu">
+							<div style="padding-left: 50px;" class="container-fluid ">
+								<nav class="main-nav d-flex w-lg-max justify-content-center">
+									<ul class="menu">
 
-							@foreach( $global_categories as $category)
-							<li>
-								<a  title="{{ $category->title }}" 
-								    style="color: {{  $category->text_color }} !important;"
-									href="{{  $category->link ? $category->link : '/products/'.$category->slug }}"
-								>
-									{{ $category->name }}
-								</a>
-								@if ($category->isCategoryHaveMultipleChildren())
+										@foreach( $global_categories as $category)
+										<li>
+											<a title="{{ $category->title }}"
+												style="color: {{  $category->text_color }} !important;"
+												href="{{  $category->link ? $category->link : '/products/'.$category->slug }}">
+												{{ $category->name }}
+											</a>
+											@if ($category->isCategoryHaveMultipleChildren())
 
-								<div class="megamenu megamenu-fixed-width bg--main">
-									<div class="row">
-										<div class="col-lg-9">
-											<div class="row  bg--main">
+											<div class="megamenu megamenu-fixed-width bg--main">
+												<div class="row">
+													<div class="col-lg-9">
+														<div class="row  bg--main">
+															@foreach ( $category->children as $children)
+															<div class="col-lg-3  bg--main">
+																<a href="/products/{{ $children->slug }}" title="{{ $children->title }}" class="category-heading"><b>{{ $children->name !== 'No Heading' ? $children->name : '' }} </b></a>
+																@if ($children->children->count())
+																<ul class="submenu  bg--main">
+																	@foreach ( $children->children as $children)
+																	<li><a title="{{ $children->title }}" href="/products/{{ $children->slug }}">{{ ucfirst($children->name) }}</a></li>
+																	@endforeach
+																</ul>
+																@endif
+															</div><!-- End .col-lg-4 -->
+															@endforeach
+														</div>
+													</div>
+
+													<div class="col-lg-3">
+														<div class="col-lg-12 p-0">
+															<a title="{{ $category->title }}" href="{{ $category->image_custom_link }}">
+																<img alt="{{ $category->image }}" src="{{ $category->image }}" class="product-promo">
+															</a>
+														</div><!-- End .col-lg-4 -->
+													</div>
+
+
+												</div><!-- End .row -->
+											</div><!-- End .megamenu -->
+											@elseif ( !$category->isCategoryHaveMultipleChildren() && $category->children->count() )
+											<ul>
 												@foreach ( $category->children as $children)
-												<div class="col-lg-3  bg--main">
-													<a href="/products/{{ $children->slug }}" title="{{ $children->title }}" class="category-heading"><b>{{ $children->name !== 'No Heading' ? $children->name : '' }} </b></a>
-													@if ($children->children->count())
-													<ul class="submenu  bg--main">
-														@foreach ( $children->children as $children)
-														<li><a title="{{ $children->title }}" href="/products/{{ $children->slug }}">{{ ucfirst($children->name) }}</a></li>
-														@endforeach
-													</ul>
-													@endif
-												</div><!-- End .col-lg-4 -->
+												<li class="nav-children color--primary  {{ strtolower($category->name) == 'christmas shop' ? 'pl-5' : '' }}"><a title="{{ $children->title }}" href="/products/{{ $children->slug }}">{{ $children->name }}</a></li>
 												@endforeach
-											</div>
-										</div>
-
-										<div class="col-lg-3">
-											<div class="col-lg-12 p-0">
-												<a title="{{ $category->title }}" href="{{ $category->image_custom_link }}">
-													<img alt="{{ $category->image }}" src="{{ $category->image }}" class="product-promo">
-												</a>
-											</div><!-- End .col-lg-4 -->
-										</div>
-
-
-									</div><!-- End .row -->
-								</div><!-- End .megamenu -->
-								@elseif ( !$category->isCategoryHaveMultipleChildren() && $category->children->count() )
-								<ul>
-									@foreach ( $category->children as $children)
-									<li class="nav-children color--primary  {{ strtolower($category->name) == 'christmas shop' ? 'pl-5' : '' }}"><a title="{{ $children->title }}" href="/products/{{ $children->slug }}">{{ $children->name }}</a></li>
-									@endforeach
-								</ul>
-								@endif
-							</li>
-							@endforeach
-						</ul>
-					</nav>
-				</div><!-- End .container -->
-			</div><!-- End .header-bottom -->
+											</ul>
+											@endif
+										</li>
+										@endforeach
+									</ul>
+								</nav>
+							</div><!-- End .container -->
+						</div><!-- End .header-bottom -->
 					</div><!-- End .header-left -->
 
 					<div class="header-center order-first order-lg-0 ml-0 ml-lg-auto">
 						<button class="mobile-menu-toggler" type="button">
-							 <svg aria-hidden="true" fill="none" focusable="false" width="24" class="header__nav-icon icon icon-hamburger" viewBox="0 0 24 24">
+							<svg aria-hidden="true" fill="none" focusable="false" width="24" class="header__nav-icon icon icon-hamburger" viewBox="0 0 24 24">
 								<path d="M1 19h22M1 12h22M1 5h22" stroke="currentColor" stroke-width="1" stroke-linecap="square"></path>
 							</svg>
 						</button>
@@ -214,7 +223,7 @@
 			</div><!-- End .header-middle -->
 
 			<div class="header-bottom sticky-header d-none d-lg-block">
-				
+
 			</div><!-- End .header-bottom -->
 		</header><!-- End .header -->
 		<main class="main main-page">
@@ -225,14 +234,14 @@
 			<div class="footer-middle">
 				<div class="container-fluid">
 					<div class="row">
-						
+
 
 						<div class="col-lg-6 col-md-6">
 							<div class="row ">
 								@foreach($footer_info as $info)
 								<div class="col-sm-4 col-6 col-lg-4">
 									<div class="widget">
-										<h2 class="widget-title bold" >{{ title_case($info->title) }}</h2>
+										<h2 class="widget-title bold">{{ title_case($info->title) }}</h2>
 										@if($info->children->count())
 										<ul class="">
 											@foreach($info->children as $info)
@@ -256,18 +265,18 @@
 								<h4 class="widget-title bold">Subscribe to our newsletter.</h4>
 								<p>Get all the latest information on events, sales and offers. Sign up for newsletter today.</p>
 								<news-letter />
-								
-							</div>
-							
 
-						
+							</div>
+
+
+
 
 							<div class="social-icons mt-3">
 								<a href="{{ $system_settings->facebook_link }}" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
 								<a href="{{ $system_settings->instagram_link }}" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
 							</div><!-- End .social-icons -->
 							<p>
-						
+
 							</p>
 						</div>
 					</div><!-- End .row -->
@@ -276,10 +285,10 @@
 
 			<div class="footer-bottom">
 				<div class="contact-widget  d-flex justify-content-center ">
-								
+
 				</div>
 				<div class="container d-flex justify-content-center align-items-center flex-wrap">
-					
+
 					<p class="footer-copyright py-3 pr-4 mb-0">© {{ config('app.name') }}. {{ date('Y') }}. All Rights Reserved</p>
 					@if ( auth()->check() && auth()->user()->isAdmin() )
 					<p class="footer-copyright py-3 pr-4 mb-0"><a target="_blank" href="/admin">Go to Admin</a></p>
@@ -355,34 +364,34 @@
 			const input = overlay.querySelector("input[type='search']");
 
 			function openSearch() {
-			overlay.classList.add("show");
-			setTimeout(() => input.focus(), 300);
+				overlay.classList.add("show");
+				setTimeout(() => input.focus(), 300);
 			}
 
 			function closeSearch() {
-			overlay.classList.remove("show");
+				overlay.classList.remove("show");
 			}
 
 			// Toggle with search icon
 			toggleBtn.addEventListener("click", function() {
 				console.log(true)
-			    overlay.classList.contains("show") ? closeSearch() : openSearch();
+				overlay.classList.contains("show") ? closeSearch() : openSearch();
 			});
 
 			// Close with overlay background
 			overlay.addEventListener("click", function(e) {
-			if (e.target === overlay) closeSearch();
+				if (e.target === overlay) closeSearch();
 			});
 
 			// Close with "X" button
 			closeBtn.addEventListener("click", closeSearch);
 
 			document.addEventListener("keydown", function(e) {
-			if (e.key === "Escape" && overlay.classList.contains("show")) {
-				closeSearch();
-			}
+				if (e.key === "Escape" && overlay.classList.contains("show")) {
+					closeSearch();
+				}
+			});
 		});
-	   }); 
 	</script>
 </body>
 
