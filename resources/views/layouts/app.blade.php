@@ -131,7 +131,7 @@
 		.search-overlay.show {
 			opacity: 1;
 			pointer-events: auto;
-			margin-top: 1.7rem;
+			margin-top: .2rem;
 		}
 	}
 </style>
