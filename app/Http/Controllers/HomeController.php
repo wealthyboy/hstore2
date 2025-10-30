@@ -34,25 +34,25 @@ class HomeController extends Controller
         $sliders = Banner::sliders()->get();
 
         $products = ProductVariation::whereNotNull('price')
-                ->where('price', '>', 0)
-                ->whereNotNull('name')
-                ->where('name', '!=', '')
-                ->where('featured',  true)
-                ->orderBy('updated_at', 'DESC')
-                ->take(8)
-                ->get();
+            ->where('price', '>', 0)
+            ->whereNotNull('name')
+            ->where('name', '!=', '')
+            ->where('featured',  true)
+            ->orderBy('updated_at', 'DESC')
+            ->take(8)
+            ->get();
 
 
         $reviews = Review::where('is_verified', 1)
-                ->inRandomOrder()
-                ->orderBy('created_at', 'DESC')
-                ->take(20)
-                ->get();
+            ->inRandomOrder()
+            ->orderBy('created_at', 'DESC')
+            ->take(20)
+            ->get();
 
         $posts = Information::orderBy('created_at', 'DESC')
-                ->where(['blog' => true, 'is_active' => true])
-                ->take(6)
-                ->get();
+            ->where(['blog' => true, 'is_active' => true])
+            ->take(6)
+            ->get();
 
 
 
@@ -60,7 +60,7 @@ class HomeController extends Controller
         if (!$site_status->make_live) {
             return view('index', compact('sliders', 'banners', 'reviews', 'products', 'posts'));
         } else {
-            if (auth()->ch eck() && auth()->user()->isAdmin()) {
+            if (auth()->check() && auth()->user()->isAdmin()) {
                 return view('index', compact('sliders', 'banners', 'reviews', 'products', 'posts'));
             }
 
