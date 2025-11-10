@@ -157,7 +157,7 @@ export default {
             },
             siteName: {
                 type: String,
-                default: "TheAuraByDora", // replace with ENV or config
+                default: "", // replace with ENV or config
             },
             gridType: {
                 type: String,
