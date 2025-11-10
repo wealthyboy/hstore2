@@ -99,17 +99,17 @@
 /* Button color */
 /*------------------------------------------------------------*/
 .btn--primary {
-    background:#3F4E4F   !important;
+    background:#000   !important;
     color: #fff !important;
 }
 
 .btn--primary:hover {
-    background: #3F4E4F !important;
+    background: #000 !important;
     color: #fff !important;
 }
 
 .btn--secondary {
-    background:#3F4E4F  !important;
+    background:#000  !important;
     color: #fff !important;
 }
 
