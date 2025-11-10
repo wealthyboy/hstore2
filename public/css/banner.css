@@ -162,6 +162,13 @@
   margin-bottom: .3rem;
 }
 
+@media (max-width: 768px) {  /* adjust breakpoint as needed */
+  .top-shop-now {
+    top: 71%;
+    font-size: 1.5rem; /* optional: adjust font size for mobile */
+  }
+}
+
 .top-shop-now {
    top: 62%;      
   left: 50%;            /* push to middle horizontally */
@@ -172,6 +179,8 @@
   z-index: 2;
   font-family: PolarisHeavy;
 }
+
+
 
 
 span.shop-now-btn.top-shop-now.position-absolute.start-50.translate-middle-x.text-white.border.border-white.px-3.py-2.mt-2.rounded {
