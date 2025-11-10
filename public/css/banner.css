@@ -162,12 +162,6 @@
   margin-bottom: .3rem;
 }
 
-@media (max-width: 768px) {  /* adjust breakpoint as needed */
-  .top-shop-now {
-    top: 71%;
-    font-size: 1.5rem; /* optional: adjust font size for mobile */
-  }
-}
 
 .top-shop-now {
    top: 62%;      
@@ -178,6 +172,15 @@
   text-align: center;
   z-index: 2;
   font-family: PolarisHeavy;
+}
+
+
+
+@media (max-width: 768px) {  /* adjust breakpoint as needed */
+  .top-shop-now {
+    top: 71%;
+    font-size: 1.5rem; /* optional: adjust font size for mobile */
+  }
 }
 
 
