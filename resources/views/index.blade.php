@@ -1,14 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-@include('_partials.top_banner')
 @include('_partials.s')
 
 
 
 
 
- 
+
 
 
 
@@ -16,7 +15,7 @@
     <div class="row align-items-start">
         @foreach( $sliders as $slider )
         <div data-title="{{ $slider->title }}" class="{{ $slider->col }} {{ $slider->col == 'col-lg-3' ?  'col-6    p-0' : '' }}  {{ $slider->title }} p-0 text-center    top-banner-mb-1  cusor-pointer     {{ $slider->device }}">
-             <div class="banner-box">
+            <div class="banner-box">
                 <a class="portfolio-thumb d-block position-relative" href="{{ $slider->link }}">
                     <img src="{{ $slider->image }}" title="{{ $slider->title }}" alt="{{ $slider->img_alt }}" class="w-100" />
                     <h1 class="position-absolute top-banner-title bottom-0 start-50 translate-middle-x text-white  bg-opacity-50 px-2 py-1 rounded">
@@ -28,14 +27,14 @@
                     </span>
                 </a>
             </div>
-           
+
         </div>
         @endforeach
     </div>
 </div>
 
 
- 
+
 
 
 
@@ -123,9 +122,9 @@
 
 <div class="container-fliud">
     <div class="row align-items-start">
-       @foreach( $banners as $banner )
+        @foreach( $banners as $banner )
         <div data-title="{{ $banner->title }}" class="{{ $banner->col }} {{ $banner->col == 'col-lg-3' ?  'col-6    p-0' : '' }}  {{ $banner->title }} p-0 text-center    top-banner-mb-1  cusor-pointer     {{ $banner->device }}">
-             <div class="banner-box">
+            <div class="banner-box">
                 <a class="portfolio-thumb d-block position-relative" href="{{ $banner->link }}">
                     <img src="{{ $banner->image }}" title="{{ $banner->title }}" alt="{{ $banner->img_alt }}" class="w-100" />
                     <h1 class="position-absolute top-banner-title bottom-0 start-50 translate-middle-x text-white  bg-opacity-50 px-2 py-1 rounded">
@@ -137,7 +136,7 @@
                     </span>
                 </a>
             </div>
-           
+
         </div>
         @endforeach
     </div>
@@ -186,8 +185,8 @@
             <div class="col-md-12 col-12">
                 <h2 class="section-title text-center mb-4">Latest Product Reviews</h2>
 
-                <div class="owl-carousel owl-theme reviews-carousel" 
-                     data-owl-options='{
+                <div class="owl-carousel owl-theme reviews-carousel"
+                    data-owl-options='{
                         "loop": true,
                         "margin": 20,
                         "autoplay": false,
@@ -205,10 +204,10 @@
                     <div class="card border-0 shadow-sm h-100">
                         {{-- Product Image --}}
                         @if(optional($review->product_variation)->image_to_show_m)
-                            <img src="{{ optional($review->product_variation)->image_to_show_m }}" 
-                                 class="card-img-top p-3" 
-                                 alt="{{ $review->title }}" 
-                                 style="max-height:180px; object-fit:contain;">
+                        <img src="{{ optional($review->product_variation)->image_to_show_m }}"
+                            class="card-img-top p-3"
+                            alt="{{ $review->title }}"
+                            style="max-height:180px; object-fit:contain;">
                         @endif
 
                         <div class="card-body text-center">
@@ -216,7 +215,7 @@
                             <div class="mb-2">
                                 @for($i=1; $i<=5; $i++)
                                     <span class="{{ $i <= $review->rating ? 'text-warning' : 'text-muted' }}">★</span>
-                                @endfor
+                                    @endfor
                             </div>
 
                             {{-- Review Title --}}
@@ -263,10 +262,9 @@
 
 @endsection
 @section('page-scripts')
- 
+
 @stop
 
 @section('inline-scripts')
-     
-@stop
 
+@stop

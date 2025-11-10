@@ -2816,7 +2816,7 @@ a:focus {
     border: 1px solid #ddd;
     border-radius: 0;
     font-size: 1.4rem;
-        background: #FFFFE8 !important;
+        background: #fff !important;
 
 }
 
@@ -6932,7 +6932,7 @@ img.slide-bg {
 }
 
 .sticky-header {
-    background: #FFFFE8 !important;
+    background: #fff !important;
 }
 
 .sticky-header.fixed {
@@ -12404,7 +12404,7 @@ section {
 }
 
 .bg--main {
-    background-color: #FFFFE8 !important;
+    background-color: #fff !important;
 }
 
 .form-control {
