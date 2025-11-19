@@ -23,35 +23,28 @@ class   NavComposer
 
 	public function compose(View $view)
 	{
-		$global_categories = Cache::remember('global_categories', 1800, function () {
-			return Category::parents('sort_order', 'asc')
-				->where('is_active', true)
-				->get();
-		});
+		$global_categories =  Category::parents('sort_order', 'asc')
+			->where('is_active', true)
+			->get();
 
-		$footer_info = Cache::remember('footer_info', 1800, function () {
-			return Information::where('blog', false)->parents()->get();
-		});
 
-		$global_promo = Cache::remember('global_promo', 1800, function () {
-			return Promo::first();
-		});
+		$footer_info = Information::where('blog', false)->parents()->get();
 
-		$system_settings = Cache::remember('system_settings', 1800, function () {
-			return SystemSetting::first();
-		});
 
-		$currencies = Cache::remember('currencies', 1800, function () {
-			return Currency::all();
-		});
+		$global_promo =  Promo::first();
 
-		$blog_status = Cache::remember('blog_status', 1800, function () {
-			return EnableBlog::first();
-		});
 
-		$news_letter_image = Cache::remember('news_letter_image', 1800, function () {
-			return PageBanner::where('page_name', 'newsletter')->first();
-		});
+		$system_settings = SystemSetting::first();
+
+
+		$currencies = Currency::all();
+
+
+		$blog_status =  EnableBlog::first();
+
+
+		$news_letter_image = PageBanner::where('page_name', 'newsletter')->first();
+
 
 		$view->with([
 			'footer_info' => $footer_info,
